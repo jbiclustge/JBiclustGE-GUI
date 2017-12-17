@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  The AIBench Maven Archetype for plugins/apps
+  %%
+  Copyright (C) 2006 - 2017 Daniel Glez-Peña and Florentino Fdez-Riverola
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Lesser Public License for more details.
+  
+  You should have received a copy of the GNU General Lesser Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/lgpl-3.0.html>.
+  #L%
+  -->
+<plugin start="false">
+	<uid>JBiclustGE-GUI</uid>
+	<name>JBiclustGE-GUI</name>
+	<version>1.0-SNAPSHOT</version>
+	
+	<!-- lifecycle class. Used to detect when the plugin is started. The class should inherit from org.platonos.pluginengine.PluginLifecycle-->
+	<lifecycleclass>jbiclustgegui.lifecycle.Lifecycle</lifecycleclass>
+
+	<!-- DEPENCENCIES: If you need classes from other plugins, you need a dependency! NOTE: If you need classes from plugins that you extend (for example, the core) you don't need to put the dependency. NOTE: This dependency is a sample. If you uncomment the following lines the plugin will fail! -->
+
+	
+	<dependencies>
+		<dependency uid="aibench.core"/>
+		<dependency uid="aibench.workbench"/>
+		<dependency uid="aibench.pluginmanager"/>
+		
+   		<!--<dependency uid="sing.datatypes"/>-->
+	</dependencies>
+
+
+
+	<!-- EXTENSIONS: The extensions that this plugin is connected to -->
+	<extensions>
+	
+	     <extension class="jbiclustgegui.operations.project.NewProjectOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="New Project" path="10@File" shortcut="10" uid="operations.newproject"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.project.NewProjectGUI" operation="operations.newproject"/>
+		</extension>
+		
+		<!--<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-operation icon="images/i16x16/new_proj.png" operation="operations.newproject"/>
+		</extension>-->
+		
+
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<icon-operation operation="operations.newproject" icon="images/i16x16/new_proj.png"/>
+			<big-icon-operation	operation="operations.newproject" icon="images/i48x48/new_proj.png"/>
+		</extension>
+		
+		
+		<!-- Delete Project Operation -->
+		
+		<extension class="jbiclustgegui.operations.project.DeleteProject" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Delete Project" path="20@File" shortcut="40" uid="operations.project.delete"/>
+		</extension>
+		
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<icon-operation operation="operations.project.delete" icon="images/i16x16/delete_proj.png"/>
+			<big-icon-operation	operation="operations.project.delete" icon="images/i48x48/delete_proj.png"/>
+		</extension>
+		
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.project.SelectProjectGUI" operation="operations.project.delete"/>
+		</extension>
+		<!--<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-operation icon="images/icons/s48x48/delete.png" operation="saveloadquit.operations.delete2"/>
+		</extension> -->
+		
+		
+		<!-- Import Bicluster List -->
+		
+		<extension class="jbiclustgegui.operations.io.biclusters.ImportBiclusterListResults" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="List of Biclusters" path="30@File/Import" uid="operation.import.biclusterlist"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.io.biclusters.ImportListofBiclustersGUI" operation="operation.import.biclusterlist"/>
+		</extension>
+		
+		
+		
+		<!-- Settings -->
+		<extension class="jbiclustgegui.operations.project.ConfigureJBiclustGESettings" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Configure JBiclustGE Settings" path="600@Settings" uid="operation.configure.jbiclustge"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.components.dialogs.ConfigureJBiclustGESettingsGUI" operation="operation.configure.jbiclustge"/>
+		</extension>
+		
+		
+		
+		
+		<extension class="jbiclustgegui.operations.project.ChangeWorkspace" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Change Workspace" path="20@File/1@Workspace" uid="saveloadquit.operations.changeworkspace"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.project.ChooseWorkspaceGUI" operation="saveloadquit.operations.changeworkspace"/>
+		</extension>
+		
+		
+		<!-- execute methods -->
+		
+		<extension class="jbiclustgegui.operations.methods.RunBimaxOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Bimax" path="200@Run/6@Biclustering method" uid="operation.method.bimax"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.BimaxMethodGUI" operation="operation.method.bimax"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunUnibicOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="UniBic" path="200@Run/21@Biclustering method" uid="operation.method.unibic"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.UnibicMethodGUI" operation="operation.method.unibic"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunBibitOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="BiBit" path="200@Run/2@Biclustering method" uid="operation.method.bibit"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.BibitMethodGUI" operation="operation.method.bibit"/>
+		</extension>
+
+
+		<extension class="jbiclustgegui.operations.methods.RunOPSMOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="OPSM" path="200@Run/14@Biclustering method" uid="operation.method.opsm"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.OPSMMethodGUI" operation="operation.method.opsm"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunPenalizedPlaidOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Penalized Plaid" path="200@Run/15@Biclustering method" uid="operation.method.penalizedplaid"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.PenalizedPlaidMethodGUI" operation="operation.method.penalizedplaid"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunBBCOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="BBC" path="200@Run/1@Biclustering method" uid="operation.method.bbc"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.BBCMethodGUI" operation="operation.method.bbc"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunBicareFlocOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Floc" path="200@Run/3@Biclustering method" uid="operation.method.floc"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.BicareFlocMethodGUI" operation="operation.method.floc"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunBicFinderOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="BicFinder" path="200@Run/4@Biclustering method" uid="operation.method.bicfinder"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.BicFinderMethodGUI" operation="operation.method.bicfinder"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunBiclicOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="BICLIC" path="200@Run/5@Biclustering method" uid="operation.method.biclic"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.BiclicMethodGUI" operation="operation.method.biclic"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunBimineplusOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="BiMineplus" path="200@Run/7@Biclustering method" uid="operation.method.bimineplus"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.BimineplusMethodGUI" operation="operation.method.bimineplus"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunCCOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="ChengChurch" path="200@Run/8@Biclustering method" uid="operation.method.cc"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.ChengAndChurchMethodGUI" operation="operation.method.cc"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunCoalesceOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="COALESCE" path="200@Run/9@Biclustering method" uid="operation.method.coalesce"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.CoalesceMethodGUI" operation="operation.method.coalesce"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunCPBOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="CPB" path="200@Run/10@Biclustering method" uid="operation.method.cpb"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.CPBMethodGUI" operation="operation.method.cpb"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunDebiOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="DeBi" path="200@Run/11@Biclustering method" uid="operation.method.debi"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.DebiMethodGUI" operation="operation.method.debi"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunFabiaOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Fabia" path="200@Run/12@Biclustering method/1@Fabia" uid="operation.method.fabia"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.FabiaMethodGUI" operation="operation.method.fabia"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunFabiaPOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="FabiaP" path="200@Run/12@Biclustering method/2@Fabia" uid="operation.method.fabiap"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.FabiaPMethodGUI" operation="operation.method.fabiap"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunFabiaSOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="FabiaS" path="200@Run/12@Biclustering method/3@Fabia" uid="operation.method.fabias"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.FabiaSMethodGUI" operation="operation.method.fabias"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunISAOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="ISA" path="200@Run/13@Biclustering method" uid="operation.method.isa"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.ISAMethodGUI" operation="operation.method.isa"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunPlaidOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Plaid" path="200@Run/16@Biclustering method" uid="operation.method.plaid"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.PlaidMethodGUI" operation="operation.method.plaid"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunQubicOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="QuBic" path="200@Run/17@Biclustering method" uid="operation.method.qubic"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.QubicMethodGUI" operation="operation.method.qubic"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunSpectralOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Spectral" path="200@Run/19@Biclustering method" uid="operation.method.spectral"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.SpectralMethodGUI" operation="operation.method.spectral"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunUbclustOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="UBCLUST" path="200@Run/20@Biclustering method" uid="operation.method.ubclust"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.UbclustMethodGUI" operation="operation.method.ubclust"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.methods.RunXmotifsOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="xMOTIFs" path="200@Run/22@Biclustering method" uid="operation.method.xmotifs"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.methods.XmotifsMethodGUI" operation="operation.method.xmotifs"/>
+		</extension> 
+		
+		
+
+
+		<!-- execute gene enrichment analysis -->
+		
+		<extension class="jbiclustgegui.operations.analysis.enrichmentanalysis.OntologizerGSEAOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Ontologizer" path="400@Analysis/1@Enrichment Analysis" uid="operation.gsea.ontologizer"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.enrichmentanalysis.OntologizerAnalyserGUI" operation="operation.gsea.ontologizer"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.analysis.enrichmentanalysis.TopGOGSEAOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="TopGO" path="400@Analysis/2@Enrichment Analysis" uid="operation.gsea.topgo"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.enrichmentanalysis.TopGOAnalyserGUI" operation="operation.gsea.topgo"/>
+		</extension>
+		
+		<!-- Analysis-->
+		
+		<extension class="jbiclustgegui.operations.analysis.similarity.SimilarityMultipleListBiclusters" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Pairwise analysis of multiple list of biclusters" path="400@Analysis/3@Similarity" uid="operation.analysis.similarity.multiple"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.analysis.similarity.PairwiseSimilarityMultipleListBiclustersDialog" operation="operation.analysis.similarity.multiple"/>
+		</extension>
+		
+		
+		<!--PROFILE-->
+		
+		<extension class="jbiclustgegui.operations.profilecli.ProfileCLIMaker" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Configure profile to run at JBiclustGE-CLI" path="300@Run/2@Make Profile" uid="operation.profile.jbiclustgecli"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.analysis.profilecli.ProfileMakerToJBiclustGECLI" operation="operation.profile.jbiclustgecli"/>
+		</extension>
+		
+		
+		<!-- Synthetic data -->
+		
+		<extension class="jbiclustgegui.operations.synthetic.GenerateSynteticBiclustersDataOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="Generate Synthetic Datasets" path="500@Synthetic/2@Make datasets" uid="operation.synthetic.generate"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.synthetic.SyntheticDatasetMakerDialog" operation="operation.synthetic.generate"/>
+		</extension>
+		
+		
+		<!-- View Gene Expression data-->
+		
+		 <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.data.ExpressionDatasetViewerPanel" datatype="jbiclustgegui.datatypes.GeneExpressionDatasetBox" name="Gene Expression data"/>
+        </extension>
+		
+		<!-- View Method Results-->
+		
+		 <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.BimaxResultsBox" name="Results of BiMax Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.BBCResultsBox" name="Results of BBC Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.BibitResultsBox" name="Results of BiBit Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.BicareFlocResultsBox" name="Results of Bicare(Floc) Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.BicFinderResultsBox" name="Results of BicFinder Algorithm"/>
+        </extension>
+		
+		 <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.BiclicResultsBox" name="Results of BICLIC Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.BimineplusResultsBox" name="Results of BiMineplus Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.ChengAndChurchResultsBox" name="Results of Cheng and Church Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.COALESCEResultsBox" name="Results of COALESCE Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.CPBResultsBox" name="Results of CPB Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.DebiResultsBox" name="Results of DeBi Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.FabiaPResultsBox" name="Results of FabiaP Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.FabiaResultsBox" name="Results of Fabia Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.FabiaSResultsBox" name="Results of FabiaS Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.ISAResultsBox" name="Results of ISA Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.OPSMResultsBox" name="Results of OPSM Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.PenalizedPlaidResultsBox" name="Results of Penalized Plaid Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.PlaidResultsBox" name="Results of Plaid Algorithm"/>
+        </extension>
+        
+          <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.QubicResultsBox" name="Results of QuBic Algorithm"/>
+        </extension>
+        
+          <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.SpectralResultsBox" name="Results of Spectral Algorithm"/>
+        </extension>
+        
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.UbclustResultsBox" name="Results of UBCLUST Algorithm"/>
+        </extension>
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.UnibicResultsBox" name="Results of UniBic Algorithm"/>
+        </extension>
+        
+        
+           <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.methods.BiclusteringMethodsResultsViewer" datatype="jbiclustgegui.datatypes.biclusteringresults.XmotifsResultsBox" name="Results of xMOTIFs Algorithm"/>
+        </extension>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.analysis.gsea.GeneEnrichmentAnalysisViewer" datatype="jbiclustgegui.datatypes.enrichmentanalysisresults.EnrichmentAnalysisResultBox" name="Results of Gene Set Enrichment Analysis"/>
+        </extension>
+        
+        
+        <!-- View Similarity analysis-->
+         <extension name="aibench.workbench.view" uid="aibench.workbench">
+			<view class="jbiclustgegui.gui.views.analysis.similarity.PairwiseSimilarityMultiComparisionsViewerPanel" datatype="jbiclustgegui.datatypes.analysis.PairwiseMultipleListBiclustersResultsBox" name="Pairwise Similarity Results"/>
+        </extension>
+        
+        
+        
+        
+        <!-- ========================= ICONS ======================================= -->
+        
+        <extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-datatype datatype="jbiclustgegui.datatypes.project.Project" icon="images/i24x24/project.png"/>
+		</extension>
+		
+		 <extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-datatype datatype="jbiclustgegui.datatypes.GeneExpressionDatasetBox" icon="images/i16x16/dataset.png"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-datatype datatype="jbiclustgegui.datatypes.project.elements.ElementList" icon="images/i16x16/list.png"/>
+		</extension>
+        
+       <extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-datatype datatype="jbiclustgegui.datatypes.biclusteringresults.BiclusteringResultBox" icon="images/i16x16/result.png"/>
+		</extension>
+		
+		  <extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-datatype datatype="jbiclustgegui.datatypes.enrichmentanalysisresults.EnrichmentAnalysisResultBox" icon="images/i16x16/gsea1.png"/>
+		</extension>
+		
+		  <extension name="aibench.workbench.view" uid="aibench.workbench">
+					<icon-datatype datatype="jbiclustgegui.datatypes.analysis.PairwiseMultipleListBiclustersResultsBox" icon="images/i16x16/pairwise.png"/>
+		</extension>
+
+        
+		
+		<!-- EXTENSION 1: A sample operation, extending the core. Please note: you can put as many operations as you wish: one extension per operation -->
+
+		<!--<extension uid="aibench.core" name="aibench.core.operation-definition" class="es.uvigo.ei.sing.Sum">
+			<operation-description name="Sum Operation" path="10@Sample/1@SubmenuExample" uid= "es.uvigo.ei.sing.sumoperationid" shortcut="1"/>
+		</extension>-->
+
+
+		<!-- ========================= EXAMPLES ======================================= -->
+		
+		<!-- CORE EXTENSION SAMPLES: Operations, Datatypes... -->
+
+		<!-- "Transformers". A transformer definition tells AIBench that you have a method to convert a instance from one class to an instance of another class -->
+		<!-- 
+		<extension uid="aibench.core" name="aibench.core.transformer-definition">
+			<transformer-description 
+				sourceType="java.lang.String" 
+				destinyType="es.uvigo.ei.sing.aibench.shell.DummyDataType" 
+				transformerClass="es.uvigo.ei.sing.aibench.shell.Transformer"
+				methodName="transform"
+				/>
+	    </extension>
+	    -->
+
+		<!-- WORKBENCH EXTENSION SAMPLES (GUI related) -->
+		
+		<!-- Workbench extensions (GUI related) -->
+		
+		<!-- "Datatype Viewers". Map a class (datatype) to a viewer (JComponent). Remember: This JComponent must have a constructor taking the datatype instance -->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<view name="Sample Datatype View" datatype="sampleplugin.OneClass" class="sampleplugin.OneViewComponent" help="view.sampleplugin.oneclass"/>		
+		</extension>
+		-->
+		
+		<!-- "Custom icons" -->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<icon-operation operation="sampleplugin.sumoperationid" icon="icons/oneicon.png"/>
+			<big-icon-operation	operation="sampleplugin.sumoperationid" icon="icons/onebigicon.png"/>
+			<icon-datatype datatype="sampleplugin.OneClass" icon="icons/othericon.png"/> 
+		</extension>
+		-->
+		
+		<!-- "Custom menu icons". Icons for menu items that are not associated with operations -->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<menu-icon menu="Sample" icon="conf/icons/menu/sample.png"/>
+			<menu-icon menu="Sample/SubmenuExample" icon="conf/icons/menu/sample.png"/>
+		</extension>		
+		-->
+		
+		<!-- "Custom input dialogs". If you don't like the default generated input dialog for some operation, put your own here -->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<gui-operation operation="org.myorg.myoperationid" class="org.myorg.MyComponent"/>
+		</extension>
+		-->
+		
+		<!-- "Custom operation visibility". By default, all operations are displayed everywhere (main menu, popup menu and dialogs). But if you want to change this behaviour, use this option.
+		The current available options are (you can put more than one, separated with spaces)
+		  MENU - the operation can be accessed from the main menu
+		  POPUP - the operation can be accessed from the popup menu showed in the trees
+		  DIALOG - the operation can be accessed from dialogs
+		  TOOLBAR - the operation can be accessed from the toolbar
+		  NONE - the operation is hidden in the GUI  
+		-->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<operation-visibility operation="stringeditor.createroot" visibility="MENU POPUP"/>
+		</extension>
+		-->
+		
+		<!-- "Custom components". Components displayed in the main window. You can choose where to place it
+			using the slotid tag, so please see the /conf/template.xml file to know which slots are available
+			The component is any JComponent -->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<component slotid="bottom" componentid="aibench.shell.shellWindow" name="AIBench Shell" class="es.uvigo.ei.sing.aibench.shell.ShellComponent"/>
+		</extension>
+		-->
+		
+		<!-- "Welcome screen". You can set any JComponent as welcome screen and it will be added to the main window at start. -->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.view" >
+			<welcomescreen class="org.myorg.MyComponent" title="Welcome screen" closeable="true"/>
+		</extension>
+		-->
+
+		<!-- Custom error notifier. This extension allows replacing the default error dialog shown when an exception is thrown during the execution of an operation -->
+		<!--
+		<extension uid="aibench.workbench" name="aibench.workbench.error.notifier" class="full.class.name.of.your.CustomErrorNotifier" />
+		-->
+	</extensions>
+</plugin>
