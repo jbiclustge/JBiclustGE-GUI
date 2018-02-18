@@ -117,6 +117,7 @@ public class PenalizedPlaidSettingsPanel extends AbstractMethodSettingsPanel imp
 		add(this.lblNumberBiclusters, gbc_lblNumberBiclusters);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText("Is the number of biclusters to estimate");
 		this.integerTextFieldnumberbics.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.insets = new Insets(0, 0, 5, 0);
@@ -126,7 +127,7 @@ public class PenalizedPlaidSettingsPanel extends AbstractMethodSettingsPanel imp
 		add(this.integerTextFieldnumberbics, gbc_integerTextFieldnumberbics);
 		
 		this.lblModelScheme = new JLabel("Model scheme:");
-		this.lblModelScheme.setToolTipText("Is the model used for the data. We have basically 4 methods: \\n\"\n\t\t\t\t+ \"1) GPE (penalized plaid model with the sampling of the penalty parameter,lambda. The model is fitted with a Gibbs sampling); \\n\"\n\t\t\t\t+ \"2) GPF (the penalized model with a fix value of the penalty parameter lambda and fitted with the  Gibbs sampling procedure. When  lambda=0, the plaid modeldoes not assume \"\n\t\t\t\t+ \"any constraint on the amount of overlapping genes and conditions between biclusters. When lambda tends to infinity (lambda>=10^3 is recommended to speed up the algorithm) \"\n\t\t\t\t+ \"Authors assume that biclusters do not overlap as with the Cheng and Church model); \\n\"\n\t\t\t\t+ \"3) MPE (the penalized model fitted with a Metropolis-Hastings procedure); \\n\"\n\t\t\t\t+ \"4) MPF (the penalized model with a fix value of lambda and fitted with a Metropolis-Hastings procedure)");
+		this.lblModelScheme.setToolTipText("<html>Is the model used for the data. We have basically 4 methods:\n<ul><li>GPE, penalized plaid model with the sampling of the penalty parameter, lambda. The model is fitted with a Gibbs sampling\n<li>GPF, the penalized model with a fix value of the penalty parameter lambda and fitted with the  Gibbs sampling procedure.<br>When  lambda=0, the plaid model does not assume any constraint on the amount of overlapping genes and conditions between biclusters.<br> When lambda tends to infinity (lambda>=10^3) is recommended to speed up the algorithm<br>Authors assume that biclusters do not overlap as with the Cheng and Church model\n<li> MPE (the penalized model fitted with a Metropolis-Hastings procedure)\n<li>MPF, the penalized model with a fix value of lambda and fitted with a Metropolis-Hastings procedure</ul></html>");
 		GridBagConstraints gbc_lblModelScheme = new GridBagConstraints();
 		gbc_lblModelScheme.anchor = GridBagConstraints.EAST;
 		gbc_lblModelScheme.insets = new Insets(0, 0, 5, 5);
@@ -135,6 +136,7 @@ public class PenalizedPlaidSettingsPanel extends AbstractMethodSettingsPanel imp
 		add(this.lblModelScheme, gbc_lblModelScheme);
 		
 		this.comboBoxmodelscheme = new JComboBox();
+		comboBoxmodelscheme.setToolTipText("<html>Is the model used for the data. We have basically 4 methods:\n<ul><li>GPE, penalized plaid model with the sampling of the penalty parameter, lambda. The model is fitted with a Gibbs sampling\n<li>GPF, the penalized model with a fix value of the penalty parameter lambda and fitted with the  Gibbs sampling procedure.<br>When  lambda=0, the plaid model does not assume any constraint on the amount of overlapping genes and conditions between biclusters.<br> When lambda tends to infinity (lambda>=10^3) is recommended to speed up the algorithm<br>Authors assume that biclusters do not overlap as with the Cheng and Church model\n<li> MPE (the penalized model fitted with a Metropolis-Hastings procedure)\n<li>MPF, the penalized model with a fix value of lambda and fitted with a Metropolis-Hastings procedure</ul></html>");
 		GridBagConstraints gbc_comboBoxmodelscheme = new GridBagConstraints();
 		gbc_comboBoxmodelscheme.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxmodelscheme.fill = GridBagConstraints.HORIZONTAL;
@@ -154,6 +156,7 @@ public class PenalizedPlaidSettingsPanel extends AbstractMethodSettingsPanel imp
 		add(this.lblLambdaValue, gbc_lblLambdaValue);
 		
 		this.doubleTextFieldlambda = new DoubleTextField();
+		doubleTextFieldlambda.setToolTipText("If the models are GPF or MPF, is necessary to specify a fix value of lambda");
 		GridBagConstraints gbc_doubleTextFieldlambda = new GridBagConstraints();
 		gbc_doubleTextFieldlambda.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldlambda.fill = GridBagConstraints.HORIZONTAL;
@@ -171,6 +174,7 @@ public class PenalizedPlaidSettingsPanel extends AbstractMethodSettingsPanel imp
 		add(this.lblMaxNumberBiclusters, gbc_lblMaxNumberBiclusters);
 		
 		this.spinnermcmc = new JSpinner();
+		spinnermcmc.setToolTipText("Is the number of MCMC samples after the burn in. Authors recommend more than 1000 samples");
 		this.spinnermcmc.setModel(new SpinnerNumberModel(1000, 1, 100000, 10));
 		GridBagConstraints gbc_spinnermcmc = new GridBagConstraints();
 		gbc_spinnermcmc.fill = GridBagConstraints.HORIZONTAL;
@@ -189,6 +193,7 @@ public class PenalizedPlaidSettingsPanel extends AbstractMethodSettingsPanel imp
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.spinnerburnin = new JSpinner();
+		spinnerburnin.setToolTipText("Is the number of burn-in samples. Authors recommend a number more than 1000");
 		this.spinnerburnin.setModel(new SpinnerNumberModel(1000, 1, 100000, 10));
 		GridBagConstraints gbc_spinnerburnin = new GridBagConstraints();
 		gbc_spinnerburnin.fill = GridBagConstraints.HORIZONTAL;

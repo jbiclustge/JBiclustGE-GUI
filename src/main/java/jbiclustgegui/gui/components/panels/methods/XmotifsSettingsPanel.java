@@ -130,6 +130,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblCorrelationThreshold, gbc_lblCorrelationThreshold);
 		
 		this.integerTextFielddisclevels = new IntegerTextField();
+		integerTextFielddisclevels.setToolTipText("Discretize levels (default=10)");
 		GridBagConstraints gbc_integerTextFielddisclevels = new GridBagConstraints();
 		gbc_integerTextFielddisclevels.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFielddisclevels.fill = GridBagConstraints.HORIZONTAL;
@@ -147,6 +148,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes, gbc_lblMinGenes);
 		
 		this.checkBoxusequantilediscret = new JCheckBox("");
+		checkBoxusequantilediscret.setToolTipText("Use quantiles in discretization process, otherwise uses equally spaced levels");
 		GridBagConstraints gbc_checkBoxusequantilediscret = new GridBagConstraints();
 		gbc_checkBoxusequantilediscret.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxusequantilediscret.insets = new Insets(0, 0, 5, 0);
@@ -164,6 +166,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes_1, gbc_lblMinGenes_1);
 		
 		this.checkBoxusebimaxdiscret = new JCheckBox("");
+		checkBoxusebimaxdiscret.setToolTipText("Use bimax discretization method, instead of discretize levels");
 		GridBagConstraints gbc_checkBoxusebimaxdiscret = new GridBagConstraints();
 		gbc_checkBoxusebimaxdiscret.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxusebimaxdiscret.insets = new Insets(0, 0, 5, 0);
@@ -181,6 +184,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberOfColumns, gbc_lblNumberOfColumns);
 		
 		this.integerTextFieldnumbercolumns = new IntegerTextField();
+		integerTextFieldnumbercolumns.setToolTipText("Number of columns to be chosen (ns)");
 		this.integerTextFieldnumbercolumns.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumbercolumns = new GridBagConstraints();
 		gbc_integerTextFieldnumbercolumns.insets = new Insets(0, 0, 5, 0);
@@ -199,6 +203,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNewLabel, gbc_lblNewLabel);
 		
 		this.integerTextFieldnumberrep = new IntegerTextField();
+		integerTextFieldnumberrep.setToolTipText("Number of repetitions (nd)");
 		GridBagConstraints gbc_integerTextFieldnumberrep = new GridBagConstraints();
 		gbc_integerTextFieldnumberrep.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldnumberrep.fill = GridBagConstraints.HORIZONTAL;
@@ -216,6 +221,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.integerTextFieldsamplesizerep = new IntegerTextField();
+		integerTextFieldsamplesizerep.setToolTipText("Sample size in repetitions (sd)");
 		this.integerTextFieldsamplesizerep.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldsamplesizerep = new GridBagConstraints();
 		gbc_integerTextFieldsamplesizerep.insets = new Insets(0, 0, 5, 0);
@@ -234,6 +240,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblAlpha, gbc_lblAlpha);
 		
 		this.doubleTextFieldalpha = new DoubleTextField();
+		doubleTextFieldalpha.setToolTipText("Scaling factor for column result (alpha)");
 		GridBagConstraints gbc_doubleTextFieldalpha = new GridBagConstraints();
 		gbc_doubleTextFieldalpha.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldalpha.fill = GridBagConstraints.HORIZONTAL;
@@ -251,6 +258,7 @@ public class XmotifsSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberOfBiclusters, gbc_lblNumberOfBiclusters);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText("Number of biclusters to be found");
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.fill = GridBagConstraints.HORIZONTAL;
 		gbc_integerTextFieldnumberbics.gridx = 1;

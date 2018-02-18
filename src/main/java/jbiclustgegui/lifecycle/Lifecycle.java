@@ -3,6 +3,8 @@ package jbiclustgegui.lifecycle;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.ToolTipManager;
+
 import org.platonos.pluginengine.PluginLifecycle;
 
 import es.uvigo.ei.aibench.core.Core;
@@ -98,6 +100,9 @@ public class Lifecycle extends PluginLifecycle {
 			SaveLoadManager.init();
 
 			JBiGePropertiesManager.getManager().addProperty("rserve_type_session", "multiple");
+			
+	
+		    ToolTipManager.sharedInstance().setDismissDelay(Integer.MAX_VALUE);
 
 			Workbench.getInstance().getMainFrame().addWindowListener(new WindowListener(){
 

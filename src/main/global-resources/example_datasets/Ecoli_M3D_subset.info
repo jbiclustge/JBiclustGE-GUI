@@ -1,0 +1,7 @@
+organism=Escherichia coli
+title_manuscript=RegulonDB version 9.0: high-level integration of gene regulation, coexpression, motif clustering and beyond
+authors=Gama-Castro S, Salgado H, Santos-Zavaleta A, Ledezma-Tejeida D, et al.
+manuscript_url=https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4702833/
+data_url=
+file_format=tab-delimited text file
+missing_values=no

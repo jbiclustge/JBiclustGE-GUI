@@ -86,6 +86,12 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 	/** The check boxmaxvaluedatadiscret. */
 	private JCheckBox checkBoxmaxvaluedatadiscret;
 
+	private static String tip1="Minimum number of genes allowed in a valid bicluster";
+	private static String tip2="Minimum number of conditions allowed in a valid bicluster";
+	private static String tip3="Number of bicluster to find. If value is zero the algorithm will return the maximum number of biclusters that can find (default=0)";
+	private static String tip4="Number of bits to use at the encoding phase default=16";
+	private static String tip5="Maximum value in the discretized dataset. From this value, BiBit will binarize the dataset generating max_value different ones";
+	private static String tip6="If true, the maximum value of expression dataset will be used as the maximum value in the discretized dataset (previous parameter)";
 	/**
 	 * Create the panel.
 	 */
@@ -105,7 +111,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		setLayout(gridBagLayout);
 		
 		this.label = new JLabel("Min. Genes:");
-		this.label.setToolTipText("Minimum number of genes allowed in a valid bicluster");
+		this.label.setToolTipText(tip1);
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.EAST;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
@@ -114,6 +120,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label, gbc_label);
 		
 		this.integerTextFieldmingenes = new IntegerTextField();
+		integerTextFieldmingenes.setToolTipText(tip1);
 		this.integerTextFieldmingenes.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldmingenes = new GridBagConstraints();
 		gbc_integerTextFieldmingenes.insets = new Insets(0, 0, 5, 0);
@@ -123,7 +130,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.integerTextFieldmingenes, gbc_integerTextFieldmingenes);
 		
 		this.label_1 = new JLabel("Min. Conditions:");
-		this.label_1.setToolTipText("Minimum number of conditions allowed in a valid bicluster");
+		this.label_1.setToolTipText(tip2);
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
 		gbc_label_1.anchor = GridBagConstraints.EAST;
 		gbc_label_1.insets = new Insets(0, 0, 5, 5);
@@ -132,6 +139,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label_1, gbc_label_1);
 		
 		this.integerTextFieldminconds = new IntegerTextField();
+		integerTextFieldminconds.setToolTipText(tip2);
 		this.integerTextFieldminconds.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldminconds = new GridBagConstraints();
 		gbc_integerTextFieldminconds.insets = new Insets(0, 0, 5, 0);
@@ -141,7 +149,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.integerTextFieldminconds, gbc_integerTextFieldminconds);
 		
 		this.label_2 = new JLabel("Max number biclusters");
-		this.label_2.setToolTipText("Number of bicluster to find. If value is zero the algorithm will return the maximum number of biclusters that can find (default=0)");
+		this.label_2.setToolTipText(tip3);
 		GridBagConstraints gbc_label_2 = new GridBagConstraints();
 		gbc_label_2.anchor = GridBagConstraints.EAST;
 		gbc_label_2.insets = new Insets(0, 0, 5, 5);
@@ -150,6 +158,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label_2, gbc_label_2);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText(tip3);
 		this.integerTextFieldnumberbics.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.insets = new Insets(0, 0, 5, 0);
@@ -159,7 +168,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.integerTextFieldnumberbics, gbc_integerTextFieldnumberbics);
 		
 		this.lblOverlapTreshold = new JLabel("Pattern size:");
-		this.lblOverlapTreshold.setToolTipText("Number of bits to use at the encoding phase default=16");
+		this.lblOverlapTreshold.setToolTipText(tip4);
 		GridBagConstraints gbc_lblOverlapTreshold = new GridBagConstraints();
 		gbc_lblOverlapTreshold.anchor = GridBagConstraints.EAST;
 		gbc_lblOverlapTreshold.insets = new Insets(0, 0, 5, 5);
@@ -168,6 +177,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.integerTextFieldpatternsize = new IntegerTextField();
+		integerTextFieldpatternsize.setToolTipText(tip4);
 		this.integerTextFieldpatternsize.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldpatternsize = new GridBagConstraints();
 		gbc_integerTextFieldpatternsize.insets = new Insets(0, 0, 5, 0);
@@ -177,7 +187,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.integerTextFieldpatternsize, gbc_integerTextFieldpatternsize);
 		
 		this.lblMaxDiscretizationValue = new JLabel("Max. discretization value:");
-		this.lblMaxDiscretizationValue.setToolTipText("Maximum value in the discretized dataset. From this value, BiBit will binarize the dataset generating max_value different ones");
+		this.lblMaxDiscretizationValue.setToolTipText(tip5);
 		GridBagConstraints gbc_lblMaxDiscretizationValue = new GridBagConstraints();
 		gbc_lblMaxDiscretizationValue.anchor = GridBagConstraints.EAST;
 		gbc_lblMaxDiscretizationValue.insets = new Insets(0, 0, 5, 5);
@@ -186,6 +196,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMaxDiscretizationValue, gbc_lblMaxDiscretizationValue);
 		
 		this.spinnerdiscretvalue = new JSpinner();
+		spinnerdiscretvalue.setToolTipText(tip5);
 		this.spinnerdiscretvalue.setModel(new SpinnerNumberModel(1, 1, 10000, 1));
 		GridBagConstraints gbc_spinnerdiscretvalue = new GridBagConstraints();
 		gbc_spinnerdiscretvalue.fill = GridBagConstraints.HORIZONTAL;
@@ -195,7 +206,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.spinnerdiscretvalue, gbc_spinnerdiscretvalue);
 		
 		this.lblUseMaxValue = new JLabel("Use max. value of dataset as reference:");
-		this.lblUseMaxValue.setToolTipText("If true, the maximum value of expression dataset will be used as the maximum value in the discretized dataset (previous parameter)");
+		this.lblUseMaxValue.setToolTipText(tip6);
 		GridBagConstraints gbc_lblUseMaxValue = new GridBagConstraints();
 		gbc_lblUseMaxValue.anchor = GridBagConstraints.EAST;
 		gbc_lblUseMaxValue.insets = new Insets(0, 0, 0, 5);
@@ -204,6 +215,7 @@ public class BibitSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblUseMaxValue, gbc_lblUseMaxValue);
 		
 		this.checkBoxmaxvaluedatadiscret = new JCheckBox("");
+		checkBoxmaxvaluedatadiscret.setToolTipText(tip6);
 		GridBagConstraints gbc_checkBoxmaxvaluedatadiscret = new GridBagConstraints();
 		gbc_checkBoxmaxvaluedatadiscret.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxmaxvaluedatadiscret.gridx = 1;

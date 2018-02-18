@@ -6,7 +6,7 @@ log4j.rootLogger=INFO,textArea,file,stdout
 log4j.appender.textArea=es.uvigo.ei.aibench.TextAreaAppender
 log4j.appender.textArea.layout=org.apache.log4j.PatternLayout
 # The Text Area is user-oriented, no debug messages!
-log4j.appender.textArea.Threshold=DEBUG
+log4j.appender.textArea.Threshold=INFO
 log4j.appender.textArea.layout.ConversionPattern=[%d{HH:mm:ss}] [%c] %m%n
 #log4j.appender.textArea.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
 

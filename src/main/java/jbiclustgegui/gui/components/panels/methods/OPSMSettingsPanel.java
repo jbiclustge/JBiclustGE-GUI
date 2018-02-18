@@ -85,6 +85,7 @@ public class OPSMSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberBestModels, gbc_lblNumberBestModels);
 		
 		this.integerTextFieldnbestmodels = new IntegerTextField();
+		integerTextFieldnbestmodels.setToolTipText("Recover the n best partial models for next iteration");
 		this.integerTextFieldnbestmodels.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnbestmodels = new GridBagConstraints();
 		gbc_integerTextFieldnbestmodels.insets = new Insets(0, 0, 5, 0);

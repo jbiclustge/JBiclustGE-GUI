@@ -5,31 +5,39 @@
 	(defined in your plugin.xml) in these slots.
 -->
 <table>
-	<row>
-		<cell width="25%">
-			<table>
-				<row height="99%">
-					<cell>
-						<components id='left'/>
-					</cell>	
-				</row>
-				<row height="1%">
-					<cell>
-						<components id='bottom'/>
-					</cell>
-				</row>
-			</table>
-		</cell>
-		<cell width="75%">
-			<table>
-				<row height="100%">
-					<cell width="100%">
-						<document_viewer />
-					</cell>
-				</row>
-				
-			</table>
-		</cell>
-	</row>
+  <row>
+    <cell width="15%" oneTouchExpandable="true">
+      <table>
+        <row>
+          <cell>
+            <components id='left' />
+          </cell>
+        </row>
+      </table>
+    </cell>
+    <cell width="85%">
+      <table>
+        <row height="90%">
+          <cell width="90%">
+            <document_viewer/>
+          </cell>
+        </row>
+        <row height="10%" oneTouchExpandable="true">
+          <cell>
+            <components id='bottom' hidetabs="true"/>
+          </cell>
+        </row>
+      </table>
+    </cell>
+   <!-- <cell width="5%" oneTouchExpandable="true">
+      <table>
+        <row>
+          <cell>
+            <components id='bottom' />
+          </cell>
+        </row>
+      </table>
+    </cell>-->
+  </row>
 </table>
 		

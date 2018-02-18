@@ -92,6 +92,8 @@ public class ExpressionDatasetHeatmapJFreeChartPlotPanel extends JPanel{
 	/** The dataset. */
 	private ExpressionData dataset;
 	
+	//private boolean fixsize=true;
+	
 	
 	/**
 	 * Instantiates a new expression dataset heatmap J free chart plot panel.
@@ -254,8 +256,11 @@ public class ExpressionDatasetHeatmapJFreeChartPlotPanel extends JPanel{
 		chart.setAntiAlias(false);
 		chart.setTextAntiAlias(true);
 		
-		int width = 15*dataset.numberConditions();
-        int height = 10*dataset.numberGenes();
+		//int width = 15*dataset.numberConditions();
+       // int height = 10*dataset.numberGenes();
+		
+		int width=800;
+		int height=1200;
 		
         ChartPanel chartPanel = new ChartPanel(chart,width,height,16,16,width*10,height*10,true,true,true,true,true,true);
         NumberAxis scaleAxis = new NumberAxis("");

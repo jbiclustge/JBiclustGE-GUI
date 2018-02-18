@@ -1,0 +1,9 @@
+organism=Saccharomyces cerevisiae
+title_manuscript=Functional discovery via a compendium of expression profiles
+authors=Hughes TR, Marton MJ, Jones AR, Roberts CJ, Stoughton R, et al.
+manuscript_url=http://www.cell.com/cell/abstract/S0092-8674(00)00015-5
+data_url=https://owww.molgen.mpg.de/~serin/debi/yeast.zip
+file_format=tab-delimited text file
+missing_values=yes
+
+Functional discovery via a compendium of expression profiles

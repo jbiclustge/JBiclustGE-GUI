@@ -1,0 +1,7 @@
+organism=Saccharomyces cerevisiae
+title_manuscript=Genomic Expression Programs in the Response of Yeast Cells to Environmental Changes
+authors=Gasch AP, Spellman PT, Kao CM, et al.
+manuscript_url=https://www.ncbi.nlm.nih.gov/pmc/articles/PMC15070/
+data_url=http://people.ee.ethz.ch/~sop/bimax/SupplementaryMaterial/Datasets/BiologicalValidation/data/saccharomyces/
+file_format=tab-delimited text file
+missing_values=no

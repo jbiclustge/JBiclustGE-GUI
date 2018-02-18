@@ -178,6 +178,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberOfBiclusters, gbc_lblNumberOfBiclusters);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText("Number of bicluster to be found");
 		this.integerTextFieldnumberbics.setText("13");
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.insets = new Insets(0, 0, 5, 0);
@@ -196,6 +197,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblAlpha, gbc_lblAlpha);
 		
 		this.spinneralpha = new JSpinner();
+		spinneralpha.setToolTipText("Sparseness loadings");
 		this.spinneralpha.setModel(new SpinnerNumberModel(0.01, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinneralpha = new GridBagConstraints();
 		gbc_spinneralpha.fill = GridBagConstraints.HORIZONTAL;
@@ -213,6 +215,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberOfIterations, gbc_lblNumberOfIterations);
 		
 		this.integerTextFieldnumberiter = new IntegerTextField();
+		integerTextFieldnumberiter.setToolTipText("Number of iterations");
 		this.integerTextFieldnumberiter.setText("500");
 		GridBagConstraints gbc_integerTextFieldnumberiter = new GridBagConstraints();
 		gbc_integerTextFieldnumberiter.insets = new Insets(0, 0, 5, 0);
@@ -231,6 +234,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		this.spinnersparfactors = new JSpinner();
+		spinnersparfactors.setToolTipText("Sparseness factors (0.5 - 2.0)");
 		this.spinnersparfactors.setModel(new SpinnerNumberModel(0.5, 0.5, 2.0, 0.01));
 		GridBagConstraints gbc_spinnersparfactors = new GridBagConstraints();
 		gbc_spinnersparfactors.fill = GridBagConstraints.HORIZONTAL;
@@ -249,6 +253,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNonnegativeFactors, gbc_lblNonnegativeFactors);
 		
 		this.checkBoxnnfactors = new JCheckBox("");
+		checkBoxnnfactors.setToolTipText("Non-negative factors and loadings if non_negative > 0");
 		GridBagConstraints gbc_checkBoxnnfactors = new GridBagConstraints();
 		gbc_checkBoxnnfactors.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxnnfactors.insets = new Insets(0, 0, 5, 0);
@@ -257,7 +262,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.checkBoxnnfactors, gbc_checkBoxnnfactors);
 		
 		this.lblRandomInitializationOf = new JLabel("Random initialization of loadings:");
-		this.lblRandomInitializationOf.setToolTipText("Random initialization of loadings in [-random,random] if >0 or <=0 SVD");
+		this.lblRandomInitializationOf.setToolTipText(" If random > 0,  performs the initialization of loadings in [-random,random], else if random <=0, uses singular value decomposition (SVD)");
 		GridBagConstraints gbc_lblRandomInitializationOf = new GridBagConstraints();
 		gbc_lblRandomInitializationOf.anchor = GridBagConstraints.EAST;
 		gbc_lblRandomInitializationOf.insets = new Insets(0, 20, 5, 5);
@@ -266,6 +271,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblRandomInitializationOf, gbc_lblRandomInitializationOf);
 		
 		this.doubleTextFieldrandominitload = new DoubleTextField();
+		doubleTextFieldrandominitload.setToolTipText(" If random > 0,  performs the initialization of loadings in [-random,random], else if random <=0, uses singular value decomposition (SVD)");
 		this.doubleTextFieldrandominitload.setText("1.0");
 		GridBagConstraints gbc_doubleTextFieldrandominitload = new GridBagConstraints();
 		gbc_doubleTextFieldrandominitload.insets = new Insets(0, 0, 5, 0);
@@ -275,7 +281,6 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.doubleTextFieldrandominitload, gbc_doubleTextFieldrandominitload);
 		
 		this.lblDataCentering = new JLabel("Data centering:");
-		this.lblDataCentering.setToolTipText("Data centering: 1 (mean), 2 (median), 3 (mode), 0 (none)");
 		GridBagConstraints gbc_lblDataCentering = new GridBagConstraints();
 		gbc_lblDataCentering.anchor = GridBagConstraints.EAST;
 		gbc_lblDataCentering.insets = new Insets(0, 0, 5, 5);
@@ -292,7 +297,6 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.comboBoxdatacenter, gbc_comboBoxdatacenter);
 		
 		this.lblDataNormalization = new JLabel("Data normalization:");
-		this.lblDataNormalization.setToolTipText("Data normalization: 1 (0.75-0.25 quantile), 2 (var=1), 0 (none)");
 		GridBagConstraints gbc_lblDataNormalization = new GridBagConstraints();
 		gbc_lblDataNormalization.anchor = GridBagConstraints.EAST;
 		gbc_lblDataNormalization.insets = new Insets(0, 0, 5, 5);
@@ -318,6 +322,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinVariationalParameter, gbc_lblMinVariationalParameter);
 		
 		this.doubleTextFieldminvarparam = new DoubleTextField();
+		doubleTextFieldminvarparam.setToolTipText("Minimal value of the variational parameter");
 		this.doubleTextFieldminvarparam.setText("1.0");
 		GridBagConstraints gbc_doubleTextFieldminvarparam = new GridBagConstraints();
 		gbc_doubleTextFieldminvarparam.insets = new Insets(0, 0, 5, 0);
@@ -327,7 +332,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.doubleTextFieldminvarparam, gbc_doubleTextFieldminvarparam);
 		
 		this.lblmaxBiclustersAt = new JLabel("<html>Max. biclusters at which a<br>row element can participate:</html>");
-		this.lblmaxBiclustersAt.setToolTipText("Maximal number of biclusters at which a row element can participate");
+		this.lblmaxBiclustersAt.setToolTipText("Maximal number of biclusters at which a row element can participate (0=no limit)");
 		GridBagConstraints gbc_lblmaxBiclustersAt = new GridBagConstraints();
 		gbc_lblmaxBiclustersAt.anchor = GridBagConstraints.EAST;
 		gbc_lblmaxBiclustersAt.insets = new Insets(0, 0, 5, 5);
@@ -336,6 +341,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblmaxBiclustersAt, gbc_lblmaxBiclustersAt);
 		
 		this.integerTextFieldmaxbicinrow = new IntegerTextField();
+		integerTextFieldmaxbicinrow.setToolTipText("Maximal number of biclusters at which a row element can participate (0=no limit)");
 		this.integerTextFieldmaxbicinrow.setText("0");
 		GridBagConstraints gbc_integerTextFieldmaxbicinrow = new GridBagConstraints();
 		gbc_integerTextFieldmaxbicinrow.insets = new Insets(0, 0, 5, 0);
@@ -345,7 +351,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.integerTextFieldmaxbicinrow, gbc_integerTextFieldmaxbicinrow);
 		
 		this.lblNewLabel_2 = new JLabel("<html>Maximal number of <br>row elements per bicluster:</html>");
-		this.lblNewLabel_2.setToolTipText("Maximal number of row elements per bicluster");
+		this.lblNewLabel_2.setToolTipText("Maximal number of row elements per bicluster  (0=no limit)");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
@@ -354,6 +360,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		this.integerTextFieldmaxrowbic = new IntegerTextField();
+		integerTextFieldmaxrowbic.setToolTipText("Maximal number of row elements per bicluster  (0=no limit)");
 		this.integerTextFieldmaxrowbic.setText("0");
 		GridBagConstraints gbc_integerTextFieldmaxrowbic = new GridBagConstraints();
 		gbc_integerTextFieldmaxrowbic.insets = new Insets(0, 0, 5, 0);
@@ -371,6 +378,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblCycleAtWhich, gbc_lblCycleAtWhich);
 		
 		this.integerTextFieldcyclenlil = new IntegerTextField();
+		integerTextFieldcyclenlil.setToolTipText("cycle at which the nL or lL maximum starts; default = 0 (start at the beginning)"); 
 		this.integerTextFieldcyclenlil.setText("0");
 		GridBagConstraints gbc_integerTextFieldcyclenlil = new GridBagConstraints();
 		gbc_integerTextFieldcyclenlil.insets = new Insets(0, 0, 5, 0);
@@ -388,6 +396,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblThresholdForSample, gbc_lblThresholdForSample);
 		
 		this.spinnerthreshsamplebelbic = new JSpinner();
+		spinnerthreshsamplebelbic.setToolTipText("Threshold for sample belonging to bicluster");
 		this.spinnerthreshsamplebelbic.setModel(new SpinnerNumberModel(0.5, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerthreshsamplebelbic = new GridBagConstraints();
 		gbc_spinnerthreshsamplebelbic.insets = new Insets(0, 0, 5, 0);
@@ -408,6 +417,7 @@ public class FabiaSSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panelExtra = getFabiaVariantPanel();
 		
 		this.doubleTextFieldthreshloadbelbic = new DoubleTextField();
+		doubleTextFieldthreshloadbelbic.setToolTipText("Threshold for loading belonging to bicluster (if not given it is estimated)");
 		GridBagConstraints gbc_doubleTextFieldthreshloadbelbic = new GridBagConstraints();
 		gbc_doubleTextFieldthreshloadbelbic.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldthreshloadbelbic.fill = GridBagConstraints.HORIZONTAL;

@@ -71,6 +71,8 @@ public class BiclicSettingsPanel extends AbstractMethodSettingsPanel{
 	/** The lbl min genes. */
 	private JLabel lblMinGenes;
 
+	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -99,6 +101,7 @@ public class BiclicSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblCorrelationThreshold, gbc_lblCorrelationThreshold);
 		
 		this.spinnercorrthreshold = new JSpinner();
+		spinnercorrthreshold.setToolTipText("The correlation threshold to find correlated expression");
 		this.spinnercorrthreshold.setModel(new SpinnerNumberModel(0.9, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnercorrthreshold = new GridBagConstraints();
 		gbc_spinnercorrthreshold.fill = GridBagConstraints.HORIZONTAL;
@@ -117,6 +120,7 @@ public class BiclicSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes, gbc_lblMinGenes);
 		
 		this.integerTextFieldmingenes = new IntegerTextField();
+		integerTextFieldmingenes.setToolTipText("The minimum number of rows for final bicluster matrix");
 		this.integerTextFieldmingenes.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldmingenes = new GridBagConstraints();
 		gbc_integerTextFieldmingenes.insets = new Insets(0, 0, 5, 0);
@@ -135,6 +139,7 @@ public class BiclicSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label_1, gbc_label_1);
 		
 		this.integerTextFieldminconds = new IntegerTextField();
+		integerTextFieldminconds.setToolTipText("The minimum number of condition for final bicluster matrix. This should be larger than 2");
 		this.integerTextFieldminconds.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldminconds = new GridBagConstraints();
 		gbc_integerTextFieldminconds.insets = new Insets(0, 0, 5, 0);
@@ -153,6 +158,7 @@ public class BiclicSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.spinneroverlapthresh = new JSpinner();
+		spinneroverlapthresh.setToolTipText("The threshold to filter out overlapped biclusters, 1 means filtering 100% overlapped biclusters");
 		this.spinneroverlapthresh.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinneroverlapthresh = new GridBagConstraints();
 		gbc_spinneroverlapthresh.fill = GridBagConstraints.HORIZONTAL;

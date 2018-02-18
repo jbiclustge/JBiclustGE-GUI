@@ -41,6 +41,8 @@ import javax.swing.JSpinner;
 import pt.ornrocha.swingutils.textfield.DoubleTextField;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+
 import pt.ornrocha.swingutils.textfield.IntegerTextField;
 
 import java.awt.GridLayout;
@@ -302,6 +304,8 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel.add(this.lblNewLabel, gbc_lblNewLabel);
 		
 		this.spinnergeneprob = new JSpinner();
+		spinnergeneprob.setModel(new SpinnerNumberModel(0.95, 0.0, 1.0, 0.01));
+		spinnergeneprob.setToolTipText("Probability threshhold for gene inclusion");
 		GridBagConstraints gbc_spinnergeneprob = new GridBagConstraints();
 		gbc_spinnergeneprob.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinnergeneprob.insets = new Insets(0, 0, 5, 0);
@@ -319,6 +323,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel.add(this.lblConditionsPvalue, gbc_lblConditionsPvalue);
 		
 		this.doubleTextFieldcondpvalue = new DoubleTextField();
+		doubleTextFieldcondpvalue.setToolTipText("P-value threshold for condition inclusion");
 		doubleTextFieldcondpvalue.setToolTipText("Conditions p-value");
 		GridBagConstraints gbc_doubleTextFieldcondpvalue = new GridBagConstraints();
 		gbc_doubleTextFieldcondpvalue.insets = new Insets(0, 0, 5, 0);
@@ -337,6 +342,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel.add(this.lblMotifPvalue, gbc_lblMotifPvalue);
 		
 		this.doubleTextFieldmotifpvalue = new DoubleTextField();
+		doubleTextFieldmotifpvalue.setToolTipText("P-value threshold for motif inclusion");
 		doubleTextFieldmotifpvalue.setToolTipText("Motif p-value");
 		GridBagConstraints gbc_doubleTextFieldmotifpvalue = new GridBagConstraints();
 		gbc_doubleTextFieldmotifpvalue.insets = new Insets(0, 0, 5, 0);
@@ -355,6 +361,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel.add(this.lblConditionZscore, gbc_lblConditionZscore);
 		
 		this.doubleTextFieldcondzscore = new DoubleTextField();
+		doubleTextFieldcondzscore.setToolTipText("Z-score threshold for condition inclusion");
 		doubleTextFieldcondzscore.setToolTipText("Condition z-score");
 		GridBagConstraints gbc_doubleTextFieldcondzscore = new GridBagConstraints();
 		gbc_doubleTextFieldcondzscore.insets = new Insets(0, 0, 5, 0);
@@ -373,6 +380,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel.add(this.lblMotifZscore, gbc_lblMotifZscore);
 		
 		this.doubleTextFieldmotifzscore = new DoubleTextField();
+		doubleTextFieldmotifzscore.setToolTipText("Z-score threshhold for motif inclusion");
 		doubleTextFieldmotifzscore.setToolTipText("Motif z-score");
 		GridBagConstraints gbc_doubleTextFieldmotifzscore = new GridBagConstraints();
 		gbc_doubleTextFieldmotifzscore.insets = new Insets(0, 0, 5, 0);
@@ -382,7 +390,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel.add(this.doubleTextFieldmotifzscore, gbc_doubleTextFieldmotifzscore);
 		
 		this.lblDetectnormalizeAutomatically = new JLabel("Detect/normalize automatically:");
-		this.lblDetectnormalizeAutomatically.setToolTipText("Automatically detect/normalize single channel data (false or true)");
+		this.lblDetectnormalizeAutomatically.setToolTipText("Automatically detect/normalize single channel data");
 		GridBagConstraints gbc_lblDetectnormalizeAutomatically = new GridBagConstraints();
 		gbc_lblDetectnormalizeAutomatically.anchor = GridBagConstraints.EAST;
 		gbc_lblDetectnormalizeAutomatically.insets = new Insets(0, 20, 0, 5);
@@ -391,6 +399,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel.add(this.lblDetectnormalizeAutomatically, gbc_lblDetectnormalizeAutomatically);
 		
 		this.checkBoxautonormalization = new JCheckBox("");
+		checkBoxautonormalization.setToolTipText("Automatically detect/normalize single channel data");
 		GridBagConstraints gbc_checkBoxautonormalization = new GridBagConstraints();
 		gbc_checkBoxautonormalization.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxautonormalization.gridx = 1;
@@ -422,6 +431,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.lblCorrelationPvalue, gbc_lblCorrelationPvalue);
 		
 		this.doubleTextFieldcorrpvalue = new DoubleTextField();
+		doubleTextFieldcorrpvalue.setToolTipText("P-value threshhold for significant correlation");
 		doubleTextFieldcorrpvalue.setToolTipText("Correlation p-value");
 		GridBagConstraints gbc_doubleTextFieldcorrpvalue = new GridBagConstraints();
 		gbc_doubleTextFieldcorrpvalue.insets = new Insets(0, 0, 5, 0);
@@ -440,6 +450,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.lblNPairsIn, gbc_lblNPairsIn);
 		
 		this.integerTextFieldnpaircorrelation = new IntegerTextField();
+		integerTextFieldnpaircorrelation.setToolTipText("Maximum number of pairs to sample for significant correlation");
 		integerTextFieldnpaircorrelation.setToolTipText("Nº pairs in correlation");
 		GridBagConstraints gbc_integerTextFieldnpaircorrelation = new GridBagConstraints();
 		gbc_integerTextFieldnpaircorrelation.insets = new Insets(0, 0, 5, 0);
@@ -458,6 +469,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.lblSequencesToUse, gbc_lblSequencesToUse);
 		
 		this.textFieldseqstouse = new JTextField();
+		textFieldseqstouse.setToolTipText("Sequence types to use (comma separated *,*))");
 		textFieldseqstouse.setToolTipText("Sequences to use");
 		GridBagConstraints gbc_textFieldseqstouse = new GridBagConstraints();
 		gbc_textFieldseqstouse.insets = new Insets(0, 0, 5, 0);
@@ -477,6 +489,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.lblResolutionOfBases, gbc_lblResolutionOfBases);
 		
 		this.integerTextFieldbaseresolution = new IntegerTextField();
+		integerTextFieldbaseresolution.setToolTipText("Resolution of bases per motif match");
 		integerTextFieldbaseresolution.setToolTipText("Resolution of bases");
 		GridBagConstraints gbc_integerTextFieldbaseresolution = new GridBagConstraints();
 		gbc_integerTextFieldbaseresolution.insets = new Insets(0, 0, 5, 0);
@@ -495,6 +508,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.lblMinGeneCount, gbc_lblMinGeneCount);
 		
 		this.integerTextFieldmingenecount = new IntegerTextField();
+		integerTextFieldmingenecount.setToolTipText("Minimum gene count for clusters of interest");
 		integerTextFieldmingenecount.setToolTipText("Min. gene count");
 		GridBagConstraints gbc_integerTextFieldmingenecount = new GridBagConstraints();
 		gbc_integerTextFieldmingenecount.insets = new Insets(0, 0, 5, 0);
@@ -513,7 +527,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.lblMinMotifCount, gbc_lblMinMotifCount);
 		
 		this.integerTextFieldmaxmotifmergecount = new IntegerTextField();
-		integerTextFieldmaxmotifmergecount.setToolTipText("Max. motif merge count");
+		integerTextFieldmaxmotifmergecount.setToolTipText("Maximum motif count for realtime merging");
 		GridBagConstraints gbc_integerTextFieldmaxmotifmergecount = new GridBagConstraints();
 		gbc_integerTextFieldmaxmotifmergecount.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldmaxmotifmergecount.fill = GridBagConstraints.HORIZONTAL;
@@ -522,7 +536,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.integerTextFieldmaxmotifmergecount, gbc_integerTextFieldmaxmotifmergecount);
 		
 		this.lblMaxMotifCluster = new JLabel("Max. motif cluster count:");
-		this.lblMaxMotifCluster.setToolTipText("Maximum motif count to consider a cluster");
+		this.lblMaxMotifCluster.setToolTipText("Maximum motif count to consider a cluster saturated");
 		GridBagConstraints gbc_lblMaxMotifCluster = new GridBagConstraints();
 		gbc_lblMaxMotifCluster.anchor = GridBagConstraints.EAST;
 		gbc_lblMaxMotifCluster.insets = new Insets(0, 20, 0, 5);
@@ -531,6 +545,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_1.add(this.lblMaxMotifCluster, gbc_lblMaxMotifCluster);
 		
 		this.integerTextFieldmaxmotifclustercount = new IntegerTextField();
+		integerTextFieldmaxmotifclustercount.setToolTipText("Maximum motif count to consider a cluster saturated");
 		integerTextFieldmaxmotifclustercount.setToolTipText("Max. motif cluster count");
 		GridBagConstraints gbc_integerTextFieldmaxmotifclustercount = new GridBagConstraints();
 		gbc_integerTextFieldmaxmotifclustercount.fill = GridBagConstraints.HORIZONTAL;
@@ -619,6 +634,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_7.add(this.label_7, gbc_label_7);
 		
 		this.integerTextFieldkmerlenght = new IntegerTextField();
+		integerTextFieldkmerlenght.setToolTipText("Sequence kmer length");
 		integerTextFieldkmerlenght.setToolTipText("kmer lenght");
 		GridBagConstraints gbc_integerTextFieldkmerlenght = new GridBagConstraints();
 		gbc_integerTextFieldkmerlenght.insets = new Insets(0, 0, 5, 0);
@@ -637,7 +653,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_7.add(this.label_8, gbc_label_8);
 		
 		this.doubleTextFieldmotifmergepvalue = new DoubleTextField();
-		doubleTextFieldmotifmergepvalue.setToolTipText("Motif merging p-value");
+		doubleTextFieldmotifmergepvalue.setToolTipText("P-value threshhold for motif merging");
 		GridBagConstraints gbc_doubleTextFieldmotifmergepvalue = new GridBagConstraints();
 		gbc_doubleTextFieldmotifmergepvalue.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldmotifmergepvalue.fill = GridBagConstraints.HORIZONTAL;
@@ -655,7 +671,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_7.add(this.label_9, gbc_label_9);
 		
 		this.doubleTextFieldmotifmergecutoff = new DoubleTextField();
-		doubleTextFieldmotifmergecutoff.setToolTipText("Motif merging cutoff");
+		doubleTextFieldmotifmergecutoff.setToolTipText("Edit distance cutoff for motif merging");
 		GridBagConstraints gbc_doubleTextFieldmotifmergecutoff = new GridBagConstraints();
 		gbc_doubleTextFieldmotifmergecutoff.fill = GridBagConstraints.HORIZONTAL;
 		gbc_doubleTextFieldmotifmergecutoff.gridx = 1;
@@ -687,7 +703,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_8.add(this.label_10, gbc_label_10);
 		
 		this.doubleTextFieldpenaltygap = new DoubleTextField();
-		this.doubleTextFieldpenaltygap.setToolTipText("Penalty gap");
+		this.doubleTextFieldpenaltygap.setToolTipText("Edit distance penalty for gaps");
 		GridBagConstraints gbc_doubleTextFieldpenaltygap = new GridBagConstraints();
 		gbc_doubleTextFieldpenaltygap.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldpenaltygap.fill = GridBagConstraints.HORIZONTAL;
@@ -776,6 +792,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_5.add(this.btnOpenopenmotifsfile, gbc_btnOpenopenmotifsfile);
 		
 		this.textFieldshowopenmotifsfile = new JTextField();
+		textFieldshowopenmotifsfile.setToolTipText("File containing known motifs");
 		GridBagConstraints gbc_textFieldshowopenmotifsfile = new GridBagConstraints();
 		gbc_textFieldshowopenmotifsfile.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldshowopenmotifsfile.gridx = 1;
@@ -793,6 +810,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblKnownMotifCutoff, gbc_lblKnownMotifCutoff);
 		
 		this.doubleTextFieldknownmotifcutoff = new DoubleTextField();
+		doubleTextFieldknownmotifcutoff.setToolTipText("Score cutoff for known motif labeling");
 		doubleTextFieldknownmotifcutoff.setToolTipText("Known motif cutoff");
 		GridBagConstraints gbc_doubleTextFieldknownmotifcutoff = new GridBagConstraints();
 		gbc_doubleTextFieldknownmotifcutoff.insets = new Insets(0, 0, 5, 0);
@@ -811,6 +829,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblKnownMotifMatching, gbc_lblKnownMotifMatching);
 		
 		this.comboBoxknownmotifmatch = new JComboBox();
+		comboBoxknownmotifmatch.setToolTipText("Type of known motif matching");
 		GridBagConstraints gbc_comboBoxknownmotifmatch = new GridBagConstraints();
 		gbc_comboBoxknownmotifmatch.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxknownmotifmatch.fill = GridBagConstraints.HORIZONTAL;
@@ -828,6 +847,8 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblSimirarityCutoff, gbc_lblSimirarityCutoff);
 		
 		this.spinnersimiraritycutoff = new JSpinner();
+		spinnersimiraritycutoff.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01)); 
+		spinnersimiraritycutoff.setToolTipText("Similarity cutoff for cluster merging");
 		GridBagConstraints gbc_spinnersimiraritycutoff = new GridBagConstraints();
 		gbc_spinnersimiraritycutoff.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinnersimiraritycutoff.insets = new Insets(0, 0, 5, 0);
@@ -845,6 +866,8 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblOverlapFraction, gbc_lblOverlapFraction);
 		
 		this.spinneroverlapfraction = new JSpinner();
+		spinneroverlapfraction.setModel(new SpinnerNumberModel(0.5, 0.0, 1.0, 0.01)); 
+		spinneroverlapfraction.setToolTipText("Overlap fraction for postprocessing gene/condition inclusion");
 		GridBagConstraints gbc_spinneroverlapfraction = new GridBagConstraints();
 		gbc_spinneroverlapfraction.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinneroverlapfraction.insets = new Insets(0, 0, 5, 0);
@@ -862,6 +885,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblCoclusterCutoff, gbc_lblCoclusterCutoff);
 		
 		this.spinnercoclustercutoff = new JSpinner();
+		spinnercoclustercutoff.setToolTipText("Cocluster stdev cutoff for cluster trimming");
 		GridBagConstraints gbc_spinnercoclustercutoff = new GridBagConstraints();
 		gbc_spinnercoclustercutoff.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinnercoclustercutoff.insets = new Insets(0, 0, 5, 0);
@@ -879,6 +903,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblConvertRcsAnd, gbc_lblConvertRcsAnd);
 		
 		this.checkBoxconvertrecs = new JCheckBox("");
+		checkBoxconvertrecs.setToolTipText("Convert RCs and RC-like PSTs to single strand");
 		GridBagConstraints gbc_checkBoxconvertrecs = new GridBagConstraints();
 		gbc_checkBoxconvertrecs.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxconvertrecs.insets = new Insets(0, 0, 5, 0);
@@ -896,6 +921,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblUninformativeMotifCutoff, gbc_lblUninformativeMotifCutoff);
 		
 		this.doubleTextFielduniformativemotif = new DoubleTextField();
+		doubleTextFielduniformativemotif.setToolTipText("Uninformative motif threshold (bits)");
 		doubleTextFielduniformativemotif.setToolTipText("Uninformative motif cutoff");
 		GridBagConstraints gbc_doubleTextFielduniformativemotif = new GridBagConstraints();
 		gbc_doubleTextFielduniformativemotif.insets = new Insets(0, 0, 5, 0);
@@ -914,6 +940,7 @@ public class CoalesceSettingsPanel extends AbstractMethodSettingsPanel{
 		this.panel_3.add(this.lblMaxMotifsTo, gbc_lblMaxMotifsTo);
 		
 		this.integerTextFieldmaxmotifmerge = new IntegerTextField();
+		integerTextFieldmaxmotifmerge.setToolTipText("Maximum motifs to merge exactly");
 		integerTextFieldmaxmotifmerge.setToolTipText("Max. motifs to merge");
 		GridBagConstraints gbc_integerTextFieldmaxmotifmerge = new GridBagConstraints();
 		gbc_integerTextFieldmaxmotifmerge.fill = GridBagConstraints.HORIZONTAL;

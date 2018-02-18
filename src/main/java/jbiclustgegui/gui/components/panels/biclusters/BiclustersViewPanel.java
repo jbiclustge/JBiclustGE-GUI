@@ -214,8 +214,8 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{1,1,1,1,1,1};
 		gbl_panel.rowHeights = new int[]{1,1,1,1,1};
-		gbl_panel.columnWeights = new double[]{1.0,1.0,1.0,1.0,0.0,1.0};
-		gbl_panel.rowWeights = new double[]{0.2,0.0,1.0,1.0,1.0};
+		gbl_panel.columnWeights = new double[]{1.0,1.0,1.0,1.0,1.0,1.0};
+		gbl_panel.rowWeights = new double[]{0.2,1.0,1.0,1.0,1.0};
 		this.panel.setLayout(gbl_panel);
 		
 		this.panel_2 = new JPanel();
@@ -229,7 +229,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{1,1,1,1,1,1};
 		gbl_panel_2.rowHeights = new int[]{1};
-		gbl_panel_2.columnWeights = new double[]{0.0,1.0,0.0,1.0,0.0,1.0};
+		gbl_panel_2.columnWeights = new double[]{1.0,1.0,1.0,1.0,1.0,1.0};
 		gbl_panel_2.rowWeights = new double[]{1.0};
 		this.panel_2.setLayout(gbl_panel_2);
 		
@@ -321,7 +321,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{1};
 		gbl_panel_1.rowHeights = new int[]{1,1,1,1,1};
-		gbl_panel_1.columnWeights = new double[]{0.0};
+		gbl_panel_1.columnWeights = new double[]{1.0};
 		gbl_panel_1.rowWeights = new double[]{0.0,0.0,0.0,0.0,1.0};
 		panel_1.setLayout(gbl_panel_1);
 		
@@ -334,9 +334,10 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 			}
 		});
 		this.btnExport.setPreferredSize(new Dimension(150, 40));
-		this.btnExport.setMinimumSize(new Dimension(150, 40));;
+		this.btnExport.setMinimumSize(new Dimension(180, 40));;
 		this.btnExport.setBounds(100, 50, 100, 50);
 		GridBagConstraints gbc_btnExport = new GridBagConstraints();
+		gbc_btnExport.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnExport.insets = new Insets(0, 0, 5, 0);
 		gbc_btnExport.gridx = 0;
 		gbc_btnExport.gridy = 0;
@@ -353,6 +354,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		this.btnexportjbiclustgejson.setMinimumSize(new Dimension(150, 40));
 		this.btnexportjbiclustgejson.setPreferredSize(new Dimension(150, 40));
 		GridBagConstraints gbc_btnexportjbiclustgejson = new GridBagConstraints();
+		gbc_btnexportjbiclustgejson.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnexportjbiclustgejson.insets = new Insets(0, 0, 5, 0);
 		gbc_btnexportjbiclustgejson.gridx = 0;
 		gbc_btnexportjbiclustgejson.gridy = 1;
@@ -369,6 +371,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		this.btnexportbiclustformat.setSize(new Dimension(100, 50));
 		this.btnexportbiclustformat.setPreferredSize(new Dimension(150, 40));
 		GridBagConstraints gbc_btnexportbiclustformat = new GridBagConstraints();
+		gbc_btnexportbiclustformat.fill = GridBagConstraints.BOTH;
 		gbc_btnexportbiclustformat.insets = new Insets(0, 0, 5, 0);
 		gbc_btnexportbiclustformat.gridx = 0;
 		gbc_btnexportbiclustformat.gridy = 2;
@@ -384,6 +387,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		this.btnbicoverlapperformat.setMinimumSize(new Dimension(150, 40));
 		btnbicoverlapperformat.setPreferredSize(new Dimension(150, 40));
 		GridBagConstraints gbc_btnbicoverlapperformat = new GridBagConstraints();
+		gbc_btnbicoverlapperformat.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnbicoverlapperformat.insets = new Insets(0, 0, 5, 0);
 		gbc_btnbicoverlapperformat.gridx = 0;
 		gbc_btnbicoverlapperformat.gridy = 3;
@@ -419,6 +423,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		this.btnBiclusterMatrix.setMaximumSize(new Dimension(150, 40));
 		this.btnBiclusterMatrix.setMinimumSize(new Dimension(150, 40));
 		GridBagConstraints gbc_btnBiclusterMatrix = new GridBagConstraints();
+		gbc_btnBiclusterMatrix.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnBiclusterMatrix.gridwidth = 2;
 		gbc_btnBiclusterMatrix.insets = new Insets(0, 0, 5, 0);
 		gbc_btnBiclusterMatrix.gridx = 0;
@@ -438,6 +443,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		this.btnBiclusterHeatmap.setMinimumSize(new Dimension(150, 40));
 		this.btnBiclusterHeatmap.setMaximumSize(new Dimension(150, 40));
 		GridBagConstraints gbc_btnBiclusterHeatmap = new GridBagConstraints();
+		gbc_btnBiclusterHeatmap.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnBiclusterHeatmap.gridwidth = 2;
 		gbc_btnBiclusterHeatmap.insets = new Insets(0, 0, 5, 0);
 		gbc_btnBiclusterHeatmap.gridx = 0;
@@ -503,7 +509,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		gbl_panel_4.columnWidths = new int[]{1};
 		gbl_panel_4.rowHeights = new int[]{1,1};
 		gbl_panel_4.columnWeights = new double[]{1.0};
-		gbl_panel_4.rowWeights = new double[]{0.0,0.0};
+		gbl_panel_4.rowWeights = new double[]{0.0,1.0};
 		this.panel_4.setLayout(gbl_panel_4);
 		
 		this.panel_5 = new JPanel();
@@ -564,7 +570,7 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 			}
 		});
 		GridBagConstraints gbc_btnNewButtonviewparallelcoord = new GridBagConstraints();
-		gbc_btnNewButtonviewparallelcoord.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnNewButtonviewparallelcoord.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButtonviewparallelcoord.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButtonviewparallelcoord.gridx = 0;
 		gbc_btnNewButtonviewparallelcoord.gridy = 1;

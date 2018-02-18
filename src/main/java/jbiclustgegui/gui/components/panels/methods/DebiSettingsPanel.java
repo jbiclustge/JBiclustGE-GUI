@@ -113,6 +113,7 @@ public class DebiSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMaxOverlap, gbc_lblMaxOverlap);
 		
 		this.spinneroverlap = new JSpinner();
+		spinneroverlap.setToolTipText("<html>Maximum overlap level of the biclusters default=0.5 <br>(overlap=1: no overlap is allowed, overlap=0: all the biclusters are taken, no filtering applied)</html>");
 		this.spinneroverlap.setModel(new SpinnerNumberModel(0.5, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinneroverlap = new GridBagConstraints();
 		gbc_spinneroverlap.fill = GridBagConstraints.HORIZONTAL;
@@ -122,7 +123,7 @@ public class DebiSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.spinneroverlap, gbc_spinneroverlap);
 		
 		this.lblBinarizationLevel = new JLabel("Binarization level:");
-		this.lblBinarizationLevel.setToolTipText("Binarization level (for binary data not needed otherwise it must be defined)");
+		this.lblBinarizationLevel.setToolTipText("Binarization level (if data its already binarized ignore this parameter, otherwise it must be defined)");
 		GridBagConstraints gbc_lblBinarizationLevel = new GridBagConstraints();
 		gbc_lblBinarizationLevel.anchor = GridBagConstraints.EAST;
 		gbc_lblBinarizationLevel.insets = new Insets(0, 0, 5, 5);
@@ -131,6 +132,7 @@ public class DebiSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblBinarizationLevel, gbc_lblBinarizationLevel);
 		
 		this.doubleTextFieldbinlevel = new DoubleTextField();
+		doubleTextFieldbinlevel.setToolTipText("Binarization level (if data its already binarized ignore this parameter, otherwise it must be defined)");
 		GridBagConstraints gbc_doubleTextFieldbinlevel = new GridBagConstraints();
 		gbc_doubleTextFieldbinlevel.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldbinlevel.fill = GridBagConstraints.HORIZONTAL;
@@ -148,6 +150,7 @@ public class DebiSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblRegularizationPattern, gbc_lblRegularizationPattern);
 		
 		this.comboBoxregpattern = new JComboBox();
+		comboBoxregpattern.setToolTipText("Pattern of regulation: up, down or both (up, down, both) default=both");
 		GridBagConstraints gbc_comboBoxregpattern = new GridBagConstraints();
 		gbc_comboBoxregpattern.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxregpattern.fill = GridBagConstraints.HORIZONTAL;
@@ -165,6 +168,7 @@ public class DebiSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label_1, gbc_label_1);
 		
 		this.integerTextFieldminconds = new IntegerTextField();
+		integerTextFieldminconds.setToolTipText("<html>Minimum number of conditions in biclusters,<br> if 0, it is automatically calculated, but the minimum value will be allways 5,  default=0</html>");
 		this.integerTextFieldminconds.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldminconds = new GridBagConstraints();
 		gbc_integerTextFieldminconds.insets = new Insets(0, 0, 5, 0);
@@ -183,6 +187,7 @@ public class DebiSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.checkBoxusebimaxbin = new JCheckBox("");
+		checkBoxusebimaxbin.setToolTipText("Use same binarization method of bimax");
 		GridBagConstraints gbc_checkBoxusebimaxbin = new GridBagConstraints();
 		gbc_checkBoxusebimaxbin.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxusebimaxbin.gridx = 1;

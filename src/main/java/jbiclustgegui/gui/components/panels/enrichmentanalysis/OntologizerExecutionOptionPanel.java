@@ -522,7 +522,7 @@ public class OntologizerExecutionOptionPanel extends AbstractGeneEnrichmentAnaly
 		this.btnNewButton = new JButton("Remove Selected");
 		btnNewButton.setIcon(new ImageIcon(OntologizerExecutionOptionPanel.class.getResource("/images/i24x24/delete.png")));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
 		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 0;
@@ -532,7 +532,7 @@ public class OntologizerExecutionOptionPanel extends AbstractGeneEnrichmentAnaly
 		
 		this.btnClearTable = new JButton("Clear table");
 		GridBagConstraints gbc_btnClearTable = new GridBagConstraints();
-		gbc_btnClearTable.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnClearTable.fill = GridBagConstraints.BOTH;
 		gbc_btnClearTable.gridx = 1;
 		gbc_btnClearTable.gridy = 0;
 		this.panel_6.add(this.btnClearTable, gbc_btnClearTable);
@@ -1075,7 +1075,7 @@ public class OntologizerExecutionOptionPanel extends AbstractGeneEnrichmentAnaly
 	 */
 	@Override
 	public Dimension getPreferredDimensionsToPanel() {
-		return new Dimension(1000, 500);
+		return new Dimension(1100, 700);
 	}
 
 }

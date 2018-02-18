@@ -1,0 +1,8 @@
+Package: JBiclustGE
+Version: 1.0
+Section: science
+Priority: low
+Architecture: all
+Description: JBiclustGE is a framework for biclustering analysis
+Maintainer: Orlando Rocha <ornrocha@gmail.com>
+Depends: oracle-java8-installer

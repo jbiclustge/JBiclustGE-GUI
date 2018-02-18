@@ -96,6 +96,7 @@ public class BiminplusSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblAcsi, gbc_lblAcsi);
 		
 		this.integerTextFieldminconds = new IntegerTextField();
+		integerTextFieldminconds.setToolTipText("ACSI is the threshold of the average correspondence similarity index [0..1]");
 		GridBagConstraints gbc_integerTextFieldminconds = new GridBagConstraints();
 		gbc_integerTextFieldminconds.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldminconds.fill = GridBagConstraints.HORIZONTAL;
@@ -113,6 +114,7 @@ public class BiminplusSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblAsr, gbc_lblAsr);
 		
 		this.spinnerasr = new JSpinner();
+		spinnerasr.setToolTipText("ASR is the threshold of the average spearmans rho [-1..1]");
 		this.spinnerasr.setModel(new SpinnerNumberModel(0.6, -1.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerasr = new GridBagConstraints();
 		gbc_spinnerasr.fill = GridBagConstraints.HORIZONTAL;
@@ -131,6 +133,7 @@ public class BiminplusSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblJavaMaximumSize, gbc_lblJavaMaximumSize);
 		
 		this.spinnerjava = new JSpinner();
+		spinnerjava.setToolTipText("Java maximum size memory allocation pool");
 		this.spinnerjava.setModel(new SpinnerNumberModel(1024, 1024, 30720, 1024));
 		GridBagConstraints gbc_spinnerjava = new GridBagConstraints();
 		gbc_spinnerjava.fill = GridBagConstraints.HORIZONTAL;

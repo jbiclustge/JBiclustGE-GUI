@@ -907,7 +907,7 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	 */
 	@Override
 	public Dimension getPreferredDimensionsToPanel() {
-		return new Dimension(750, 500);
+		return new Dimension(1100, 700);
 	}
 
 }

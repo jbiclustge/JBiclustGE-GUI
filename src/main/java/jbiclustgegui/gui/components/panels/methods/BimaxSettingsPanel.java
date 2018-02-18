@@ -98,6 +98,7 @@ public class BimaxSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label, gbc_label);
 		
 		this.integerTextField = new IntegerTextField();
+		integerTextField.setToolTipText("Minimum of genes in biclusters, 0 = no limits");
 		this.integerTextField.setColumns(10);
 		GridBagConstraints gbc_integerTextField = new GridBagConstraints();
 		gbc_integerTextField.insets = new Insets(0, 0, 5, 0);
@@ -115,6 +116,7 @@ public class BimaxSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label_1, gbc_label_1);
 		
 		this.integerTextField_1 = new IntegerTextField();
+		integerTextField_1.setToolTipText("Minimum of conditions in biclusters, 0 = no limits");
 		this.integerTextField_1.setColumns(10);
 		GridBagConstraints gbc_integerTextField_1 = new GridBagConstraints();
 		gbc_integerTextField_1.insets = new Insets(0, 0, 5, 0);
@@ -132,6 +134,7 @@ public class BimaxSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label_2, gbc_label_2);
 		
 		this.integerTextField_2 = new IntegerTextField();
+		integerTextField_2.setToolTipText("Maximum number of biclusters");
 		this.integerTextField_2.setColumns(10);
 		GridBagConstraints gbc_integerTextField_2 = new GridBagConstraints();
 		gbc_integerTextField_2.insets = new Insets(0, 0, 5, 0);
@@ -149,6 +152,7 @@ public class BimaxSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.spinner = new JSpinner();
+		spinner.setToolTipText("<html>Overlap threshold, value between interval [0,1] . If value is equal to 1.0, the algorithm will return the maximum number of biclusters defined by user (default=1.0)<br>Otherwise only return the biclusters which respect overlap threshold</html>");
 		this.spinner.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinner = new GridBagConstraints();
 		gbc_spinner.fill = GridBagConstraints.HORIZONTAL;

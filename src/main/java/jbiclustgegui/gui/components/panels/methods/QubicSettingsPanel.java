@@ -150,7 +150,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(label, gbc_label);
 		
 		spinnerquantdiscret = new JSpinner();
-		spinnerquantdiscret.setToolTipText("range: (0-0.5]");
+		spinnerquantdiscret.setToolTipText("Use quantile discretization for continuous data, range: (0-0.5]");
 		spinnerquantdiscret.setModel(new SpinnerNumberModel(0.5, 0.01, 0.5, 0.01));
 		GridBagConstraints gbc_spinnerquantdiscret = new GridBagConstraints();
 		gbc_spinnerquantdiscret.fill = GridBagConstraints.HORIZONTAL;
@@ -168,6 +168,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(label_1, gbc_label_1);
 		
 		integerTextFieldnumberranks = new IntegerTextField();
+		integerTextFieldnumberranks.setToolTipText("The number of ranks as which we treat the up(down)-regulated value when discretization");
 		integerTextFieldnumberranks.setText("0");
 		integerTextFieldnumberranks.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberranks = new GridBagConstraints();
@@ -186,6 +187,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(label_2, gbc_label_2);
 		
 		integerTextFieldnumberblocks = new IntegerTextField();
+		integerTextFieldnumberblocks.setToolTipText("Number of blocks (biclusters) to report");
 		integerTextFieldnumberblocks.setText("0");
 		integerTextFieldnumberblocks.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberblocks = new GridBagConstraints();
@@ -204,7 +206,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(label_3, gbc_label_3);
 		
 		spinnerfilterblocks = new JSpinner();
-		spinnerfilterblocks.setToolTipText("range: [0-1.0]");
+		spinnerfilterblocks.setToolTipText("Filter overlapping blocks (1 do not remove any blocks), range: [0-1.0]");
 		spinnerfilterblocks.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerfilterblocks = new GridBagConstraints();
 		gbc_spinnerfilterblocks.fill = GridBagConstraints.HORIZONTAL;
@@ -222,7 +224,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(label_4, gbc_label_4);
 		
 		integerTextFieldcolumnwidth = new IntegerTextField();
-		integerTextFieldcolumnwidth.setToolTipText("range: >2");
+		integerTextFieldcolumnwidth.setToolTipText("Minimum column width of the block, range: >2");
 		integerTextFieldcolumnwidth.setText("4");
 		integerTextFieldcolumnwidth.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldcolumnwidth = new GridBagConstraints();
@@ -241,7 +243,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(label_7, gbc_label_7);
 		
 		spinnerconstlevel = new JSpinner();
-		spinnerconstlevel.setToolTipText("range: (0.5-1.0]");
+		spinnerconstlevel.setToolTipText("<html>Consistency level of the block, range (0.5-1.0]<br> The minimum ratio between the number of identical valid symbols in a column and the total number of rows in the output</html>");
 		spinnerconstlevel.setModel(new SpinnerNumberModel(0.85, 0.49, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerconstlevel = new GridBagConstraints();
 		gbc_spinnerconstlevel.fill = GridBagConstraints.HORIZONTAL;
@@ -251,6 +253,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(spinnerconstlevel, gbc_spinnerconstlevel);
 		
 		checkBoxusetftosearch = new JCheckBox("Transcriptional Factor to search:");
+		checkBoxusetftosearch.setToolTipText("TF name to be searched, just consider the seeds containing the TF defined");
 		checkBoxusetftosearch.setSelected(false);
 		checkBoxusetftosearch.setActionCommand("choosetf");
 		GridBagConstraints gbc_checkBoxusetftosearch = new GridBagConstraints();
@@ -263,6 +266,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		checkBoxusetftosearch.addActionListener(this);
 		
 		this.comboBoxtfsearch = new JComboBox();
+		comboBoxtfsearch.setToolTipText("TF name to be searched");
 		GridBagConstraints gbc_comboBoxtfsearch = new GridBagConstraints();
 		gbc_comboBoxtfsearch.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxtfsearch.fill = GridBagConstraints.HORIZONTAL;
@@ -280,6 +284,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		
 		checkBoxenlargebicluster = new JCheckBox("");
 		checkBoxenlargebicluster.setSelected(false);
+		checkBoxenlargebicluster.setToolTipText("Enlarge current bicluster by the p-value constraint (false or true)");
 		GridBagConstraints gbc_checkBoxenlargebicluster = new GridBagConstraints();
 		gbc_checkBoxenlargebicluster.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxenlargebicluster.insets = new Insets(0, 0, 5, 0);
@@ -297,6 +302,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		
 		checkBoxuseareatostop = new JCheckBox("");
 		checkBoxuseareatostop.setSelected(false);
+		checkBoxuseareatostop.setToolTipText("Use area as the value of bicluster to determine when stop (false or true)");
 		GridBagConstraints gbc_checkBoxuseareatostop = new GridBagConstraints();
 		gbc_checkBoxuseareatostop.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxuseareatostop.insets = new Insets(0, 0, 5, 0);
@@ -313,6 +319,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(label_8, gbc_label_8);
 		
 		checkBoxuselowerbound = new JCheckBox("");
+		checkBoxuselowerbound.setToolTipText("Use the lower bound of conditions number (5 percent of the gene number, false or true)");
 		checkBoxuselowerbound.setSelected(false);
 		GridBagConstraints gbc_checkBoxuselowerbound = new GridBagConstraints();
 		gbc_checkBoxuselowerbound.insets = new Insets(0, 0, 5, 0);
@@ -330,6 +337,7 @@ public class QubicSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.lblDatasetIsDiscretized, gbc_lblDatasetIsDiscretized);
 		
 		this.checkBoxisdatadiscretized = new JCheckBox("");
+		checkBoxisdatadiscretized.setToolTipText("Check if dataset its already discretized");
 		this.checkBoxisdatadiscretized.setSelected(false);
 		GridBagConstraints gbc_checkBoxisdatadiscretized = new GridBagConstraints();
 		gbc_checkBoxisdatadiscretized.anchor = GridBagConstraints.WEST;

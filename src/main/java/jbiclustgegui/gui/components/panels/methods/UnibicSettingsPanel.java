@@ -143,7 +143,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(label, gbc_label);
 		
 		spinnerquantdiscret = new JSpinner();
-		spinnerquantdiscret.setToolTipText("range: (0-0.5]");
+		spinnerquantdiscret.setToolTipText("Use quantile discretization for continuous data, range: (0-0.5]");
 		spinnerquantdiscret.setModel(new SpinnerNumberModel(0.5, 0.01, 0.5, 0.01));
 		GridBagConstraints gbc_spinnerquantdiscret = new GridBagConstraints();
 		gbc_spinnerquantdiscret.fill = GridBagConstraints.HORIZONTAL;
@@ -162,6 +162,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		
 		integerTextFieldnumberranks = new IntegerTextField();
 		integerTextFieldnumberranks.setText("0");
+		integerTextFieldnumberranks.setToolTipText("The number of ranks as which we treat the up(down)-regulated value when discretization");
 		integerTextFieldnumberranks.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberranks = new GridBagConstraints();
 		gbc_integerTextFieldnumberranks.insets = new Insets(0, 0, 5, 0);
@@ -180,6 +181,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		
 		integerTextFieldnumberblocks = new IntegerTextField();
 		integerTextFieldnumberblocks.setText("0");
+		integerTextFieldnumberblocks.setToolTipText("Number of blocks to report");
 		integerTextFieldnumberblocks.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberblocks = new GridBagConstraints();
 		gbc_integerTextFieldnumberblocks.insets = new Insets(0, 0, 5, 0);
@@ -197,7 +199,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(label_3, gbc_label_3);
 		
 		spinnerfilterblocks = new JSpinner();
-		spinnerfilterblocks.setToolTipText("range: [0-1.0]");
+		spinnerfilterblocks.setToolTipText("Filter overlapping blocks (1 do not remove any blocks), range: [0-1.0]");
 		spinnerfilterblocks.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerfilterblocks = new GridBagConstraints();
 		gbc_spinnerfilterblocks.fill = GridBagConstraints.HORIZONTAL;
@@ -215,7 +217,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(label_4, gbc_label_4);
 		
 		integerTextFieldcolumnwidth = new IntegerTextField();
-		integerTextFieldcolumnwidth.setToolTipText("range: >2");
+		integerTextFieldcolumnwidth.setToolTipText("Minimum column width of the block, range: > 2");
 		integerTextFieldcolumnwidth.setText("4");
 		integerTextFieldcolumnwidth.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldcolumnwidth = new GridBagConstraints();
@@ -234,7 +236,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(label_7, gbc_label_7);
 		
 		spinnerconstlevel = new JSpinner();
-		spinnerconstlevel.setToolTipText("range: (0.5-1.0]");
+		spinnerconstlevel.setToolTipText("<html>Consistency level of the block, range: (0.5-1.0],<br> The minimum ratio between the number of identical valid symbols in a column and the total number of rows in the output</html>");
 		spinnerconstlevel.setModel(new SpinnerNumberModel(0.85, 0.49, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerconstlevel = new GridBagConstraints();
 		gbc_spinnerconstlevel.fill = GridBagConstraints.HORIZONTAL;
@@ -244,6 +246,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(spinnerconstlevel, gbc_spinnerconstlevel);
 		
 		checkBoxusetftosearch = new JCheckBox("Transcriptional Factor to search:");
+		checkBoxusetftosearch.setToolTipText("TF name to be searched, just consider the seeds containing the TF defined");
 		checkBoxusetftosearch.setSelected(false);
 		checkBoxusetftosearch.setActionCommand("choosetf");
 		GridBagConstraints gbc_checkBoxusetftosearch = new GridBagConstraints();
@@ -256,6 +259,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		checkBoxusetftosearch.addActionListener(this);
 		
 		this.comboBoxtfsearch = new JComboBox();
+		comboBoxtfsearch.setToolTipText("TF name to be searched");
 		GridBagConstraints gbc_comboBoxtfsearch = new GridBagConstraints();
 		gbc_comboBoxtfsearch.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxtfsearch.fill = GridBagConstraints.HORIZONTAL;
@@ -272,6 +276,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(label_5, gbc_label_5);
 		
 		checkBoxenlargebicluster = new JCheckBox("");
+		checkBoxenlargebicluster.setToolTipText("Enlarge current bicluster by the p-value constraint (false or true)");
 		checkBoxenlargebicluster.setSelected(false);
 		GridBagConstraints gbc_checkBoxenlargebicluster = new GridBagConstraints();
 		gbc_checkBoxenlargebicluster.anchor = GridBagConstraints.WEST;
@@ -289,6 +294,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(label_6, gbc_label_6);
 		
 		checkBoxuseareatostop = new JCheckBox("");
+		checkBoxuseareatostop.setToolTipText("Use area as the value of bicluster to determine when stop (false or true)");
 		checkBoxuseareatostop.setSelected(false);
 		GridBagConstraints gbc_checkBoxuseareatostop = new GridBagConstraints();
 		gbc_checkBoxuseareatostop.anchor = GridBagConstraints.WEST;
@@ -306,6 +312,7 @@ public class UnibicSettingsPanel extends AbstractMethodSettingsPanel implements 
 		add(label_8, gbc_label_8);
 		
 		checkBoxuselowerbound = new JCheckBox("");
+		checkBoxuselowerbound.setToolTipText("Use the lower bound of conditions number (5 percent of the gene number, false or true)");
 		checkBoxuselowerbound.setSelected(false);
 		GridBagConstraints gbc_checkBoxuselowerbound = new GridBagConstraints();
 		gbc_checkBoxuselowerbound.anchor = GridBagConstraints.WEST;

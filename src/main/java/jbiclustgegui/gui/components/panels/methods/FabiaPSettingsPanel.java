@@ -91,6 +91,7 @@ public class FabiaPSettingsPanel extends FabiaSettingsPanel{
 		extrapanel.add(this.lblFinalSparsenessLoadings, gbc_lblFinalSparsenessLoadings);
 		
 		this.doubleTextFieldfinalsparload = new DoubleTextField();
+		doubleTextFieldfinalsparload.setToolTipText("Final sparseness loadings");
 		GridBagConstraints gbc_doubleTextFieldfinalsparload = new GridBagConstraints();
 		gbc_doubleTextFieldfinalsparload.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldfinalsparload.fill = GridBagConstraints.HORIZONTAL;
@@ -107,6 +108,7 @@ public class FabiaPSettingsPanel extends FabiaSettingsPanel{
 		extrapanel.add(this.lblFinalSparsenessFactors, gbc_lblFinalSparsenessFactors);
 		
 		this.doubleTextFieldfinalsparcfactors = new DoubleTextField();
+		doubleTextFieldfinalsparcfactors.setToolTipText("Final sparseness factors");
 		GridBagConstraints gbc_doubleTextFieldfinalsparcfactors = new GridBagConstraints();
 		gbc_doubleTextFieldfinalsparcfactors.fill = GridBagConstraints.HORIZONTAL;
 		gbc_doubleTextFieldfinalsparcfactors.gridx = 1;

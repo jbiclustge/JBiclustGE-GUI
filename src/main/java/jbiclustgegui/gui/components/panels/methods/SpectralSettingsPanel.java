@@ -101,7 +101,7 @@ public class SpectralSettingsPanel extends AbstractMethodSettingsPanel{
 		setLayout(gridBagLayout);
 		
 		this.lblCorrelationThreshold = new JLabel("Normalization method:");
-		this.lblCorrelationThreshold.setToolTipText("Normalization method, three methods are allowed: log (Logarithmic normalization), irrc (Independent Rescalng of Rows and Columns) and bistochastization");
+		this.lblCorrelationThreshold.setToolTipText("<html>Normalization method, three methods are allowed:\n<ul><li>log (Logarithmic normalization)\n<li>irrc (Independent Rescalng of Rows and Columns)\n<li>bistochastization</ul></html>");
 		GridBagConstraints gbc_lblCorrelationThreshold = new GridBagConstraints();
 		gbc_lblCorrelationThreshold.anchor = GridBagConstraints.EAST;
 		gbc_lblCorrelationThreshold.insets = new Insets(0, 0, 5, 5);
@@ -110,6 +110,7 @@ public class SpectralSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblCorrelationThreshold, gbc_lblCorrelationThreshold);
 		
 		this.comboBoxnormmethod = new JComboBox();
+		comboBoxnormmethod.setToolTipText("<html>Normalization method, three methods are allowed:\n<ul><li>log (Logarithmic normalization)\n<li>irrc (Independent Rescalng of Rows and Columns)\n<li>bistochastization</ul></html>");
 		GridBagConstraints gbc_comboBoxnormmethod = new GridBagConstraints();
 		gbc_comboBoxnormmethod.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxnormmethod.fill = GridBagConstraints.HORIZONTAL;
@@ -127,6 +128,7 @@ public class SpectralSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes, gbc_lblMinGenes);
 		
 		this.integerTextFieldeigenvalues = new IntegerTextField();
+		integerTextFieldeigenvalues.setToolTipText("Number of eigenValues considered to find biclusters, high number could increase dramatically time performance");
 		this.integerTextFieldeigenvalues.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldeigenvalues = new GridBagConstraints();
 		gbc_integerTextFieldeigenvalues.insets = new Insets(0, 0, 5, 0);
@@ -145,6 +147,7 @@ public class SpectralSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes_1, gbc_lblMinGenes_1);
 		
 		this.integerTextFieldmingenes = new IntegerTextField();
+		integerTextFieldmingenes.setToolTipText("Minimum number of rows that biclusters must have");
 		this.integerTextFieldmingenes.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldmingenes = new GridBagConstraints();
 		gbc_integerTextFieldmingenes.insets = new Insets(0, 0, 5, 0);
@@ -163,6 +166,7 @@ public class SpectralSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.label_1, gbc_label_1);
 		
 		this.integerTextFieldminconds = new IntegerTextField();
+		integerTextFieldminconds.setToolTipText("Minimum number of columns that biclusters must have");
 		this.integerTextFieldminconds.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldminconds = new GridBagConstraints();
 		gbc_integerTextFieldminconds.insets = new Insets(0, 0, 5, 0);
@@ -181,6 +185,7 @@ public class SpectralSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.doubleTextFieldmaxvariation = new DoubleTextField();
+		doubleTextFieldmaxvariation.setToolTipText("Maximum within variation allowed");
 		GridBagConstraints gbc_doubleTextFieldmaxvariation = new GridBagConstraints();
 		gbc_doubleTextFieldmaxvariation.fill = GridBagConstraints.HORIZONTAL;
 		gbc_doubleTextFieldmaxvariation.gridx = 1;

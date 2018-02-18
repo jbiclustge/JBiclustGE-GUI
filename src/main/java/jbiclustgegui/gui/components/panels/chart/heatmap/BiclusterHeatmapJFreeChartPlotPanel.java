@@ -227,6 +227,8 @@ public class BiclusterHeatmapJFreeChartPlotPanel extends JPanel{
 	 * Load heatmap panel.
 	 */
 	public void loadHeatmapPanel() {
+		
+		int labelfontsize=20;
 	
 		SymbolAxis xAxis=new SymbolAxis("Conditions", bicluster.getOrderedConditionNamesArray());
         xAxis.setVisible(true);
@@ -254,7 +256,10 @@ public class BiclusterHeatmapJFreeChartPlotPanel extends JPanel{
 		yAxis.setLowerMargin(10.0);
 		yAxis.setUpperMargin(0.0);
 		yAxis.setInverted(true);
-		yAxis.setLabelFont(new Font("Dialog", Font.BOLD, 20));
+		
+		if(bicluster.getNumberGenes()<10)
+	        labelfontsize=10;
+		yAxis.setLabelFont(new Font("Dialog", Font.BOLD, labelfontsize));
 		
 		
 		XYZDataset xyzset = new XYZArrayDataset(getWeightedMatrix(bicluster));

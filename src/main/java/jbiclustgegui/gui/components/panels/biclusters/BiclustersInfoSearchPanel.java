@@ -179,6 +179,7 @@ public class BiclustersInfoSearchPanel extends JPanel{
 		});
 		this.btnGene.setIcon(new ImageIcon(BiclustersInfoSearchPanel.class.getResource("/images/i24x24/searchkey.png")));
 		GridBagConstraints gbc_btnGene = new GridBagConstraints();
+		gbc_btnGene.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnGene.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGene.gridx = 5;
 		gbc_btnGene.gridy = 0;
@@ -196,6 +197,7 @@ public class BiclustersInfoSearchPanel extends JPanel{
 		});
 		this.btnCondition.setIcon(new ImageIcon(BiclustersInfoSearchPanel.class.getResource("/images/i24x24/searchkey.png")));
 		GridBagConstraints gbc_btnCondition = new GridBagConstraints();
+		gbc_btnCondition.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCondition.insets = new Insets(0, 0, 5, 5);
 		gbc_btnCondition.gridx = 6;
 		gbc_btnCondition.gridy = 0;
@@ -211,8 +213,9 @@ public class BiclustersInfoSearchPanel extends JPanel{
 		});
 		this.btnNewButtongenefreq.setIcon(new ImageIcon(BiclustersInfoSearchPanel.class.getResource("/images/i24x24/searchkey.png")));
 		GridBagConstraints gbc_btnNewButtongenefreq = new GridBagConstraints();
+		gbc_btnNewButtongenefreq.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnNewButtongenefreq.anchor = GridBagConstraints.NORTH;
-		gbc_btnNewButtongenefreq.gridwidth = 2;
+		gbc_btnNewButtongenefreq.gridwidth = 3;
 		gbc_btnNewButtongenefreq.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButtongenefreq.gridx = 1;
 		gbc_btnNewButtongenefreq.gridy = 1;
@@ -229,16 +232,17 @@ public class BiclustersInfoSearchPanel extends JPanel{
 		});
 		this.btnNewButtoncodfreq.setIcon(new ImageIcon(BiclustersInfoSearchPanel.class.getResource("/images/i24x24/searchkey.png")));
 		GridBagConstraints gbc_btnNewButtoncodfreq = new GridBagConstraints();
+		gbc_btnNewButtoncodfreq.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnNewButtoncodfreq.anchor = GridBagConstraints.NORTH;
-		gbc_btnNewButtoncodfreq.gridwidth = 2;
+		gbc_btnNewButtoncodfreq.gridwidth = 3;
 		gbc_btnNewButtoncodfreq.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButtoncodfreq.gridx = 3;
+		gbc_btnNewButtoncodfreq.gridx = 4;
 		gbc_btnNewButtoncodfreq.gridy = 1;
 		add(this.btnNewButtoncodfreq, gbc_btnNewButtoncodfreq);
 		
 		this.scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 8;
+		gbc_scrollPane.gridheight = 9;
 		gbc_scrollPane.gridwidth = 11;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;

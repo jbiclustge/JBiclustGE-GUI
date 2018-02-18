@@ -113,6 +113,7 @@ public class ISASettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberOfSeeds, gbc_lblNumberOfSeeds);
 		
 		this.integerTextFieldnumberseeds = new IntegerTextField();
+		integerTextFieldnumberseeds.setToolTipText("Integer scalar, the number of seeds to use");
 		GridBagConstraints gbc_integerTextFieldnumberseeds = new GridBagConstraints();
 		gbc_integerTextFieldnumberseeds.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldnumberseeds.fill = GridBagConstraints.HORIZONTAL;
@@ -130,6 +131,7 @@ public class ISASettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes, gbc_lblMinGenes);
 		
 		this.comboBoxrowdirection = new JComboBox();
+		comboBoxrowdirection.setToolTipText("It specifies whether we are interested in rows that are higher (up) than average, lower than average(down), or both (updown)");
 		GridBagConstraints gbc_comboBoxrowdirection = new GridBagConstraints();
 		gbc_comboBoxrowdirection.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxrowdirection.fill = GridBagConstraints.HORIZONTAL;
@@ -164,6 +166,7 @@ public class ISASettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblRowThresholds, gbc_lblRowThresholds);
 		
 		this.textFieldrowtrhesholds = new JTextField();
+		textFieldrowtrhesholds.setToolTipText("<html>Numeric vector, can be defined as following: \n<ul><li>(1) numbers separated by semi-colon -> 1;1.5;3;4.5;6\n<li>(2) defining a range (1:6) with interval 3 as follows -> 1:6:3</ul></html>");
 		GridBagConstraints gbc_textFieldrowtrhesholds = new GridBagConstraints();
 		gbc_textFieldrowtrhesholds.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldrowtrhesholds.fill = GridBagConstraints.HORIZONTAL;
@@ -173,7 +176,7 @@ public class ISASettingsPanel extends AbstractMethodSettingsPanel{
 		this.textFieldrowtrhesholds.setColumns(10);
 		
 		this.lblOverlapTreshold = new JLabel("Column thresholds:");
-		this.lblOverlapTreshold.setToolTipText("<html>Numeric vector, can be defined as following: <br>(1) numbers separated by semi-colon -> 1;1.5;3;4.5;6, <br> (2) defining a range (1:6) with interval 3 as follows -> 1:6:3</html>");
+		this.lblOverlapTreshold.setToolTipText("<html>Numeric vector, can be defined as following: \n<ul><li>(1) numbers separated by semi-colon -> 1;1.5;3;4.5;6\n<li>(2) defining a range (1:6) with interval 3 as follows -> 1:6:3</ul></html>");
 		GridBagConstraints gbc_lblOverlapTreshold = new GridBagConstraints();
 		gbc_lblOverlapTreshold.anchor = GridBagConstraints.EAST;
 		gbc_lblOverlapTreshold.insets = new Insets(0, 0, 0, 5);
@@ -182,6 +185,7 @@ public class ISASettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.textFieldcolumntresholds = new JTextField();
+		textFieldcolumntresholds.setToolTipText("<html>Numeric vector, can be defined as following: \n<ul><li>(1) numbers separated by semi-colon -> 1;1.5;3;4.5;6\n<li>(2) defining a range (1:6) with interval 3 as follows -> 1:6:3</ul></html>");
 		GridBagConstraints gbc_textFieldcolumntresholds = new GridBagConstraints();
 		gbc_textFieldcolumntresholds.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldcolumntresholds.gridx = 1;

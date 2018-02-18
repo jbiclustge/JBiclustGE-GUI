@@ -29,6 +29,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -57,8 +58,12 @@ import es.uvigo.ei.aibench.workbench.utilities.Utilities;
 import jbiclustge.datatools.expressiondata.dataset.ExpressionData;
 import jbiclustge.datatools.expressiondata.dataset.MissingValueImputationMethod;
 import jbiclustge.datatools.expressiondata.dataset.MissingValuesInDataException;
+import jbiclustgegui.gui.components.dialogs.example.ExampleDatasetPanel;
 import smile.imputation.MissingValueImputation;
 import smile.imputation.MissingValueImputationException;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -111,6 +116,13 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 	/** The needsimputationmethod. */
 	private boolean needsimputationmethod=false;
 	
+	private JPanel panelmissingvalues;
+ 	private JPanel panelcomboandlabel;
+ 	private JLabel lblMissingValuesWere =null;
+ 	private JLabel lblFilepath;
+ 	
+ 	private JButton btnOpenExampleDataset;
+	
 	 /** The choosemethod. */
  	private static String CHOOSEMETHOD="choosemethod";
 	 
@@ -122,6 +134,8 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 	 
  	/** The loaddataset. */
  	private static String LOADDATASET="loadsdataset";
+ 	
+ 	private static String LOADEXAMPLEDATASET="loadsexampledataset";
 	
 	/**
 	 * Launch the application.
@@ -166,7 +180,6 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 			JLabel lblNewLabel = new JLabel("Project Name:");
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel.gridwidth = 2;
 			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel.gridx = 0;
 			gbc_lblNewLabel.gridy = 0;
@@ -175,82 +188,126 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 		{
 			this.textFieldprojectname = new JTextField();
 			GridBagConstraints gbc_textFieldprojectname = new GridBagConstraints();
-			gbc_textFieldprojectname.gridwidth = 5;
-			gbc_textFieldprojectname.insets = new Insets(0, 0, 5, 5);
+			gbc_textFieldprojectname.gridwidth = 7;
+			gbc_textFieldprojectname.insets = new Insets(0, 0, 5, 0);
 			gbc_textFieldprojectname.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textFieldprojectname.gridx = 2;
+			gbc_textFieldprojectname.gridx = 1;
 			gbc_textFieldprojectname.gridy = 0;
 			contentPanel.add(this.textFieldprojectname, gbc_textFieldprojectname);
 			this.textFieldprojectname.setColumns(10);
 		}
 		{
-			btnNewButtonopendataset = new JButton("<html><center>Open Gene Expression<br> Dataset File:</center></html>");
-			btnNewButtonopendataset.setPreferredSize(new Dimension(120, 40));
-			btnNewButtonopendataset.setMinimumSize(new Dimension(140, 40));
-			btnNewButtonopendataset.setActionCommand(LOADDATASET);
-			btnNewButtonopendataset.addActionListener(this);
-			GridBagConstraints gbc_btnNewButtonopendataset = new GridBagConstraints();
-			gbc_btnNewButtonopendataset.fill = GridBagConstraints.HORIZONTAL;
-			gbc_btnNewButtonopendataset.gridwidth = 2;
-			gbc_btnNewButtonopendataset.insets = new Insets(0, 40, 5, 5);
-			gbc_btnNewButtonopendataset.gridx = 0;
-			gbc_btnNewButtonopendataset.gridy = 1;
-			contentPanel.add(btnNewButtonopendataset, gbc_btnNewButtonopendataset);
+			{
+				btnOpenExampleDataset = new JButton("<html><center>Load Example<br> Dataset</center></html>");
+				btnOpenExampleDataset.setActionCommand(LOADEXAMPLEDATASET);
+				btnOpenExampleDataset.addActionListener(this);
+				GridBagConstraints gbc_btnOpenExampleDataset = new GridBagConstraints();
+				gbc_btnOpenExampleDataset.fill = GridBagConstraints.BOTH;
+				gbc_btnOpenExampleDataset.insets = new Insets(0, 0, 5, 5);
+				gbc_btnOpenExampleDataset.gridx = 0;
+				gbc_btnOpenExampleDataset.gridy = 1;
+				contentPanel.add(btnOpenExampleDataset, gbc_btnOpenExampleDataset);
+			}
 			
+		}
+		btnNewButtonopendataset = new JButton("<html><center>Open Gene Expression<br> Dataset File</center></html>");
+		btnNewButtonopendataset.setPreferredSize(new Dimension(120, 40));
+		btnNewButtonopendataset.setMinimumSize(new Dimension(140, 40));
+		btnNewButtonopendataset.setActionCommand(LOADDATASET);
+		btnNewButtonopendataset.addActionListener(this);
+		GridBagConstraints gbc_btnNewButtonopendataset = new GridBagConstraints();
+		gbc_btnNewButtonopendataset.fill = GridBagConstraints.BOTH;
+		gbc_btnNewButtonopendataset.gridwidth = 7;
+		gbc_btnNewButtonopendataset.insets = new Insets(0, 0, 5, 0);
+		gbc_btnNewButtonopendataset.gridx = 1;
+		gbc_btnNewButtonopendataset.gridy = 1;
+		contentPanel.add(btnNewButtonopendataset, gbc_btnNewButtonopendataset);
+		{
+			lblFilepath = new JLabel("File path:");
+			GridBagConstraints gbc_lblFilepath = new GridBagConstraints();
+			gbc_lblFilepath.insets = new Insets(0, 0, 5, 5);
+			gbc_lblFilepath.anchor = GridBagConstraints.EAST;
+			gbc_lblFilepath.gridx = 0;
+			gbc_lblFilepath.gridy = 2;
+			contentPanel.add(lblFilepath, gbc_lblFilepath);
 		}
 		{
 			this.textFielddatasetfilepath = new JTextField();
 			GridBagConstraints gbc_textFielddatasetfilepath = new GridBagConstraints();
-			gbc_textFielddatasetfilepath.gridwidth = 6;
+			gbc_textFielddatasetfilepath.gridwidth = 7;
 			gbc_textFielddatasetfilepath.insets = new Insets(0, 0, 5, 0);
 			gbc_textFielddatasetfilepath.fill = GridBagConstraints.HORIZONTAL;
-			gbc_textFielddatasetfilepath.gridx = 2;
-			gbc_textFielddatasetfilepath.gridy = 1;
+			gbc_textFielddatasetfilepath.gridx = 1;
+			gbc_textFielddatasetfilepath.gridy = 2;
 			contentPanel.add(this.textFielddatasetfilepath, gbc_textFielddatasetfilepath);
 			this.textFielddatasetfilepath.setColumns(10);
 		}
 		{
-			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Missing value imputation method", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panelmissingvalues = new JPanel();
+			panelmissingvalues.setBorder(new TitledBorder(null, "Missing value imputation method", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			GridBagConstraints gbc_panel = new GridBagConstraints();
 			gbc_panel.gridwidth = 8;
-			gbc_panel.gridheight = 3;
+			gbc_panel.gridheight = 2;
 			gbc_panel.insets = new Insets(0, 0, 5, 0);
 			gbc_panel.fill = GridBagConstraints.BOTH;
 			gbc_panel.gridx = 0;
-			gbc_panel.gridy = 2;
-			contentPanel.add(panel, gbc_panel);
+			gbc_panel.gridy = 3;
+			contentPanel.add(panelmissingvalues, gbc_panel);
 			GridBagLayout gbl_panel = new GridBagLayout();
 			gbl_panel.columnWidths = new int[]{1, 0};
 			gbl_panel.rowHeights = new int[]{1, 1, 0};
 			gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-			gbl_panel.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-			panel.setLayout(gbl_panel);
+			gbl_panel.rowWeights = new double[]{1.0, 1.0,1.0};
+			panelmissingvalues.setLayout(gbl_panel);
 			{
-				JPanel panel_1 = new JPanel();
-				panel_1.setBorder(new TitledBorder(null, "Select method", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-				gbc_panel_1.fill = GridBagConstraints.BOTH;
-				gbc_panel_1.insets = new Insets(0, 0, 5, 0);
-				gbc_panel_1.gridx = 0;
-				gbc_panel_1.gridy = 0;
-				panel.add(panel_1, gbc_panel_1);
-				GridBagLayout gbl_panel_1 = new GridBagLayout();
-				gbl_panel_1.columnWidths = new int[]{1, 0};
-				gbl_panel_1.rowHeights = new int[]{1, 0};
-				gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-				gbl_panel_1.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-				panel_1.setLayout(gbl_panel_1);
+				panelcomboandlabel = new JPanel();
+				GridBagConstraints gbc_panel1 = new GridBagConstraints();
+				gbc_panel1.insets = new Insets(0, 0, 5, 0);
+				gbc_panel1.fill = GridBagConstraints.BOTH;
+				gbc_panel1.gridx = 0;
+				gbc_panel1.gridy = 0;
+				panelmissingvalues.add(panelcomboandlabel, gbc_panel1);
+				GridBagLayout gbl_panel1 = new GridBagLayout();
+				gbl_panel1.columnWidths = new int[]{1,1};
+				gbl_panel1.rowHeights = new int[]{1};
+				gbl_panel1.columnWeights = new double[]{1.0,1.0};
+				gbl_panel1.rowWeights = new double[]{1.0};
+				panelcomboandlabel.setLayout(gbl_panel1);
 				{
-					comboBoxmissingmethods = new JComboBox();
-					comboBoxmissingmethods.setActionCommand(CHOOSEMETHOD);
-					comboBoxmissingmethods.addActionListener(this);
-					GridBagConstraints gbc_comboBoxmissingmethods = new GridBagConstraints();
-					gbc_comboBoxmissingmethods.fill = GridBagConstraints.HORIZONTAL;
-					gbc_comboBoxmissingmethods.gridx = 0;
-					gbc_comboBoxmissingmethods.gridy = 0;
-					panel_1.add(comboBoxmissingmethods, gbc_comboBoxmissingmethods);
+					JPanel panel_1 = new JPanel();
+					GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+					gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
+					gbc_panel_1.insets = new Insets(0, 0, 0, 5);
+					gbc_panel_1.gridx = 0;
+					gbc_panel_1.gridy = 0;
+					panelcomboandlabel.add(panel_1, gbc_panel_1);
+					panel_1.setBorder(new TitledBorder(null, "Select method", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+					GridBagLayout gbl_panel_1 = new GridBagLayout();
+					gbl_panel_1.columnWidths = new int[]{1, 0};
+					gbl_panel_1.rowHeights = new int[]{1, 0};
+					gbl_panel_1.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+					gbl_panel_1.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+					panel_1.setLayout(gbl_panel_1);
+					{
+						comboBoxmissingmethods = new JComboBox();
+						comboBoxmissingmethods.setActionCommand(CHOOSEMETHOD);
+						comboBoxmissingmethods.addActionListener(this);
+						GridBagConstraints gbc_comboBoxmissingmethods = new GridBagConstraints();
+						gbc_comboBoxmissingmethods.fill = GridBagConstraints.HORIZONTAL;
+						gbc_comboBoxmissingmethods.gridx = 0;
+						gbc_comboBoxmissingmethods.gridy = 0;
+						panel_1.add(comboBoxmissingmethods, gbc_comboBoxmissingmethods);
+					}
 				}
+			/*	{
+					JLabel lblMissingValuesWere_1 = new JLabel("No missing values were found");
+					GridBagConstraints gbc_lblMissingValuesWere_1 = new GridBagConstraints();
+					gbc_lblMissingValuesWere_1.gridx = 1;
+					gbc_lblMissingValuesWere_1.gridy = 0;
+					panelcomboandlabel.add(lblMissingValuesWere_1, gbc_lblMissingValuesWere_1);
+					lblMissingValuesWere_1.setForeground(Color.GREEN);
+					lblMissingValuesWere_1.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 14));
+				}*/
 			}
 			{
 				JPanel panel_1 = new JPanel();
@@ -258,7 +315,7 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 				gbc_panel_1.fill = GridBagConstraints.BOTH;
 				gbc_panel_1.gridx = 0;
 				gbc_panel_1.gridy = 1;
-				panel.add(panel_1, gbc_panel_1);
+				panelmissingvalues.add(panel_1, gbc_panel_1);
 				GridBagLayout gbl_panel_1 = new GridBagLayout();
 				gbl_panel_1.columnWidths = new int[]{1, 0};
 				gbl_panel_1.rowHeights = new int[]{1, 1, 0};
@@ -312,7 +369,6 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 			GridBagConstraints gbc_panel = new GridBagConstraints();
 			gbc_panel.gridheight = 3;
 			gbc_panel.gridwidth = 8;
-			gbc_panel.insets = new Insets(0, 0, 5, 5);
 			gbc_panel.fill = GridBagConstraints.BOTH;
 			gbc_panel.gridx = 0;
 			gbc_panel.gridy = 5;
@@ -432,13 +488,43 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 					needsimputationmethod=true;
 					currentgeneexpressionfilepath=selected.getAbsolutePath();
 					dataset=null;
-					
+					setMissingValuesLabel(true);
 				}
 			}
+        	if(dataset!=null)
+        	   setMissingValuesLabel(false);
         	textFielddatasetfilepath.setText(selected.getAbsolutePath());
-        	
         }
  
+	}
+	
+	private void loadExampleExpressionDataset() throws Exception {
+		needsimputationmethod=false;
+		currentgeneexpressionfilepath=null;
+		
+		ExampleDatasetPanel panel=new ExampleDatasetPanel();
+		int option=panel.showOpenDialog(this);
+		if(option==ExampleDatasetPanel.APPROVE_OPTION) {
+			currentgeneexpressionfilepath=panel.getSelectedDataset();
+			needsimputationmethod=panel.haveMissingValues();
+			if(needsimputationmethod) {
+				setMissingValuesLabel(true);
+				enableMissingValueImputationComponents();
+			}
+			else {
+				disableMissingValueImputationComponents();
+				setMissingValuesLabel(false);
+				dataset=ExpressionData.loadDataset(currentgeneexpressionfilepath, null);
+			}
+			
+			textFielddatasetfilepath.setText(currentgeneexpressionfilepath);
+		}
+		else {
+			textFielddatasetfilepath.setText("");
+			disableMissingValueImputationComponents();
+		}
+			
+		
 	}
 	
 	/**
@@ -455,6 +541,7 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 	private void disableMissingValueImputationComponents() {
 		comboBoxmissingmethods.setEnabled(false);
 		spinnermissingmethodparam.setEnabled(false);
+		setMissingValuesLabel(null);
 	}
 	
 	
@@ -500,6 +587,34 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 			return method.getInstanceWithParameter((int) spinnermissingmethodparam.getValue());
 
 	}
+	
+	
+	private void setMissingValuesLabel(Boolean havemissingvalues) {
+		
+		if(lblMissingValuesWere!=null)
+			panelcomboandlabel.remove(lblMissingValuesWere);
+		
+		
+		if(havemissingvalues!=null && havemissingvalues) {
+		 lblMissingValuesWere = new JLabel("Missing values were found");
+		 lblMissingValuesWere.setForeground(Color.RED);
+		}
+		else if (havemissingvalues!=null && !havemissingvalues) {
+			lblMissingValuesWere = new JLabel("No missing values were found");
+			lblMissingValuesWere.setForeground(Color.GREEN);
+		}
+		else
+			lblMissingValuesWere = new JLabel("");
+		
+		
+		lblMissingValuesWere.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 14));
+		GridBagConstraints gbc_lblMissingValuesWere = new GridBagConstraints();
+		//gbc_lblMissingValuesWere.insets = new Insets(0, 0, 5, 0);
+		gbc_lblMissingValuesWere.gridx = 1;
+		gbc_lblMissingValuesWere.gridy = 0;
+		panelcomboandlabel.add(lblMissingValuesWere, gbc_lblMissingValuesWere);
+		panelcomboandlabel.updateUI();
+	}
 
 	/* (non-Javadoc)
 	 * @see es.uvigo.ei.aibench.workbench.InputGUI#init(es.uvigo.ei.aibench.workbench.ParamsReceiver, es.uvigo.ei.aibench.core.operation.OperationDefinition)
@@ -543,6 +658,13 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 		
 		if(cmd.equals(LOADDATASET))
 			loadExpressionDataset();
+		else if(cmd.equals(LOADEXAMPLEDATASET)) {
+			try {
+				loadExampleExpressionDataset();
+			} catch (Exception e1) {
+				Workbench.getInstance().error(e1);
+			}
+		}
 		else if(cmd.equals(CHOOSEMETHOD) && comboBoxmissingmethods.isEnabled()) {
 			changeMethod();
 		}

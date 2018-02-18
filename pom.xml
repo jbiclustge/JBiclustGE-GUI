@@ -8,25 +8,24 @@
 	<packaging>jar</packaging>
 
 
-    <developers>
-		<developer>
-			<name>Orlando Rocha</name>
-			<email>ornrocha@gmail.com</email>
-		</developer>
-	</developers>
-
 	<properties>
 		<!-- General configuration -->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<globalResourcesDirectory>src/main/global-resources</globalResourcesDirectory>
+		<izpack.version>5.0.9</izpack.version>
+		<izpack.staging>${project.build.directory}/staging</izpack.staging>
+		<installer-output-filename>JBiclustGE-installer.jar</installer-output-filename>
+		<deb-output-filename>JBiclustGE.deb</deb-output-filename>
+		<deb-dir-name>JBiclustGE</deb-dir-name>
 
+		<globalResourcesDirectory>src/main/global-resources</globalResourcesDirectory>
 		<!-- AIBench dependencies management -->
 		<aibench.lib.artifactIds>javatar,aibench-aibench,jhall,log4j</aibench.lib.artifactIds>
+		<!-- <aibench.plugins.artifactIds>aibench-core,aibench-workbench,aibench-shell,aibench-pluginmanager</aibench.plugins.artifactIds> -->
 		<aibench.plugins.artifactIds>aibench-core,aibench-workbench,aibench-pluginmanager</aibench.plugins.artifactIds>
-		<aibench.version>2.9.0</aibench.version>
+		<aibench.version>2.10.1</aibench.version>
 	</properties>
 
 
@@ -143,6 +142,17 @@
 		<directory>${project.basedir}/target</directory>
 		<outputDirectory>${project.build.directory}/dist/plugins_bin/${project.artifactId}</outputDirectory>
 		<plugins>
+		    <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.20.1</version>
+            <configuration>
+                <systemPropertyVariables>
+                    <org.slf4j.simpleLogger.defaultLogLevel>ERROR</org.slf4j.simpleLogger.defaultLogLevel>
+                    <org.slf4j.simpleLogger.showDateTime>true</org.slf4j.simpleLogger.showDateTime>
+                </systemPropertyVariables>
+            </configuration>
+        </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -168,7 +178,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -227,7 +236,135 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>create-staging-area</id>
+						<!--<phase>process-resources</phase> -->
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<ant antfile="${basedir}/src/main/ant/build.xml">
+									<target name="build-aux-files" />
+								</ant>
+
+								<copy todir="${izpack.staging}">
+									<fileset dir="${basedir}/src/main/izpack" />
+								</copy>
+								<copy todir="${izpack.staging}">
+									<fileset dir="${project.build.directory}/dist" />
+								</copy>
+								<delete
+									file="${project.build.directory}/dist/jbiclustge_installer_windows_shortcutSpec.xml"
+									failonerror="false" />
+								<delete
+									file="${project.build.directory}/dist/jbiclustge_installer_unix_shortcutSpec.xml"
+									failonerror="false" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.izpack</groupId>
+				<artifactId>izpack-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>izpack</goal>
+						</goals>
+						<configuration>
+							<!-- base for relative paths in izpack descriptor -->
+							<baseDir>${izpack.staging}</baseDir>
+							<installFile>${basedir}/src/main/izpack/install.xml</installFile>
+							<output>${project.build.directory}/${installer-output-filename}</output>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.izpack</groupId>
+						<artifactId>izpack-panel</artifactId>
+						<version>${izpack.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.vafer</groupId>
+				<artifactId>jdeb</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>deb</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jdeb</goal>
+						</goals>
+						<configuration>
+							<verbose>false</verbose>
+							<deb>${project.build.directory}/${deb-output-filename}</deb>
+							<controlDir>${basedir}/src/main/deb/control</controlDir>
+							<dataSet>
+								<data>
+									<src>${project.build.directory}/dist</src>
+									<type>directory</type>
+									<mapper>
+										<type>perm</type>
+										<prefix>/opt/${deb-dir-name}</prefix>
+									</mapper>
+								</data>
+								<data>
+									<src>${basedir}/src/main/deb/jbiclustge.desktop</src>
+									<type>file</type>
+									<mapper>
+										<type>perm</type>
+										<prefix>/usr/share/applications</prefix>
+									</mapper>
+								</data>
+							</dataSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-antrun-plugin</artifactId>
+										<versionRange>[1.7,)</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 
 		<!-- filtering on plugin.xml -->
 		<resources>
@@ -247,7 +384,6 @@
 			</resource>
 		</resources>
 	</build>
-
 	<repositories>
 		<repository>
 			<snapshots>

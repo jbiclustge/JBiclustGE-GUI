@@ -114,6 +114,7 @@ public class UbclustSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblCorrelationThreshold, gbc_lblCorrelationThreshold);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText("Number of biclusters to estimate");
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldnumberbics.fill = GridBagConstraints.HORIZONTAL;
@@ -131,6 +132,7 @@ public class UbclustSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes, gbc_lblMinGenes);
 		
 		this.integerTextFielddiscretlevels = new IntegerTextField();
+		integerTextFielddiscretlevels.setToolTipText("Discretization levels (default 128)");
 		this.integerTextFielddiscretlevels.setColumns(10);
 		GridBagConstraints gbc_integerTextFielddiscretlevels = new GridBagConstraints();
 		gbc_integerTextFielddiscretlevels.insets = new Insets(0, 0, 5, 0);
@@ -149,6 +151,7 @@ public class UbclustSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMinGenes_1, gbc_lblMinGenes_1);
 		
 		doubleTextFieldinittemp = new DoubleTextField();
+		doubleTextFieldinittemp.setToolTipText("Initial temperature (default 0.00001)");
 		GridBagConstraints gbc_doubleTextFieldinittemp = new GridBagConstraints();
 		gbc_doubleTextFieldinittemp.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldinittemp.fill = GridBagConstraints.HORIZONTAL;
@@ -166,6 +169,7 @@ public class UbclustSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblTemperatureFactor, gbc_lblTemperatureFactor);
 		
 		doubleTextFieldtempfactor = new DoubleTextField();
+		doubleTextFieldtempfactor.setToolTipText("Temperature factor (default 0.9)");
 		GridBagConstraints gbc_doubleTextFieldtempfactor = new GridBagConstraints();
 		gbc_doubleTextFieldtempfactor.insets = new Insets(0, 0, 5, 0);
 		gbc_doubleTextFieldtempfactor.fill = GridBagConstraints.HORIZONTAL;
@@ -174,7 +178,7 @@ public class UbclustSettingsPanel extends AbstractMethodSettingsPanel{
 		add(doubleTextFieldtempfactor, gbc_doubleTextFieldtempfactor);
 		
 		this.lblOverlapTreshold = new JLabel("Kolmogorov complexity estimator:");
-		this.lblOverlapTreshold.setToolTipText("<html>Kolmogorov complexity estimator:<br>\nUniform Model (default)<br>\nConstant Rows Model<br>\nAdditive Model<br>\nRelaxed OPSM</html>");
+		this.lblOverlapTreshold.setToolTipText("<html>Kolmogorov complexity estimator:\n<ul><li>Uniform Model (default)\n<li>Constant Rows Model\n<li>Additive Model\n<li>Relaxed OPSM</ul></html>");
 		GridBagConstraints gbc_lblOverlapTreshold = new GridBagConstraints();
 		gbc_lblOverlapTreshold.anchor = GridBagConstraints.EAST;
 		gbc_lblOverlapTreshold.insets = new Insets(0, 0, 5, 5);
@@ -183,6 +187,7 @@ public class UbclustSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		comboBoxkolmogorovestim = new JComboBox();
+		comboBoxkolmogorovestim.setToolTipText("<html>Kolmogorov complexity estimator:\n<ul><li>Uniform Model (default)\n<li>Constant Rows Model\n<li>Additive Model\n<li>Relaxed OPSM</ul></html>");
 		GridBagConstraints gbc_comboBoxkolmogorovestim = new GridBagConstraints();
 		gbc_comboBoxkolmogorovestim.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxkolmogorovestim.fill = GridBagConstraints.HORIZONTAL;
@@ -201,6 +206,7 @@ public class UbclustSettingsPanel extends AbstractMethodSettingsPanel{
 		
 		spinnerjavainitheap = new JSpinner();
 		spinnerjavainitheap.setModel(new SpinnerNumberModel(1024, 1024, 10240, 1024));
+		spinnerjavainitheap.setToolTipText("Initial Java heap size (MB), default=1024");
 		GridBagConstraints gbc_spinnerjavainitheap = new GridBagConstraints();
 		gbc_spinnerjavainitheap.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinnerjavainitheap.gridx = 1;

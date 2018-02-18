@@ -1,5 +1,29 @@
 # JBiclustGE-GUI
 
-1. Install ant and maven
-2. Build with ant writing the following command:  ant build-releases
-3. Installers will be placed in folder "Installers"
+This repository contains the source-code of the graphical interfaces concerning the features provided in [JBiclustGE API](https://github.com/jbiclustge/JBiclustGE)
+
+To make use of all these features, you need to compile the current release. Just follow the instructions presented bellow. 
+
+Next, please visit the [website](https://jbiclustge.github.io) to see the usage instructions.
+
+## Compile JBiclustGE-GUI
+1. Install git 
+  - Follow the instruction to install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
+  - perform: git clone https://github.com/jbiclustge/JBiclustGE-GUI.git
+
+2. Install maven
+  - Follow the instructions to install [Maven](https://maven.apache.org/install.html)
+
+3. Enter into the folder of JBiclustGE-GUI.git (downloaded in the previous step)
+   - The compilation process produces verbose output, presenting all the operations that are being performed in compilation. Thus, you can perform the compilation in two ways:
+      - Quiet Mode, presenting only the errors:
+           mvn clean package -q 
+           
+      - Normal Mode, presenting the main operations occurring in compilation:
+           mvn clean package      
+
+3. Installers will be placed in folder "target"
+    - File "JBiclustGE-installer.jar" is the installer that can be used in windows or linux
+    - File "JBiclustGE.deb" is the deb installer that can be used only in linux
+
+

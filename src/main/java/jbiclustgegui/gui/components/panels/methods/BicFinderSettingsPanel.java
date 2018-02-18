@@ -66,6 +66,8 @@ public class BicFinderSettingsPanel extends AbstractMethodSettingsPanel{
 	/** The spinnerasr. */
 	private JSpinner spinnerasr;
 
+	private static String tip1="ACSI is the threshold of the average correspondence similarity index [0..1]";
+	private static String tip2="ASR is the threshold of the average spearmans rho [-1..1]";
 	/**
 	 * Create the panel.
 	 */
@@ -85,7 +87,7 @@ public class BicFinderSettingsPanel extends AbstractMethodSettingsPanel{
 		setLayout(gridBagLayout);
 		
 		this.lblAcsi = new JLabel("ACSI:");
-		this.lblAcsi.setToolTipText("ACSI is the threshold of the average correspondence similarity index [0..1]");
+		this.lblAcsi.setToolTipText(tip1);
 		GridBagConstraints gbc_lblAcsi = new GridBagConstraints();
 		gbc_lblAcsi.anchor = GridBagConstraints.EAST;
 		gbc_lblAcsi.insets = new Insets(0, 0, 5, 5);
@@ -94,6 +96,7 @@ public class BicFinderSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblAcsi, gbc_lblAcsi);
 		
 		this.spinneracsi = new JSpinner();
+		spinneracsi.setToolTipText(tip1);
 		this.spinneracsi.setModel(new SpinnerNumberModel(0.9, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinneracsi = new GridBagConstraints();
 		gbc_spinneracsi.fill = GridBagConstraints.HORIZONTAL;
@@ -103,7 +106,7 @@ public class BicFinderSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.spinneracsi, gbc_spinneracsi);
 		
 		this.lblAsr = new JLabel("ASR:");
-		this.lblAsr.setToolTipText("ASR is the threshold of the average spearmans rho [-1..1]");
+		this.lblAsr.setToolTipText(tip2);
 		GridBagConstraints gbc_lblAsr = new GridBagConstraints();
 		gbc_lblAsr.anchor = GridBagConstraints.EAST;
 		gbc_lblAsr.insets = new Insets(0, 0, 5, 5);
@@ -112,6 +115,7 @@ public class BicFinderSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblAsr, gbc_lblAsr);
 		
 		this.spinnerasr = new JSpinner();
+		spinnerasr.setToolTipText(tip2);
 		this.spinnerasr.setModel(new SpinnerNumberModel(0.6, -1.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerasr = new GridBagConstraints();
 		gbc_spinnerasr.fill = GridBagConstraints.HORIZONTAL;
@@ -130,6 +134,7 @@ public class BicFinderSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblJavaMaximumSize, gbc_lblJavaMaximumSize);
 		
 		this.spinnerjava = new JSpinner();
+		spinnerjava.setToolTipText("Java maximum size memory allocation pool");
 		this.spinnerjava.setModel(new SpinnerNumberModel(1024, 1024, 30720, 1024));
 		GridBagConstraints gbc_spinnerjava = new GridBagConstraints();
 		gbc_spinnerjava.fill = GridBagConstraints.HORIZONTAL;

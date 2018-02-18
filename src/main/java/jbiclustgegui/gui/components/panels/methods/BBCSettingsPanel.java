@@ -74,6 +74,11 @@ public class BBCSettingsPanel extends AbstractMethodSettingsPanel implements Act
 	
 	/** The normmethod. */
 	private static String NORMMETHOD="normmethod";
+	
+	private static String tip1="<html>Number of biclusters that user hopes to find in the datasets<br>Warning: in general this method do not produces biclusters<br>if the value of the number of bicluster to be found, is higher than 4</html>";
+	private static String tip2="<html>Normalization method to be used on the microarray data.<br>\nnone (No normalization will be done by the BBC program)<br>\ncsn (Column-wise standardization)<br>\nrsn (Row-wise standardization)<br>\niqrn (Inter-quartile range normalization, alpha value for the normalization needs to be specified)<br>\nsqrn (The smallest range quartile normalization, alpha value for the normalization needs to be specified)</html>";
+	private static String tip3="<html>alpha value for the normalization method, needs to be set if iqrn or sqrn is used, value between (5,100]<br>\nalpha value means the normalization is done based on the alpha% quartile of data in each column</html>";
+	
 	/**
 	 * Create the panel.
 	 */
@@ -93,7 +98,7 @@ public class BBCSettingsPanel extends AbstractMethodSettingsPanel implements Act
 		setLayout(gridBagLayout);
 		
 		this.lblNumberBiclusters = new JLabel("Number biclusters:");
-		this.lblNumberBiclusters.setToolTipText("Number of biclusters that user hopes to find in the datasets");
+		this.lblNumberBiclusters.setToolTipText(tip1);
 		GridBagConstraints gbc_lblNumberBiclusters = new GridBagConstraints();
 		gbc_lblNumberBiclusters.anchor = GridBagConstraints.EAST;
 		gbc_lblNumberBiclusters.insets = new Insets(0, 0, 5, 5);
@@ -102,6 +107,7 @@ public class BBCSettingsPanel extends AbstractMethodSettingsPanel implements Act
 		add(this.lblNumberBiclusters, gbc_lblNumberBiclusters);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText(tip1);
 		this.integerTextFieldnumberbics.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.insets = new Insets(0, 0, 5, 0);
@@ -111,7 +117,7 @@ public class BBCSettingsPanel extends AbstractMethodSettingsPanel implements Act
 		add(this.integerTextFieldnumberbics, gbc_integerTextFieldnumberbics);
 		
 		this.lblNormalizationMethod = new JLabel("Normalization method:");
-		this.lblNormalizationMethod.setToolTipText("<html>Normalization method to be used on the microarray data.<br>\nnone (No normalization will be done by the BBC program)<br>\ncsn (Column-wise standardization)<br>\nrsn (Row-wise standardization)<br>\niqrn (Inter-quartile range normalization, alpha value for the normalization needs to be specified)<br>\nsqrn (The smallest range quartile normalization, alpha value for the normalization needs to be specified)</html>");
+		this.lblNormalizationMethod.setToolTipText(tip2);
 		GridBagConstraints gbc_lblNormalizationMethod = new GridBagConstraints();
 		gbc_lblNormalizationMethod.anchor = GridBagConstraints.EAST;
 		gbc_lblNormalizationMethod.insets = new Insets(0, 0, 5, 5);
@@ -120,6 +126,7 @@ public class BBCSettingsPanel extends AbstractMethodSettingsPanel implements Act
 		add(this.lblNormalizationMethod, gbc_lblNormalizationMethod);
 		
 		this.comboBoxnormmethod = new JComboBox();
+		comboBoxnormmethod.setToolTipText(tip2);
 		GridBagConstraints gbc_comboBoxnormmethod = new GridBagConstraints();
 		gbc_comboBoxnormmethod.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxnormmethod.fill = GridBagConstraints.HORIZONTAL;
@@ -130,7 +137,7 @@ public class BBCSettingsPanel extends AbstractMethodSettingsPanel implements Act
 		comboBoxnormmethod.setActionCommand(NORMMETHOD);
 		
 		this.lblNormalizationAlphaValue = new JLabel("Normalization alpha value:");
-		this.lblNormalizationAlphaValue.setToolTipText("<html>alpha value for the normalization method, needs to be set if iqrn or sqrn is used (value between (5,100]<br>\nalpha value means the normalization is done based on the alpha% quartile of data in each column</html>");
+		this.lblNormalizationAlphaValue.setToolTipText(tip3);
 		GridBagConstraints gbc_lblNormalizationAlphaValue = new GridBagConstraints();
 		gbc_lblNormalizationAlphaValue.anchor = GridBagConstraints.EAST;
 		gbc_lblNormalizationAlphaValue.insets = new Insets(0, 0, 5, 5);
@@ -139,6 +146,7 @@ public class BBCSettingsPanel extends AbstractMethodSettingsPanel implements Act
 		add(this.lblNormalizationAlphaValue, gbc_lblNormalizationAlphaValue);
 		
 		this.spinnernormalpha = new JSpinner();
+		spinnernormalpha.setToolTipText(tip3);
 		this.spinnernormalpha.setModel(new SpinnerNumberModel(90, 0.49, 100.0, 0.01));
 		GridBagConstraints gbc_spinnernormalpha = new GridBagConstraints();
 		gbc_spinnernormalpha.fill = GridBagConstraints.HORIZONTAL;

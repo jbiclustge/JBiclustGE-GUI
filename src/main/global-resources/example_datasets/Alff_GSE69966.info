@@ -1,0 +1,7 @@
+organism=Saccharomyces cerevisiae
+title_manuscript=Xylose-induced dynamic effects on metabolism and gene expression in engineered Saccharomyces cerevisiae in anaerobic glucose-xylose cultures
+authors=Alff-Tuomala S, Salusjarvi L, Barth D, Oja M, Penttila M, Pitkanen JP, Ruohonen L, Jouhten P.
+manuscript_url=https://link.springer.com/article/10.1007%2Fs00253-015-7038-7
+data_url=http://downloads.yeastgenome.org/expression/microarray/Alff-Tuomala_2016_PMID_26454869
+file_format=Stanford cDNA file format
+missing_values=no

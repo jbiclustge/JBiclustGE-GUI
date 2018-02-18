@@ -188,6 +188,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(lblClusterMode, gbc_lblClusterMode);
 		
 		this.comboBoxclustermode = new JComboBox();
+		comboBoxclustermode.setToolTipText("cluster rows, columns or both");
 		GridBagConstraints gbc_comboBoxclustermode = new GridBagConstraints();
 		gbc_comboBoxclustermode.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBoxclustermode.fill = GridBagConstraints.HORIZONTAL;
@@ -205,6 +206,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(lblFitModel, gbc_lblFitModel);
 		
 		this.textFieldfitmodel = new JTextField();
+		textFieldfitmodel.setToolTipText("Model (formula) to fit each layer");
 		GridBagConstraints gbc_textFieldfitmodel = new GridBagConstraints();
 		gbc_textFieldfitmodel.insets = new Insets(0, 0, 5, 0);
 		gbc_textFieldfitmodel.fill = GridBagConstraints.HORIZONTAL;
@@ -223,6 +225,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(lblConsiderBackground, gbc_lblConsiderBackground);
 		
 		this.checkBoxusebackground = new JCheckBox("");
+		checkBoxusebackground.setToolTipText("If true the method will consider that a background layer, [true, false]");
 		GridBagConstraints gbc_checkBoxusebackground = new GridBagConstraints();
 		gbc_checkBoxusebackground.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxusebackground.insets = new Insets(0, 0, 5, 0);
@@ -264,6 +267,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		btnOpenbackgroundfile.addActionListener(this);
 		
 		this.textFieldbackgroudurl = new JTextField();
+		textFieldbackgroudurl.setToolTipText("A background layer can be specified in a file containing a numeric matrix with dimension of data matrix");
 		GridBagConstraints gbc_textFieldbackgroudurl = new GridBagConstraints();
 		gbc_textFieldbackgroudurl.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textFieldbackgroudurl.gridx = 1;
@@ -272,7 +276,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		this.textFieldbackgroudurl.setColumns(10);
 		
 		lblDegreesOfFreedom = new JLabel("Degrees of Freedom of backround layer:");
-		this.lblDegreesOfFreedom.setToolTipText("Degrees of Freedom of backround layer if background.layer is specifiedDegrees of Freedom of backround layer if background.layer is specified");
+		this.lblDegreesOfFreedom.setToolTipText("Degrees of Freedom of backround layer if background.layer is specified");
 		GridBagConstraints gbc_lblDegreesOfFreedom = new GridBagConstraints();
 		gbc_lblDegreesOfFreedom.anchor = GridBagConstraints.EAST;
 		gbc_lblDegreesOfFreedom.insets = new Insets(0, 0, 5, 5);
@@ -281,6 +285,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(lblDegreesOfFreedom, gbc_lblDegreesOfFreedom);
 		
 		this.doubleTextFielddegreesbackground = new DoubleTextField();
+		doubleTextFielddegreesbackground.setToolTipText("Degrees of Freedom of backround layer if background.layer is specified");
 		this.doubleTextFielddegreesbackground.setText("1.0");
 		GridBagConstraints gbc_doubleTextFielddegreesbackground = new GridBagConstraints();
 		gbc_doubleTextFielddegreesbackground.insets = new Insets(0, 0, 5, 0);
@@ -290,7 +295,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.doubleTextFielddegreesbackground, gbc_doubleTextFielddegreesbackground);
 		
 		lblShuffle = new JLabel("Shuffle:");
-		this.lblShuffle.setToolTipText("Before a layer is added, it is statistical significance is compared against a x number of layers obtained by random defined by this parameter");
+		this.lblShuffle.setToolTipText("Before a layer is added, statistical significance is compared against a x number of layers obtained by random defined by this parameter");
 		GridBagConstraints gbc_lblShuffle = new GridBagConstraints();
 		gbc_lblShuffle.anchor = GridBagConstraints.EAST;
 		gbc_lblShuffle.insets = new Insets(0, 0, 5, 5);
@@ -299,6 +304,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(lblShuffle, gbc_lblShuffle);
 		
 		this.integerTextFieldshuffle = new IntegerTextField();
+		integerTextFieldshuffle.setToolTipText("Before a layer is added, statistical significance is compared against a x number of layers obtained by random defined by this parameter");
 		GridBagConstraints gbc_integerTextFieldshuffle = new GridBagConstraints();
 		gbc_integerTextFieldshuffle.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldshuffle.fill = GridBagConstraints.HORIZONTAL;
@@ -316,6 +322,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.lblNumberStartupIterations, gbc_lblNumberStartupIterations);
 		
 		this.integerTextFieldstartupiter = new IntegerTextField();
+		integerTextFieldstartupiter.setToolTipText("Number of iterations to find starting values");
 		GridBagConstraints gbc_integerTextFieldstartupiter = new GridBagConstraints();
 		gbc_integerTextFieldstartupiter.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldstartupiter.fill = GridBagConstraints.HORIZONTAL;
@@ -333,6 +340,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.lblNumberIterationsTo, gbc_lblNumberIterationsTo);
 		
 		this.integerTextFielditerationseachlayer = new IntegerTextField();
+		integerTextFielditerationseachlayer.setToolTipText("Number of iterations to find each layer");
 		GridBagConstraints gbc_integerTextFielditerationseachlayer = new GridBagConstraints();
 		gbc_integerTextFielditerationseachlayer.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFielditerationseachlayer.fill = GridBagConstraints.HORIZONTAL;
@@ -350,6 +358,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.lblAdditionalIterationsFor, gbc_lblAdditionalIterationsFor);
 		
 		this.integerTextFieldadditionaliter = new IntegerTextField();
+		integerTextFieldadditionaliter.setToolTipText("After a layer is added, additional iterations can be done to refine the fitting of the layer");
 		GridBagConstraints gbc_integerTextFieldadditionaliter = new GridBagConstraints();
 		gbc_integerTextFieldadditionaliter.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldadditionaliter.fill = GridBagConstraints.HORIZONTAL;
@@ -367,6 +376,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.lblTresholdToPrune, gbc_lblTresholdToPrune);
 		
 		this.spinnerprunegenes = new JSpinner();
+		spinnerprunegenes.setToolTipText("Threshold to prune rows in the layers depending on row homogeneity [0-1]");
 		this.spinnerprunegenes.setModel(new SpinnerNumberModel(0.7, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerprunegenes = new GridBagConstraints();
 		gbc_spinnerprunegenes.insets = new Insets(0, 0, 5, 0);
@@ -385,6 +395,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.lblTresholdToPrune_1, gbc_lblTresholdToPrune_1);
 		
 		this.spinnerpruneconds = new JSpinner();
+		spinnerpruneconds.setToolTipText("Threshold to prune columns in the layers depending on column homogeneity [0-1]");
 		this.spinnerpruneconds.setModel(new SpinnerNumberModel(0.7, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerpruneconds = new GridBagConstraints();
 		gbc_spinnerpruneconds.fill = GridBagConstraints.HORIZONTAL;
@@ -403,6 +414,7 @@ public class PlaidSettingsPanel extends AbstractMethodSettingsPanel implements A
 		add(this.lblMaxNumberOf, gbc_lblMaxNumberOf);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText("Maximum number of layer to include in the model (max number biclusters to be found)");
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.fill = GridBagConstraints.HORIZONTAL;
 		gbc_integerTextFieldnumberbics.gridx = 1;

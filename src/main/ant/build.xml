@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+ 
+     project    
+     description
+                   
+     orocha                                                                
+     ====================================================================== -->
+<project name="auxfiles" basedir="${project.build.directory}" default="help">
+    <description>description </description>
+	
+	
+	<property name="build.compiler" value="extJavac"/>
+        <property name="build.sysclasspath" value="ignore"/>
+        <property name="debug" value="on"/>
+        <property name="optimize" value="off"/>
+	    <property name="deprecation" value="false"/>
+	    <property name="depend" value="true"/>
+	    <property name="verbose" value="false"/>
+	    <property name="target" value="1.8"/>
+
+
+	<!--=====================================================================
+	                          classpath
+        ===================================================================== -->
+	
+	<path id="libs-classpath">
+	    <fileset dir="${lib.dir}">
+	      <include name="*.jar"/>
+	    </fileset>
+	  </path>
+	
+	
+    <!-- ================================= 
+          targets             
+         ================================= -->
+	<target name="help">
+	    <echo>You can use the following targets:</echo>
+	    <echo> </echo>
+	    <echo>  help    : (default) Prints this message </echo>
+		<echo>  build-releases : Creates  JBiclustGE installers for Windows and Linux platforms</echo>
+	    <echo>  clean   : Deletes work directories</echo>
+	    <echo></echo>
+	    <echo>For example, to clean, compile, and package all at once, run:</echo>
+	    <echo>prompt> ant build-releases </echo>
+	  </target>
+	
+	 <!-- ==================================================================
+	         Initialization target 
+	      ==================================================================-->
+
+	 <target name="init">
+		
+	 	<property name="build.dir" value="${project.build.directory}"/>
+	 	<property name="dist.dir" value="${build.dir}/dist"/>
+	 	<property name="lib.dir" value="${dist.dir}/lib"/>
+	 	<property name="plugins.dir" value="${dist.dir}/plugins_bin"/>
+	 	<property name="build.dir.launcher" value="${build.dir}/launcher"/>
+	 	<property name="main.class" value="es.uvigo.ei.aibench.Launcher"/>
+	  </target>
+	
+
+	<target name="linux-run-script">
+				<echo file="${dist.dir}/run.sh" append="false">#!/bin/bash
+				###############################################################################################
+				#
+				# JBiclustGE version ${biclustgeversion} for Linux
+				# 
+				# IBB-CEB - Institute for Biotechnology and  Bioengineering - Centre of Biological Engineering
+				# CCTC - Computer Science and Technology Center
+				# University of Minho
+				#
+				# Created inside the BioSystems Research Group (https://www.ceb.uminho.pt/biosystems)
+				# University of Minho
+				#
+				# Developed by Orlando Rocha
+				# Copyright (c) ${YEAR}.
+				#
+				###############################################################################################
+
+				APP_NAME="JBiclustGE"
+				JAR_NAME="launcher.jar"
+			    #APP_HOME=`dirname $0`
+				APP_HOME=$(pwd)
+			    XMX=-Xmx2048m
+				XMS=-Xms512m
+					 					
+				java $XMX $XMS -jar $APP_HOME/$JAR_NAME "$@"
+				</echo>
+					
+			<chmod file="${dist.dir}/run.sh" perm="a+x"/>
+
+			</target>
+	
+	<target name="windows-run-script">
+			<echo file="${dist.dir}/run.bat" append="false">@echo off
+				REM ###############################################################################################
+				REM #
+				REM	# JBiclustGE version ${biclustgeversion} for Windows
+				REM	# 
+				REM	# IBB-CEB - Institute for Biotechnology and  Bioengineering - Centre of Biological Engineering
+				REM	# CCTC - Computer Science and Technology Center
+				REM	# University of Minho
+				REM	# Created inside the BioSystems Research Group (https://www.ceb.uminho.pt/biosystems)
+				REM	# University of Minho
+				REM	#
+				REM	# Developed by Orlando Rocha
+				REM	# Copyright (c) ${YEAR}.
+				REM	#
+				REM	#
+				REM ###############################################################################################
+				REM ################ old #################
+				REM ####   set HOME="%~dp0"  #############
+				REM ####   cd %HOME%  ####################
+				REM ######################################
+				REM ######  for /f %%i in ("%0") do set apppath=%%~dpi
+				REM ######  cd /d %apppath%
+				
+				setlocal
+				cd /d %~dp0
+				start launcher.jar
+				
+		    </echo>
+			<chmod file="${dist.dir}/run.bat" perm="a+x"/>
+		</target>
+	
+	<!--############################## IZPack package build ####################-->
+	
+	
+		<target name="compile-launcher" description="buildlauncher" depends="init">
+			        <mkdir dir="${build.dir.launcher}"/>
+					<mkdir dir="${build.dir.launcher}/classes"/>
+			
+			      <path id="classpath">
+						         <fileset dir="${lib.dir}" includes="*.jar" > 
+						         	 
+						         </fileset>
+						    	 <fileset dir="${plugins.dir}" includes="*.jar "></fileset>
+						    </path>
+
+					    <echo message="${toString:classpath}"/>
+			
+			
+					<javac srcdir="${basedir}/src/main/launcher"
+							  	     destdir="${build.dir.launcher}/classes"
+							  		 debug="${debug}"
+									 optimize="${optimize}"
+									 verbose="${verbose}"
+									 source="1.8"
+									 target="1.8"
+									 classpathref="classpath" >
+							  			</javac>
+				
+				     <copy todir="${build.dir.launcher}">
+						    <fileset dir="${build.dir.launcher}" />
+					 </copy>
+				     <jar jarfile="${dist.dir}/launcher.jar" basedir="${build.dir.launcher}/classes">
+						                                
+				     <manifest>
+						   <attribute name="Built-By" value="T"/>
+						   <attribute name="Implementation-Title" value="launcher"/>
+						   <attribute name="Implementation-Version" value="1.0"/>
+				     	   <attribute name="Main-Class" value="jbiclustgelauncher.RunJBiclustGE"/>
+				     </manifest>
+				     </jar>
+				   
+				<!--<jar jarfile="${build.dir}/optferm-launcher-source.jar" basedir="${source.optferm.launcher}" compress="true"> </jar>-->
+				
+				</target>
+	
+	<target name="IzPack-package-unix-script">
+	<echo file="${dist.dir}/jbiclustge_installer_unix_shortcutSpec.xml" append="false"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+			   	     <shortcuts>
+			   	        <skipIfNotSupported/>
+			   	        <defaultCurrentUser/>
+			   	        <programGroup defaultName="Applications" location="applications"/>
+			   	        <shortcut 
+			   	  	           name="JBiclustGE"
+			   	  	           target="$INSTALL_PATH/run.sh"
+			   	  	           description="JBiclustGE is a framework for biclustering analysis"
+			   	               applications="no" 
+			   	               desktop="no"
+			   	               encoding="UTF-8" 
+			   	               iconFile="$INSTALL_PATH/conf/IconJbiclustGE48.png"
+			   	               workingDirectory="$INSTALL_PATH"
+			   	               iconIndex="0" 
+			   	               initialState="normal" 
+			   	               programGroup="yes" 
+			   	               startMenu="no" 
+			   	               startup="no"
+			   	               type="Application"
+			   	               Categories="Office;Development;"
+			   	               />    
+			   	 </shortcuts>]]></echo>
+	</target>
+	
+	<target name="IzPack-package-windows-script">
+		 <echo file="${dist.dir}/jbiclustge_installer_windows_shortcutSpec.xml" append="false"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+				   	    	<shortcuts>
+				   	    	    <skipIfNotSupported/>
+				   	    	    <defaultCurrentUser/>
+				   	    	    <programGroup defaultName="JBiclustGE" location="applications"/>
+				   	    	    <shortcut 
+				   	    	        name="JBiclustGE"
+				   	    	        applications="no" 
+				   	    	        desktop="yes"
+				   	    	        iconFile="$INSTALL_PATH\conf\IconJbiclustGE48.ico" 
+				   	    	        iconIndex="0"
+				   	    	        initialState="normal" 
+				   	    	        programGroup="yes"
+				   	    	        startMenu="no" 
+				   	    	        startup="no" 
+				   	    	        target="$INSTALL_PATH/run.bat"
+				   	    	        description="Launch JBiclustGE">
+				   	    	<createForPack name="run.bat"/>
+				   	    	</shortcut>
+				   	    	<shortcut
+				   	    	        name="Uninstall"
+				   	    	        programGroup="yes"
+				   	    	        desktop="no"
+				   	    	        applications="no"
+				   	    	        startMenu="no"
+				   	    	        startup="no"
+				   	    	        target="$INSTALL_PATH\Uninstaller\Uninstall_JBiclustGE.jar"
+				   	    	        commandLine=""
+				   	    	        iconFile="$INSTALL_PATH\conf\uninstall.ico"
+				   	    	        iconIndex="0"
+				   	    	        description="JBiclustGE Uninstaller">
+
+				   	    	 <createForPack name="run.bat"/>
+				   	    	</shortcut>
+				   	    	</shortcuts>]]></echo>
+	</target>
+	
+	<target name="build-aux-files" description="Create  auxiliar files" depends="init">
+			<antcall target="compile-launcher"/> 
+			<antcall target="linux-run-script"/>
+			<antcall target="windows-run-script"/>
+			<antcall target="IzPack-package-unix-script"/>
+			<antcall target="IzPack-package-windows-script"/>
+	</target>
+	
+</project>

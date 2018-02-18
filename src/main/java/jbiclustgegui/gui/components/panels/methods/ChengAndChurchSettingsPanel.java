@@ -108,6 +108,7 @@ public class ChengAndChurchSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberBiclusters, gbc_lblNumberBiclusters);
 		
 		this.integerTextFieldnumberbics = new IntegerTextField();
+		integerTextFieldnumberbics.setToolTipText("Number of bicluster to be found");
 		this.integerTextFieldnumberbics.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnumberbics = new GridBagConstraints();
 		gbc_integerTextFieldnumberbics.insets = new Insets(0, 0, 5, 0);
@@ -126,6 +127,7 @@ public class ChengAndChurchSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblDelta, gbc_lblDelta);
 		
 		this.doubleTextFielddelta = new DoubleTextField();
+		doubleTextFielddelta.setToolTipText("Maximum of accepted score (delta)");
 		this.doubleTextFielddelta.setText("1.0");
 		GridBagConstraints gbc_doubleTextFielddelta = new GridBagConstraints();
 		gbc_doubleTextFielddelta.insets = new Insets(0, 0, 5, 0);
@@ -144,6 +146,7 @@ public class ChengAndChurchSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblAlpha, gbc_lblAlpha);
 		
 		this.doubleTextFieldalpha = new DoubleTextField();
+		doubleTextFieldalpha.setToolTipText("Scaling factor (alpha)");
 		this.doubleTextFieldalpha.setText("1.5");
 		GridBagConstraints gbc_doubleTextFieldalpha = new GridBagConstraints();
 		gbc_doubleTextFieldalpha.insets = new Insets(0, 0, 5, 0);
@@ -162,6 +165,7 @@ public class ChengAndChurchSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		this.integerTextFieldnumberdiscrtlevel = new IntegerTextField();
+		integerTextFieldnumberdiscrtlevel.setToolTipText("Number of discretization levels, no value = default value = 10");
 		GridBagConstraints gbc_integerTextFieldnumberdiscrtlevel = new GridBagConstraints();
 		gbc_integerTextFieldnumberdiscrtlevel.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldnumberdiscrtlevel.fill = GridBagConstraints.HORIZONTAL;
@@ -179,6 +183,7 @@ public class ChengAndChurchSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblUseQuantiles, gbc_lblUseQuantiles);
 		
 		this.checkBoxusequantiles = new JCheckBox("");
+		checkBoxusequantiles.setToolTipText("Use the quantiles, else uses equally spaced levels");
 		GridBagConstraints gbc_checkBoxusequantiles = new GridBagConstraints();
 		gbc_checkBoxusequantiles.anchor = GridBagConstraints.WEST;
 		gbc_checkBoxusequantiles.gridx = 1;

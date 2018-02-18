@@ -359,7 +359,8 @@ public abstract class AbstractGeneEnrichmentAnalyserGUI extends JDialog implemen
 		rec = receiver;
 		setTitle(operation.getName());
 		setModal(true);
-		this.setPreferredSize(new Dimension(1000,700));
+		this.setPreferredSize(panel_settings.getPreferredDimensionsToPanel());
+		//this.setPreferredSize(new Dimension(1000,700));
 	    pack();
 	    Utilities.centerOnOwner(this);
 	    setVisible(true);

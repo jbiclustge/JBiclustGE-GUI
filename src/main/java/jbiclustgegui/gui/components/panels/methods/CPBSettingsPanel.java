@@ -138,6 +138,7 @@ public class CPBSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberSeedBiclusters, gbc_lblNumberSeedBiclusters);
 		
 		this.integerTextFieldnumberseed = new IntegerTextField();
+		integerTextFieldnumberseed.setToolTipText("Number of biclusters that cpb will be seeded");
 		GridBagConstraints gbc_integerTextFieldnumberseed = new GridBagConstraints();
 		gbc_integerTextFieldnumberseed.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldnumberseed.fill = GridBagConstraints.HORIZONTAL;
@@ -154,6 +155,7 @@ public class CPBSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblPccThreshold, gbc_lblPccThreshold);
 		
 		this.spinnerpcctreshold = new JSpinner();
+		spinnerpcctreshold.setToolTipText("Pearson correlation coefficient (PCC) threshold for each row");
 		this.spinnerpcctreshold.setModel(new SpinnerNumberModel(0.95, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnerpcctreshold = new GridBagConstraints();
 		gbc_spinnerpcctreshold.fill = GridBagConstraints.HORIZONTAL;
@@ -171,6 +173,7 @@ public class CPBSettingsPanel extends AbstractMethodSettingsPanel{
 		add(lblMinRowsIn, gbc_lblMinRowsIn);
 		
 		integerTextFieldminrowseed = new IntegerTextField();
+		integerTextFieldminrowseed.setToolTipText("Min. rows in the seed");
 		integerTextFieldminrowseed.setText("0");
 		integerTextFieldminrowseed.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldminrowseed = new GridBagConstraints();
@@ -189,6 +192,7 @@ public class CPBSettingsPanel extends AbstractMethodSettingsPanel{
 		add(lblMaxRowsIn, gbc_lblMaxRowsIn);
 		
 		integerTextFieldmaxrowseed = new IntegerTextField();
+		integerTextFieldmaxrowseed.setToolTipText("Max. rows in the seed");
 		integerTextFieldmaxrowseed.setText("0");
 		integerTextFieldmaxrowseed.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldmaxrowseed = new GridBagConstraints();
@@ -239,7 +243,7 @@ public class CPBSettingsPanel extends AbstractMethodSettingsPanel{
 		add(lblMaxOverlapRatio, gbc_lblMaxOverlapRatio);
 		
 		spinneroverlap = new JSpinner();
-		spinneroverlap.setToolTipText("range: (0.5-1.0]");
+		spinneroverlap.setToolTipText("Max. overlap ratio, range [0-1]");
 		spinneroverlap.setModel(new SpinnerNumberModel(1.0, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinneroverlap = new GridBagConstraints();
 		gbc_spinneroverlap.fill = GridBagConstraints.HORIZONTAL;
@@ -257,6 +261,7 @@ public class CPBSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblGridInitialization, gbc_lblGridInitialization);
 		
 		checkBoxgridinit = new JCheckBox("");
+		checkBoxgridinit.setToolTipText("Use grid initialization, otherwise use random initialization");
 		checkBoxgridinit.setSelected(false);
 		GridBagConstraints gbc_checkBoxgridinit = new GridBagConstraints();
 		gbc_checkBoxgridinit.anchor = GridBagConstraints.WEST;
@@ -274,6 +279,7 @@ public class CPBSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblRowToColumn, gbc_lblRowToColumn);
 		
 		this.spinnerrowcolratio = new JSpinner();
+		spinnerrowcolratio.setToolTipText("Row to column ratio");
 		GridBagConstraints gbc_spinnerrowcolratio = new GridBagConstraints();
 		gbc_spinnerrowcolratio.fill = GridBagConstraints.HORIZONTAL;
 		gbc_spinnerrowcolratio.gridx = 1;

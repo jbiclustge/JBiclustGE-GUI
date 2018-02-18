@@ -90,6 +90,13 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 	/** The integer text fieldniter. */
 	private IntegerTextField integerTextFieldniter;
 
+	private static String tip1="The number of biclusters searched";
+	private static String tip2="Genes initial probability of membership to the biclusters";
+	private static String tip3="Samples initial probability of membership to the biclusters";
+	private static String tip4="The residue threshold, if 0 is calculated from data (default=0)";
+	private static String tip5="Maximum value in the discretized dataset. From this value, BiBit will binarize the dataset generating max_value different ones";
+	private static String tip6="Minimum number of conditions per bicluster";
+	
 	/**
 	 * Create the panel.
 	 */
@@ -109,7 +116,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		setLayout(gridBagLayout);
 		
 		this.lblNumberBiclusters = new JLabel("Number biclusters:");
-		this.lblNumberBiclusters.setToolTipText("The number of biclusters searched");
+		this.lblNumberBiclusters.setToolTipText(tip1);
 		GridBagConstraints gbc_lblNumberBiclusters = new GridBagConstraints();
 		gbc_lblNumberBiclusters.anchor = GridBagConstraints.EAST;
 		gbc_lblNumberBiclusters.insets = new Insets(0, 0, 5, 5);
@@ -118,6 +125,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblNumberBiclusters, gbc_lblNumberBiclusters);
 		
 		this.integerTextFieldnbics = new IntegerTextField();
+		integerTextFieldnbics.setToolTipText(tip1);
 		this.integerTextFieldnbics.setColumns(10);
 		GridBagConstraints gbc_integerTextFieldnbics = new GridBagConstraints();
 		gbc_integerTextFieldnbics.insets = new Insets(0, 0, 5, 0);
@@ -127,7 +135,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.integerTextFieldnbics, gbc_integerTextFieldnbics);
 		
 		this.lblInitialGeneProbability = new JLabel("Initial gene probability: ");
-		this.lblInitialGeneProbability.setToolTipText("Genes initial probability of membership to the biclusters");
+		this.lblInitialGeneProbability.setToolTipText(tip2);
 		GridBagConstraints gbc_lblInitialGeneProbability = new GridBagConstraints();
 		gbc_lblInitialGeneProbability.anchor = GridBagConstraints.EAST;
 		gbc_lblInitialGeneProbability.insets = new Insets(0, 0, 5, 5);
@@ -136,6 +144,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblInitialGeneProbability, gbc_lblInitialGeneProbability);
 		
 		spinnergeneprob = new JSpinner();
+		spinnergeneprob.setToolTipText(tip2);
 		this.spinnergeneprob.setModel(new SpinnerNumberModel(0, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnergeneprob = new GridBagConstraints();
 		gbc_spinnergeneprob.fill = GridBagConstraints.HORIZONTAL;
@@ -145,7 +154,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(spinnergeneprob, gbc_spinnergeneprob);
 		
 		this.lblInitialConditionProbability = new JLabel("Initial condition probability:");
-		this.lblInitialConditionProbability.setToolTipText("Samples initial probability of membership to the biclusters");
+		this.lblInitialConditionProbability.setToolTipText(tip3);
 		GridBagConstraints gbc_lblInitialConditionProbability = new GridBagConstraints();
 		gbc_lblInitialConditionProbability.anchor = GridBagConstraints.EAST;
 		gbc_lblInitialConditionProbability.insets = new Insets(0, 0, 5, 5);
@@ -154,6 +163,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblInitialConditionProbability, gbc_lblInitialConditionProbability);
 		
 		spinnercondprob = new JSpinner();
+		spinnercondprob.setToolTipText(tip3);
 		this.spinnercondprob.setModel(new SpinnerNumberModel(0, 0.0, 1.0, 0.01));
 		GridBagConstraints gbc_spinnercondprob = new GridBagConstraints();
 		gbc_spinnercondprob.fill = GridBagConstraints.HORIZONTAL;
@@ -163,7 +173,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(spinnercondprob, gbc_spinnercondprob);
 		
 		this.lblOverlapTreshold = new JLabel("Residue threshold:");
-		this.lblOverlapTreshold.setToolTipText("The residue threshold, if 0 is calculated from data (default=0)");
+		this.lblOverlapTreshold.setToolTipText(tip4);
 		GridBagConstraints gbc_lblOverlapTreshold = new GridBagConstraints();
 		gbc_lblOverlapTreshold.anchor = GridBagConstraints.EAST;
 		gbc_lblOverlapTreshold.insets = new Insets(0, 0, 5, 5);
@@ -172,6 +182,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblOverlapTreshold, gbc_lblOverlapTreshold);
 		
 		doubleTextFieldresthreshold = new DoubleTextField();
+		doubleTextFieldresthreshold.setToolTipText(tip4);
 		doubleTextFieldresthreshold.setText("0");
 		GridBagConstraints gbc_doubleTextFieldresthreshold = new GridBagConstraints();
 		gbc_doubleTextFieldresthreshold.insets = new Insets(0, 0, 5, 0);
@@ -181,7 +192,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(doubleTextFieldresthreshold, gbc_doubleTextFieldresthreshold);
 		
 		this.lblMaxDiscretizationValue = new JLabel("Min. genes per bicluster:");
-		this.lblMaxDiscretizationValue.setToolTipText("Maximum value in the discretized dataset. From this value, BiBit will binarize the dataset generating max_value different ones");
+		this.lblMaxDiscretizationValue.setToolTipText(tip5);
 		GridBagConstraints gbc_lblMaxDiscretizationValue = new GridBagConstraints();
 		gbc_lblMaxDiscretizationValue.anchor = GridBagConstraints.EAST;
 		gbc_lblMaxDiscretizationValue.insets = new Insets(0, 0, 5, 5);
@@ -190,7 +201,8 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblMaxDiscretizationValue, gbc_lblMaxDiscretizationValue);
 		
 		integerTextFieldmingenesperbic = new IntegerTextField();
-		this.integerTextFieldmingenesperbic.setToolTipText("Minmum number of genes per bicluster");
+		integerTextFieldmingenesperbic.setToolTipText(tip5);
+		//this.integerTextFieldmingenesperbic.setToolTipText("Minmum number of genes per bicluster");
 		GridBagConstraints gbc_integerTextFieldmingenesperbic = new GridBagConstraints();
 		gbc_integerTextFieldmingenesperbic.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldmingenesperbic.fill = GridBagConstraints.HORIZONTAL;
@@ -199,7 +211,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(integerTextFieldmingenesperbic, gbc_integerTextFieldmingenesperbic);
 		
 		this.lblUseMaxValue = new JLabel("Min. conditions per bicluster:");
-		this.lblUseMaxValue.setToolTipText("Minimum number of conditions per bicluster");
+		this.lblUseMaxValue.setToolTipText(tip6);
 		GridBagConstraints gbc_lblUseMaxValue = new GridBagConstraints();
 		gbc_lblUseMaxValue.anchor = GridBagConstraints.EAST;
 		gbc_lblUseMaxValue.insets = new Insets(0, 0, 5, 5);
@@ -208,6 +220,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(this.lblUseMaxValue, gbc_lblUseMaxValue);
 		
 		integerTextFieldmincondperbic = new IntegerTextField();
+		integerTextFieldmincondperbic.setToolTipText(tip6);
 		GridBagConstraints gbc_integerTextFieldmincondperbic = new GridBagConstraints();
 		gbc_integerTextFieldmincondperbic.insets = new Insets(0, 0, 5, 0);
 		gbc_integerTextFieldmincondperbic.fill = GridBagConstraints.HORIZONTAL;
@@ -225,6 +238,7 @@ public class BicareFlocSettingsPanel extends AbstractMethodSettingsPanel{
 		add(lblNumberIterations, gbc_lblNumberIterations);
 		
 		integerTextFieldniter = new IntegerTextField();
+		integerTextFieldniter.setToolTipText("Number of iterations");
 		GridBagConstraints gbc_integerTextFieldniter = new GridBagConstraints();
 		gbc_integerTextFieldniter.fill = GridBagConstraints.HORIZONTAL;
 		gbc_integerTextFieldniter.gridx = 1;

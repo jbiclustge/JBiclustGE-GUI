@@ -1,0 +1,7 @@
+organism=Human
+title_manuscript=Metagene projection for cross-platform, cross-species characterization of global transcriptional states
+authors= P. Tamayo, D. Scanfeld, B. L. Ebert, M. A. Gillette, C. W. M. Roberts, and J.P. Mesirov.
+manuscript_url=https://doi.org/10.1073/pnas.0701068104
+data_url=http://www.broadinstitute.org/mpr/publications/projects/Computational_Biology/MP_lung_example_R_code_and_datasets.zip
+file_format=Gene Cluster Text file format
+missing_values=no
