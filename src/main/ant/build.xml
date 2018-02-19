@@ -221,7 +221,7 @@
 		 					   	    applications="no"
 		 					   	    startMenu="no"
 		 					   	    startup="no"
-		 					   	    target="$INSTALL_PATH\Uninstaller\Uninstall.jar"
+		 					   	    target="$INSTALL_PATH\Uninstaller\uninstaller.jar"
 		 					   	    commandLine=""
 		 			 	 			iconFile="%SystemRoot%\system32\SHELL32.dll"
 		 					   	    iconIndex="31"
