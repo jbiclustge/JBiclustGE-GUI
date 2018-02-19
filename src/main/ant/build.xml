@@ -195,7 +195,7 @@
 	</target>
 	
 	<target name="IzPack-package-windows-script">
-		 <echo file="${dist.dir}/jbiclustge_installer_windows_shortcutSpec.xml" append="false"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+		 <echo file="${dist.dir}/default_shortcut_specification.xml" append="false"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 				   	    	<shortcuts>
 				   	    	    <skipIfNotSupported/>
 				   	    	    <defaultCurrentUser/>
@@ -206,29 +206,29 @@
 				   	    	        desktop="yes"
 				   	    	        iconFile="$INSTALL_PATH\conf\IconJbiclustGE48.ico" 
 				   	    	        iconIndex="0"
-				   	    	        initialState="normal" 
+		 	                        initialState="normal" 
 				   	    	        programGroup="yes"
 				   	    	        startMenu="no" 
 				   	    	        startup="no" 
 				   	    	        target="$INSTALL_PATH/run.bat"
 				   	    	        description="Launch JBiclustGE">
-				   	    	<createForPack name="run.bat"/>
+				   	    	<createForPack name="JBiclustGE_Core"/>
 				   	    	</shortcut>
-				   	    	<shortcut
-				   	    	        name="Uninstall"
-				   	    	        programGroup="yes"
-				   	    	        desktop="no"
-				   	    	        applications="no"
-				   	    	        startMenu="no"
-				   	    	        startup="no"
-				   	    	        target="$INSTALL_PATH\Uninstaller\Uninstall_JBiclustGE.jar"
-				   	    	        commandLine=""
-				   	    	        iconFile="$INSTALL_PATH\conf\uninstall.ico"
-				   	    	        iconIndex="0"
-				   	    	        description="JBiclustGE Uninstaller">
+		 					<shortcut
+		 					   	    name="Uninstall"
+		 					   	    programGroup="yes"
+		 					   	    desktop="no"
+		 					   	    applications="no"
+		 					   	    startMenu="no"
+		 					   	    startup="no"
+		 					   	    target="$INSTALL_PATH\Uninstaller\Uninstall.jar"
+		 					   	    commandLine=""
+		 			 	 			iconFile="%SystemRoot%\system32\SHELL32.dll"
+		 					   	    iconIndex="31"
+		 					   	    description="JBiclustGE Uninstaller">
 
-				   	    	 <createForPack name="run.bat"/>
-				   	    	</shortcut>
+		 					    <createForPack name="JBiclustGE_Core"/>
+		 					</shortcut>
 				   	    	</shortcuts>]]></echo>
 	</target>
 	

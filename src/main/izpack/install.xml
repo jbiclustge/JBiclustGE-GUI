@@ -28,7 +28,7 @@
 
 	<resources>
 		<res id="LicencePanel.licence" parse="yes" src="legal/license.txt" />
-		<res id="shortcutSpec.xml" src="jbiclustge_installer_windows_shortcutSpec.xml"/>
+		<res id="shortcutSpec.xml" src="default_shortcut_specification.xml"/>
 		<res id="Unix_shortcutSpec.xml" src="jbiclustge_installer_unix_shortcutSpec.xml"/>
 		<res id="jbiclustge" src="@{izpack.staging}/conf/IconJbiclustGE96.png"/>
 		<res id="installer.langsel.img" src="@{izpack.staging}/conf/IconJbiclustGE96.png"/>
@@ -51,7 +51,7 @@
 	</variables>
 
 	<packs>
-	<pack name="Core files" required="yes" id="pack.core" preselected="yes">
+	<pack name="JBiclustGE_Core" required="yes" id="pack.core" preselected="yes">
 		<description>Core files</description>
 		<fileset dir="@{izpack.staging}/lib" targetdir="${INSTALL_PATH}/lib"
 			override="true"></fileset>
@@ -81,9 +81,10 @@
 		</executable>
 	</pack>
     <natives>
-    <native type="izpack" name="ShellLink.dll"/>
-    <native type="izpack" name="ShellLink_x64.dll"/>
-</natives>
+    	<native type="izpack" name="ShellLink_x64.dll">
+     		<os family="windows" />
+   		 </native>
+	</natives>
 
 </packs>
 

@@ -7,12 +7,20 @@ To make use of all these features, you need to compile the current release. Just
 Next, please visit the [website](https://jbiclustge.github.io) to see the usage instructions.
 
 ## Compile JBiclustGE-GUI
+### Requirements
+ - [Java SDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 
+ - [Git](https://git-scm.com)
+ - [Maven](https://maven.apache.org)
+
+### Compile
+
 1. Install git 
   - Follow the instruction to install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
   - perform: git clone https://github.com/jbiclustge/JBiclustGE-GUI.git
 
 2. Install maven
   - Follow the instructions to install [Maven](https://maven.apache.org/install.html)
+  - Windows users have to define JAVA_HOME to JDK, follow this [instructions](http://roufid.com/no-compiler-is-provided-in-this-environment/)
 
 3. Enter into the folder of JBiclustGE-GUI.git (downloaded in the previous step)
    - The compilation process produces verbose output, presenting all the operations that are being performed in compilation. Thus, you can perform the compilation in two ways:
@@ -22,7 +30,7 @@ Next, please visit the [website](https://jbiclustge.github.io) to see the usage 
       - Normal Mode, presenting the main operations occurring in compilation:
            mvn clean package      
 
-3. Installers will be placed in folder "target"
+3. Installers will be placed into folder "target"
     - File "JBiclustGE-installer.jar" is the installer that can be used in windows or linux
     - File "JBiclustGE.deb" is the deb installer that can be used only in linux
 
