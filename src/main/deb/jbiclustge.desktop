@@ -1,9 +1,9 @@
 [Desktop Entry]
 Name=JBiclustGE
 Type=Application
-Exec=java -Duser.dir=/opt/JBiclustGE -jar /opt/JBiclustGE/launcher.jar
+Exec=java -Duser.dir=/opt/jbiclustge -jar /opt/jbiclustge/launcher.jar
 Terminal=false
-Icon=/opt/JBiclustGE/conf/IconJbiclustGE48.png
+Icon=/opt/jbiclustge/conf/IconJbiclustGE48.png
 Comment=JBiclustGE is a framework for biclustering analysis
 NoDisplay=false
 Categories=Office;

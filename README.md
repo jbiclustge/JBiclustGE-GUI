@@ -22,7 +22,7 @@ Next, please visit the [website](https://jbiclustge.github.io) to see the usage 
   - Follow the instructions to install [Maven](https://maven.apache.org/install.html)
   - Windows users have to define JAVA_HOME to JDK, follow this [instructions](http://roufid.com/no-compiler-is-provided-in-this-environment/)
 
-3. Enter into the folder of JBiclustGE-GUI.git (downloaded in the previous step)
+3. Enter into the folder of JBiclustGE-GUI (downloaded in the previous step)
    - The compilation process produces verbose output, presenting all the operations that are being performed in compilation. Thus, you can perform the compilation in two ways:
       - Quiet Mode, presenting only the errors:
            mvn clean package -q 

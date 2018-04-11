@@ -23,9 +23,9 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<izpack.version>5.1.2</izpack.version>
 		<izpack.staging>${project.build.directory}/staging</izpack.staging>
-		<installer-output-filename>JBiclustGE-installer.jar</installer-output-filename>
-		<deb-output-filename>JBiclustGE.deb</deb-output-filename>
-		<deb-dir-name>JBiclustGE</deb-dir-name>
+		<installer-output-filename>jbiclustge-installer.jar</installer-output-filename>
+		<deb-output-filename>jbiclustge.deb</deb-output-filename>
+		<deb-dir-name>jbiclustge</deb-dir-name>
 
 		<globalResourcesDirectory>src/main/global-resources</globalResourcesDirectory>
 		<!-- AIBench dependencies management -->
