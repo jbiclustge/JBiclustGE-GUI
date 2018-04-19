@@ -15,8 +15,11 @@ Next, please visit the [website](https://jbiclustge.github.io) to see the usage 
 ### Compile
 
 1. Install git 
-  - Follow the instruction to install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
-  - perform: git clone https://github.com/jbiclustge/JBiclustGE-GUI.git
+  - Follow the instruction to install [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - Run the following command in console:
+     ```
+     git clone https://github.com/jbiclustge/JBiclustGE-GUI.git
+     ```
 
 2. Install maven
   - Follow the instructions to install [Maven](https://maven.apache.org/install.html)
@@ -25,13 +28,25 @@ Next, please visit the [website](https://jbiclustge.github.io) to see the usage 
 3. Enter into the folder of JBiclustGE-GUI (downloaded in the previous step)
    - The compilation process produces verbose output, presenting all the operations that are being performed in compilation. Thus, you can perform the compilation in two ways:
       - Quiet Mode, presenting only the errors:
-           mvn clean package -q 
+           ```
+           mvn clean package -q
+           ```
            
       - Normal Mode, presenting the main operations occurring in compilation:
-           mvn clean package      
+           ```
+           mvn clean package
+           ```      
 
 3. Installers will be placed into folder "target"
-    - File "JBiclustGE-installer.jar" is the installer that can be used in windows or linux
-    - File "JBiclustGE.deb" is the deb installer that can be used only in linux
+    - File "jbiclustge-installer.jar" is the installer that can be used in windows or linux
+    - File "jbiclustge.deb" is the deb installer that can be used only in linux
+
+
+## Installation
+
+To proceed with installation using jbiclustge-installer.jar, follow this [instructions](https://jbiclustge.github.io/configs/download/#windows-and-linux-jar-installer)
+
+Otherwise if you are using the jbiclustge.deb, follow this [instructions](https://jbiclustge.github.io/configs/download/#linux-deb-installer)
+
 
 
