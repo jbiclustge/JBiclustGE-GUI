@@ -49,4 +49,6 @@ To proceed with installation using jbiclustge-installer.jar, follow this [instru
 Otherwise if you are using the jbiclustge.deb, follow this [instructions](https://jbiclustge.github.io/configs/download/#linux-deb-installer)
 
 
+## Manual
+See usage instructions in the following [section](https://jbiclustge.github.io/manual/manualjbiclustgegui/)
 
