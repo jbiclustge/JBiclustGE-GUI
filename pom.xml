@@ -4,7 +4,7 @@
 
 	<groupId>pt.uminho.ceb.biosystems</groupId>
 	<artifactId>JBiclustGE-GUI</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
 	<developers>
@@ -101,7 +101,7 @@
 		<dependency>
 			<groupId>pt.uminho.ceb.biosystems</groupId>
 			<artifactId>JBiclustGE</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -280,6 +280,7 @@
 			<plugin>
 				<groupId>org.codehaus.izpack</groupId>
 				<artifactId>izpack-maven-plugin</artifactId>
+				<version>${izpack.version}</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
