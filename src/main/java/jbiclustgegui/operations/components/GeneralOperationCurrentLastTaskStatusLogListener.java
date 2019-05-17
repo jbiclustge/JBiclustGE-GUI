@@ -142,6 +142,8 @@ public class GeneralOperationCurrentLastTaskStatusLogListener implements IStatus
 				 setTaskStatus((String) value); 
 			 else if(allowedpropnames!=null && allowedpropnames.contains(propname) && value instanceof String)
 				 setTaskStatus((String) value);
+			 else if(propname.equals(LogMessageCenter.TASK_PROGRESS_ERROR_MESSSAGE))
+				 setTaskStatus("Error..."+(String) value);
 		 }
 		/* else if(value instanceof Float) {
 			 if(allowedpropnames!=null && allowedpropnames.contains(propname))

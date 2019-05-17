@@ -170,7 +170,7 @@ public class GeneEnrichmentAnalysisViewer extends JPanel{
 		}
 		
 		EnrichmentAnalysisResultList l=results.getResults().filterAndProcessResults(0.05, false);
-		LinkedHashMap<String, Double>termidfrequency=l.getGotermFrequency();
+		LinkedHashMap<String, Double>termidfrequency=l.getTermidsFrequency();
 		
 	
 		//Entry<String, Double> minvalue=Collections.min(termidfrequency.entrySet(), Map.Entry.comparingByValue());

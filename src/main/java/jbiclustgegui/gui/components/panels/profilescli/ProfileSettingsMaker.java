@@ -172,6 +172,11 @@ public class ProfileSettingsMaker extends JPanel implements ActionListener{
 	private DefaultListModel<Double> listpvaluesmodel;
 	
 	
+   
+	private JPanel panel_typeprocess;
+	private JRadioButton rdbtnSingleThread;
+	private JRadioButton rdbtnMultiThread;
+	
 	/** The addmethodconfig. */
 	private static String ADDMETHODCONFIG="addmethodconfig";
 	
@@ -203,6 +208,8 @@ public class ProfileSettingsMaker extends JPanel implements ActionListener{
 	private static String REMOVEPVALUES="removepvalues";
 	
 	
+	private static String SINGLETHREAD="singlethread";
+	private static String MULTITHREAD="multithread";
 	/**
 	 * Instantiates a new profile settings maker.
 	 */
@@ -298,6 +305,41 @@ public class ProfileSettingsMaker extends JPanel implements ActionListener{
 		add(this.btnremoveallconfigurations, gbc_btnremoveallconfigurations);
 		btnremoveallconfigurations.setActionCommand(RMOVEALL);
 		btnremoveallconfigurations.addActionListener(this);
+		
+		panel_typeprocess = new JPanel();
+		panel_typeprocess.setBorder(new TitledBorder(null, "Execute each configuration using:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_panel_typeprocess = new GridBagConstraints();
+		gbc_panel_typeprocess.gridwidth = 2;
+		gbc_panel_typeprocess.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_typeprocess.fill = GridBagConstraints.BOTH;
+		gbc_panel_typeprocess.gridx = 2;
+		gbc_panel_typeprocess.gridy = 6;
+		add(panel_typeprocess, gbc_panel_typeprocess);
+		GridBagLayout gbl_panel_typeprocess = new GridBagLayout();
+		gbl_panel_typeprocess.columnWidths = new int[]{1,1};
+		gbl_panel_typeprocess.rowHeights = new int[]{1};
+		gbl_panel_typeprocess.columnWeights = new double[]{1.0,1.0};
+		gbl_panel_typeprocess.rowWeights = new double[]{1.0};
+		panel_typeprocess.setLayout(gbl_panel_typeprocess);
+		
+		rdbtnSingleThread = new JRadioButton("Single thread");
+		GridBagConstraints gbc_rdbtnSingleThread = new GridBagConstraints();
+		gbc_rdbtnSingleThread.insets = new Insets(0, 0, 0, 5);
+		gbc_rdbtnSingleThread.gridx = 0;
+		gbc_rdbtnSingleThread.gridy = 0;
+		panel_typeprocess.add(rdbtnSingleThread, gbc_rdbtnSingleThread);
+		rdbtnSingleThread.setActionCommand(SINGLETHREAD);
+		rdbtnSingleThread.addActionListener(this);
+		rdbtnSingleThread.setSelected(true);
+		
+		rdbtnMultiThread = new JRadioButton("Multi thread");
+		GridBagConstraints gbc_rdbtnMultiThread = new GridBagConstraints();
+		gbc_rdbtnMultiThread.gridx = 1;
+		gbc_rdbtnMultiThread.gridy = 0;
+		panel_typeprocess.add(rdbtnMultiThread, gbc_rdbtnMultiThread);
+		rdbtnMultiThread.setActionCommand(MULTITHREAD);
+		rdbtnMultiThread.addActionListener(this);
+		rdbtnMultiThread.setSelected(false);
 		
 		this.panel = new JPanel();
 		this.panel.setBorder(new TitledBorder(null, "Gene Set Enrichment Analysis", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -591,8 +633,8 @@ public class ProfileSettingsMaker extends JPanel implements ActionListener{
 					nelems++;
 			}
 			
-			if(removedmethods.containsKey(method.getName()))
-				nelems=nelems+removedmethods.get(method.getName());
+			if(removedmethods.containsKey(method.getAlgorithmID()))
+				nelems=nelems+removedmethods.get(method.getAlgorithmID());
 			return nelems;
 		}
 		else 
@@ -609,7 +651,7 @@ public class ProfileSettingsMaker extends JPanel implements ActionListener{
 		if(listmodelmethodsconfigs.getSize()>0) {
 			int i =listconfigsmethodsprofile.getSelectedIndex();
 			ProfileBiclusteringMethodConfiguration config=listconfigsmethodsprofile.getSelectedValue();
-			String method=config.getMethod().getName();
+			String method=config.getMethod().getAlgorithmID();
 			if(removedmethods.containsKey(method)) {
 				int v=removedmethods.get(method);
 				removedmethods.put(method, v+1);
@@ -792,6 +834,18 @@ public class ProfileSettingsMaker extends JPanel implements ActionListener{
 			if(listpvaluesmodel.size()>0)
 				listpvaluesmodel.removeAllElements();
 		}
+		else if(cmd.equals(SINGLETHREAD)) {
+			if(rdbtnSingleThread.isSelected())
+				rdbtnMultiThread.setSelected(false);
+			else
+				rdbtnMultiThread.setSelected(true);
+		}
+		else if(cmd.equals(MULTITHREAD)) {
+			if(rdbtnMultiThread.isSelected())
+				rdbtnSingleThread.setSelected(false);
+			else
+				rdbtnSingleThread.setSelected(true);
+		}
 	}
 
 	
@@ -880,6 +934,10 @@ public class ProfileSettingsMaker extends JPanel implements ActionListener{
     */
    public boolean useAdjustedPvalues() {
 	   return chckbxAdjustedPvalues.isSelected();
+   }
+   
+   public boolean isUsingConfigurationMultiThread() {
+	   return rdbtnMultiThread.isSelected();
    }
 
 }

@@ -50,12 +50,13 @@ import javax.swing.border.TitledBorder;
 import org.apache.commons.io.FilenameUtils;
 
 import es.uvigo.ei.aibench.workbench.Workbench;
+import jbiclustge.propertiesmodules.PropertyLabels;
 import jbiclustge.results.biclusters.containers.BiclusterList;
 import jbiclustge.results.biclusters.containers.BiclusterResult;
-import jbiclustge.utils.properties.JBiGePropertiesManager;
-import jbiclustge.utils.properties.JBiclustGEPropertiesInitializer;
+import jbiclustge.utils.props.JBiGePropertiesManager;
 import jbiclustgegui.gui.components.dialogs.biclusters.BiclusterHeatmapViewDialog;
 import jbiclustgegui.gui.components.dialogs.biclusters.BiclusterMatrixViewDialog;
+import jbiclustgegui.gui.components.panels.jbicge.ValidationFeaturePanel;
 import jbiclustgegui.gui.components.tables.biclusters.BiclustersTable;
 import jbiclustgegui.gui.components.tables.common.InformationTable;
 import jrplot.plotpackages.interactive.heatmap.shinyheatmaply.ShinyHeatmaply;
@@ -565,8 +566,8 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		this.btnNewButtonviewparallelcoord = new JButton("View Parallel Coord.");
 		this.btnNewButtonviewparallelcoord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				viewParallelCoordinates();
+				if(ValidationFeaturePanel.canExecuteActions("Rserve","parcoords"))
+					viewParallelCoordinates();
 			}
 		});
 		GridBagConstraints gbc_btnNewButtonviewparallelcoord = new GridBagConstraints();
@@ -595,7 +596,8 @@ public class BiclustersViewPanel extends JPanel implements MouseListener,KeyList
 		this.btnViewHeatmaps.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				viewBiclusterInShinyHeatmaply();
+				if(ValidationFeaturePanel.canExecuteActions("Rserve","shinyHeatmaply"))
+					viewBiclusterInShinyHeatmaply();
 				
 			}
 		});
@@ -850,7 +852,7 @@ protected void viewParallelCoordinates() {
 			checkboxlabel="Show Condition Names";
 		
 		ParcoordsWidgetMulti bicsparcoords=new ParcoordsWidgetMulti(dataframes).setShinyLabelCheckbox1(checkboxlabel);
-		bicsparcoords.setRuserlibpath((String) JBiGePropertiesManager.getManager().getKeyValue(JBiclustGEPropertiesInitializer.RUSERLIBPATH));
+		bicsparcoords.setRuserlibpath((String) JBiGePropertiesManager.getManager().getKeyValue(PropertyLabels.RUSERLIBPATH));
 		
 		if(shinycc!=null) {
 			shinycc.stop();
@@ -877,7 +879,7 @@ protected void viewParallelCoordinates() {
 		}
 		
 		ShinyHeatmaply heatmap=new ShinyHeatmaply(dataframes);
-		heatmap.setRuserlibpath((String) JBiGePropertiesManager.getManager().getKeyValue(JBiclustGEPropertiesInitializer.RUSERLIBPATH));
+		heatmap.setRuserlibpath((String) JBiGePropertiesManager.getManager().getKeyValue(PropertyLabels.RUSERLIBPATH));
 		
 		if(shinycc!=null) {
 			shinycc.stop();

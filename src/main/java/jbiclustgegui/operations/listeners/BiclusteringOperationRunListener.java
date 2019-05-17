@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import es.uvigo.ei.aibench.core.operation.annotation.ProgressProperty;
+import es.uvigo.ei.aibench.workbench.Workbench;
 import jbiclustge.methods.algorithms.AbstractBiclusteringAlgorithmCaller;
 
 // TODO: Auto-generated Javadoc
@@ -148,6 +149,8 @@ public class BiclusteringOperationRunListener implements PropertyChangeListener{
 		
 		if(cmd.equals(AbstractBiclusteringAlgorithmCaller.FIREBICLUSTERINGPROPERTYCHANGETASKSTATUS))
 			setCurrentTask((String) evt.getNewValue());
+		else if(cmd.equals(AbstractBiclusteringAlgorithmCaller.FIREPROPERTYCRITICALERROR))
+			Workbench.getInstance().error((String) evt.getNewValue());
 	}
 	
 	

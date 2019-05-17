@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import es.uvigo.ei.aibench.core.operation.annotation.ProgressProperty;
+import es.uvigo.ei.aibench.workbench.Workbench;
 import jbiclustge.enrichmentanalysistools.common.EnrichmentAnalyserProcessor;
 import jbiclustge.methods.algorithms.AbstractBiclusteringAlgorithmCaller;
 
@@ -110,6 +111,8 @@ public class BiclusteringAndGSEAOperationRunListener extends BiclusteringOperati
 			setProgress((float) evt.getNewValue());
 		else if(cmd.equals(EnrichmentAnalyserProcessor.FIREPROPERTYGSEACHANGESUBTASKSTATUS))
 			setCurrentSubTask((String) evt.getNewValue());
+		else if(cmd.equals(AbstractBiclusteringAlgorithmCaller.FIREPROPERTYCRITICALERROR))
+			Workbench.getInstance().error((String) evt.getNewValue());
 	}
 
 }

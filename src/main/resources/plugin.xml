@@ -101,7 +101,7 @@
 		</extension>
 		
 		<extension name="aibench.workbench.view" uid="aibench.workbench">
-					<gui-operation class="jbiclustgegui.gui.components.dialogs.ConfigureJBiclustGESettingsGUI" operation="operation.configure.jbiclustge"/>
+					<gui-operation class="jbiclustgegui.gui.components.dialogs.NewConfigureJBiclustGESettingsGUI" operation="operation.configure.jbiclustge"/>
 		</extension>
 		
 		
@@ -322,6 +322,14 @@
 		
 		<extension name="aibench.workbench.view" uid="aibench.workbench">
 					<gui-operation class="jbiclustgegui.gui.enrichmentanalysis.TopGOAnalyserGUI" operation="operation.gsea.topgo"/>
+		</extension>
+		
+		<extension class="jbiclustgegui.operations.analysis.enrichmentanalysis.ClusterProfilerKeggEnrichmentOperation" name="aibench.core.operation-definition" uid="aibench.core">
+					<operation-description name="ClusterProfiler" path="400@Analysis/1@Enrichment Analysis" uid="operation.kegg.clusterprofiler"/>
+		</extension>
+		
+		<extension name="aibench.workbench.view" uid="aibench.workbench">
+					<gui-operation class="jbiclustgegui.gui.enrichmentanalysis.ClusterProfilerKeggPathwayAnalyserGUI" operation="operation.kegg.clusterprofiler"/>
 		</extension>
 		
 		<!-- Analysis-->

@@ -26,12 +26,17 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -59,6 +64,7 @@ import jbiclustge.datatools.expressiondata.dataset.ExpressionData;
 import jbiclustge.datatools.expressiondata.dataset.MissingValueImputationMethod;
 import jbiclustge.datatools.expressiondata.dataset.MissingValuesInDataException;
 import jbiclustgegui.gui.components.dialogs.example.ExampleDatasetPanel;
+import pt.ornrocha.swingutils.jfilechooser.JFileChooserWithLastDirMemory;
 import smile.imputation.MissingValueImputation;
 import smile.imputation.MissingValueImputationException;
 import javax.swing.SwingConstants;
@@ -136,6 +142,8 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
  	private static String LOADDATASET="loadsdataset";
  	
  	private static String LOADEXAMPLEDATASET="loadsexampledataset";
+ 	
+ 	private boolean imputationmethodsloaded=false;
 	
 	/**
 	 * Launch the application.
@@ -241,6 +249,28 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 			gbc_textFielddatasetfilepath.gridy = 2;
 			contentPanel.add(this.textFielddatasetfilepath, gbc_textFielddatasetfilepath);
 			this.textFielddatasetfilepath.setColumns(10);
+			
+			DropTarget dragdropfolder=new DropTarget() {
+		        public synchronized void drop(DropTargetDropEvent evt) {
+		            try {
+		                evt.acceptDrop(DnDConstants.ACTION_COPY);
+		                List<File> droppedFiles = (List<File>)
+		                        evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+		                
+		                if(droppedFiles.size()>1) {
+		                	showListFilesWarning();
+		                }
+		                else if(droppedFiles.size()==1)
+		                	loadExpressionDataset(droppedFiles.get(0).getAbsolutePath());
+
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		            }
+		        }
+		    };
+			
+		    textFielddatasetfilepath.setDropTarget(dragdropfolder);
+			
 		}
 		{
 			panelmissingvalues = new JPanel();
@@ -415,6 +445,10 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 	}
 	
 	
+	private void showListFilesWarning() {
+		JOptionPane.showMessageDialog(this, "Please only one file its allowed,  drop only an expression dataset file.", "Invalid input parameters", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	/**
 	 * Inits the components.
 	 */
@@ -423,9 +457,11 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 		DefaultComboBoxModel combomodel=new DefaultComboBoxModel<>(MissingValueImputationMethod.values());
 		comboBoxmissingmethods.setModel(combomodel);
 		comboBoxmissingmethods.setSelectedIndex(2);
-		addParameterPanel("Number of neighbors",1);
+		imputationmethodsloaded=true;
+		addParameterPanel("Number of neighbors",1,null);
 		comboBoxmissingmethods.setEnabled(false);
 		spinnermissingmethodparam.setEnabled(false);
+		panel_2.updateUI();
 		
 	}
 	
@@ -437,7 +473,7 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 	 * @param label the label
 	 * @param minparam the minparam
 	 */
-	private void addParameterPanel(String label,int minparam) {
+	private void addParameterPanel(String label,int minparam, MissingValueImputationMethod missvalmethod) {
 		
 		labelmethodlabel = new JLabel(label);
 		GridBagConstraints gbc_labelmethodlabel = new GridBagConstraints();
@@ -456,8 +492,13 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 		gbc_spinnermissingmethodparam.gridx = 2;
 		gbc_spinnermissingmethodparam.gridy = 0;
 		panel_2.add(spinnermissingmethodparam, gbc_spinnermissingmethodparam);
-		if(!needsimputationmethod)
+		
+		if(missvalmethod==null)
 			spinnermissingmethodparam.setEnabled(false);
+		else 
+			spinnermissingmethodparam.setEnabled(true);
+			
+			
 		
 	}
 	
@@ -465,7 +506,17 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 	/**
 	 * Load expression dataset.
 	 */
-	private void loadExpressionDataset() {
+	private void openExpressionDatasetFile() {
+		JFileChooser fileChooser = JFileChooserWithLastDirMemory.getFileChooser();
+        int returnValue = fileChooser.showOpenDialog(this);
+        
+        if(returnValue==JFileChooser.APPROVE_OPTION) {
+        	File selected=fileChooser.getSelectedFile();
+        	JFileChooserWithLastDirMemory.setLastDir(selected);
+        	loadExpressionDataset(selected.getAbsolutePath());
+        }
+	}
+	/*private void openExpressionDatasetFile() {
 		
 		needsimputationmethod=false;
 		currentgeneexpressionfilepath=null;
@@ -495,8 +546,34 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
         	   setMissingValuesLabel(false);
         	textFielddatasetfilepath.setText(selected.getAbsolutePath());
         }
- 
+	}*/
+	
+	private boolean loadExpressionDataset(String filepath) {
+		needsimputationmethod=false;
+		currentgeneexpressionfilepath=null;
+		disableMissingValueImputationComponents();
+		boolean isvalid=true;
+		try {
+			dataset=ExpressionData.loadDataset(filepath,null);
+		} catch (Exception e) {
+			if(e instanceof MissingValuesInDataException) {
+				
+				JOptionPane.showMessageDialog(this, "The selected expression dataset have missing values. \n Please select a missing value imputation method to load this dataset.", "Missing values in gene expression dataset.", JOptionPane.INFORMATION_MESSAGE);
+				enableMissingValueImputationComponents();
+				needsimputationmethod=true;
+				currentgeneexpressionfilepath=filepath;
+				dataset=null;
+				setMissingValuesLabel(true);
+				isvalid=false;
+			}
+		}
+		if(dataset!=null)
+     	   setMissingValuesLabel(false);
+     	textFielddatasetfilepath.setText(filepath);
+		return isvalid;
 	}
+	
+	
 	
 	private void loadExampleExpressionDataset() throws Exception {
 		needsimputationmethod=false;
@@ -533,6 +610,7 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 	private void enableMissingValueImputationComponents() {
 		comboBoxmissingmethods.setEnabled(true);
 		spinnermissingmethodparam.setEnabled(true);
+		panel_2.updateUI();
 	}
 	
 	/**
@@ -542,6 +620,7 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 		comboBoxmissingmethods.setEnabled(false);
 		spinnermissingmethodparam.setEnabled(false);
 		setMissingValuesLabel(null);
+		panel_2.updateUI();
 	}
 	
 	
@@ -552,8 +631,10 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 		MissingValueImputationMethod method=(MissingValueImputationMethod) comboBoxmissingmethods.getSelectedItem();
 		labelmethoddescription.setText(method.getDescription());
 		
-		if(method.equals(MissingValueImputationMethod.AverageImputation) || method.equals(MissingValueImputationMethod.ZeroValueImputation))
+		if(method.equals(MissingValueImputationMethod.AverageImputation) || method.equals(MissingValueImputationMethod.ZeroValueImputation)) {
 			panel_2.removeAll();
+			//spinnermissingmethodparam.setEnabled(false);
+		}
 		else {
 			String label=null;
 			int min=1;
@@ -569,7 +650,8 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 					label="Number of eigenvectors";
 			
 			panel_2.removeAll();
-			addParameterPanel(label,min);
+			addParameterPanel(label,min,method);
+			//spinnermissingmethodparam.setEnabled(true);
 		}
 	}
 	
@@ -657,7 +739,7 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 		String cmd=e.getActionCommand();
 		
 		if(cmd.equals(LOADDATASET))
-			loadExpressionDataset();
+			openExpressionDatasetFile();
 		else if(cmd.equals(LOADEXAMPLEDATASET)) {
 			try {
 				loadExampleExpressionDataset();
@@ -665,7 +747,7 @@ public class NewProjectGUI extends JDialog implements ActionListener, InputGUI{
 				Workbench.getInstance().error(e1);
 			}
 		}
-		else if(cmd.equals(CHOOSEMETHOD) && comboBoxmissingmethods.isEnabled()) {
+		else if(cmd.equals(CHOOSEMETHOD) && comboBoxmissingmethods.isEnabled() && imputationmethodsloaded) {
 			changeMethod();
 		}
 		else if(cmd.equals(CANCEL))

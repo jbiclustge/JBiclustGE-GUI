@@ -5,14 +5,17 @@ import java.awt.event.WindowListener;
 
 import javax.swing.ToolTipManager;
 
+import org.apache.commons.io.FilenameUtils;
 import org.platonos.pluginengine.PluginLifecycle;
 
 import es.uvigo.ei.aibench.core.Core;
 import es.uvigo.ei.aibench.core.clipboard.ClipboardItem;
 import es.uvigo.ei.aibench.core.clipboard.ClipboardListener;
 import es.uvigo.ei.aibench.workbench.Workbench;
+import jbiclustge.propertiesmodules.PropertyLabels;
 import jbiclustge.utils.osystem.JBiclustGESetupManager;
-import jbiclustge.utils.properties.JBiGePropertiesManager;
+import jbiclustge.utils.osystem.SystemFolderTools;
+import jbiclustge.utils.props.JBiGePropertiesManager;
 import jbiclustgegui.datatypes.analysis.PairwiseMultipleListBiclustersResultsBox;
 import jbiclustgegui.datatypes.biclusteringresults.BBCResultsBox;
 import jbiclustgegui.datatypes.biclusteringresults.BibitResultsBox;
@@ -47,13 +50,14 @@ import jbiclustgegui.operations.project.ConfigureJBiclustGESettings;
 import jbiclustgegui.operations.serializers.analysis.SimilarityMultipleListBiclustersResultsSerializer;
 import jbiclustgegui.operations.serializers.gsearesults.GSEAResultSerializer;
 import jbiclustgegui.operations.serializers.methodresults.BiclusteringMethodResultSerializer;
+import pt.ornrocha.fileutils.MTUFileUtils;
 import pt.ornrocha.logutils.MTULogLevel;
 import pt.ornrocha.logutils.messagecomponents.LogMessageCenter;
 import pt.ornrocha.systemutils.OSystemUtils;
 
 
 /**
- * @author paulo maia, 09/05/2010
+ * Orlando Rocha
  *
  */
 public class Lifecycle extends PluginLifecycle {
@@ -63,14 +67,11 @@ public class Lifecycle extends PluginLifecycle {
 
 		System.out.println("Start Plugin");
 
-		/*if(!JBiclustGESetupManager.isJbiclustGEConfigured())
-			try {
-				JBiclustGESetupManager.setupJBiclustGEMethodsEnvironment(null);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}*/
+	    LogMessageCenter.getLogger().enableStackTrace();
+	   //LogMessageCenter.getLogger().setLogLevel(MTULogLevel.TRACE);
 
-		LogMessageCenter.getLogger().setLogProgressListener(new JBiclustLogCenter());
+	    MTUFileUtils.deleteFile(FilenameUtils.concat(SystemFolderTools.getLogFolder(), "jbiclustge_status.log"));
+		LogMessageCenter.getLogger().setLogProgressListener(new JBiclustLogCenter(SystemFolderTools.getLogFolder(),"jbiclustge_status"));
 
 		if(!JBiclustGESetupManager.isJbiclustGEConfigured()) {
 			
@@ -89,6 +90,12 @@ public class Lifecycle extends PluginLifecycle {
 
 				}
 			}
+		}
+		
+		if(OSystemUtils.isLinux()) {
+			String rcustom=(String) JBiGePropertiesManager.getManager().getKeyValue(PropertyLabels.RUSERPATH);
+			if(rcustom!=null)
+				OSystemUtils.setEnvVariable("R_HOME", rcustom);
 		}
 
 
@@ -191,51 +198,64 @@ public class Lifecycle extends PluginLifecycle {
 						Core.getInstance().enableOperation("operations.project.delete");
 						Core.getInstance().enableOperation("operation.import.biclusterlist");
 
-						Core.getInstance().enableOperation("operation.method.bimax");
-						Core.getInstance().enableOperation("operation.method.unibic");
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","jbimax"))
+							Core.getInstance().enableOperation("operation.method.bimax");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("unibic"))
+							Core.getInstance().enableOperation("operation.method.unibic");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("BBC"))
+							Core.getInstance().enableOperation("operation.method.bbc");
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","BicARE"))
+							Core.getInstance().enableOperation("operation.method.floc");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("BicFinder"))
+							Core.getInstance().enableOperation("operation.method.bicfinder");
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","BICLIC"))
+							Core.getInstance().enableOperation("operation.method.biclic");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("BiMine+"))	
+							Core.getInstance().enableOperation("operation.method.bimineplus");
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","biclust")) {
+							Core.getInstance().enableOperation("operation.method.cc");
+							Core.getInstance().enableOperation("operation.method.plaid");
+							Core.getInstance().enableOperation("operation.method.spectral");
+							Core.getInstance().enableOperation("operation.method.xmotifs");
+						}
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("cpb"))	
+							Core.getInstance().enableOperation("operation.method.cpb");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("debi"))
+							Core.getInstance().enableOperation("operation.method.debi");
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","fabia")) {
+							Core.getInstance().enableOperation("operation.method.fabia");
+							Core.getInstance().enableOperation("operation.method.fabiap");
+							Core.getInstance().enableOperation("operation.method.fabias");
+						}
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","eisa"))
+							Core.getInstance().enableOperation("operation.method.isa");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("qubic"))	
+							Core.getInstance().enableOperation("operation.method.qubic");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("ubc"))	
+							Core.getInstance().enableOperation("operation.method.ubclust");
+						if(JBiGePropertiesManager.getManager().isFeatureInstalled("COALESCE"))
+							if(!OSystemUtils.isWindows())
+								Core.getInstance().enableOperation("operation.method.coalesce");
+						
+						
 						Core.getInstance().enableOperation("operation.method.bibit");
 						Core.getInstance().enableOperation("operation.method.opsm");
 						Core.getInstance().enableOperation("operation.method.penalizedplaid");
-						Core.getInstance().enableOperation("operation.method.bbc");
-						Core.getInstance().enableOperation("operation.method.floc");
-						Core.getInstance().enableOperation("operation.method.bicfinder");
-						Core.getInstance().enableOperation("operation.method.biclic");
-						Core.getInstance().enableOperation("operation.method.bimineplus");
-						Core.getInstance().enableOperation("operation.method.cc");
-						Core.getInstance().enableOperation("operation.method.cpb");
-						Core.getInstance().enableOperation("operation.method.debi");
-						Core.getInstance().enableOperation("operation.method.fabia");
-						Core.getInstance().enableOperation("operation.method.fabiap");
-						Core.getInstance().enableOperation("operation.method.fabias");
-						Core.getInstance().enableOperation("operation.method.isa");
-						Core.getInstance().enableOperation("operation.method.plaid");
-						Core.getInstance().enableOperation("operation.method.qubic");
-						Core.getInstance().enableOperation("operation.method.spectral");
-						Core.getInstance().enableOperation("operation.method.ubclust");
-						Core.getInstance().enableOperation("operation.method.xmotifs");
-						if(!OSystemUtils.isWindows())
-							Core.getInstance().enableOperation("operation.method.coalesce");
-						
 						Core.getInstance().enableOperation("operation.profile.jbiclustgecli");
 
 					}
 					if(Core.getInstance().getClipboard().getItemsByClass(BiclusteringResultBox.class).size()>0){
 						Core.getInstance().enableOperation("operation.gsea.ontologizer");
-						Core.getInstance().enableOperation("operation.gsea.topgo");
+						
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","topGO"))
+							Core.getInstance().enableOperation("operation.gsea.topgo");
+						if(JBiGePropertiesManager.getManager().areFeaturesInstalled("Rserve","clusterProfiler"))
+							Core.getInstance().enableOperation("operation.kegg.clusterprofiler");
 					}
 					if(Core.getInstance().getClipboard().getItemsByClass(BiclusteringResultBox.class).size()>1){
 						Core.getInstance().enableOperation("operation.analysis.similarity.multiple");
 					}
 
-					/*if(Core.getInstance().getClipboard().getItemsByClass(IntegratedSteadyStateModelBox.class).size()>0){
-					Core.getInstance().enableOperation("org.optflux.simulation.integrated.twostage");
-					Core.getInstance().enableOperation("org.optflux.simulation.integrated.srfba");
-					Core.getInstance().enableOperation("org.optflux.simulation.integrated.rfba");
-					Core.getInstance().enableOperation("org.optflux.simulation.integrated.prom");
-				}
-				if(Core.getInstance().getClipboard().getItemsByClass(SteadyStateModelBox.class).size()>0){
-					Core.getInstance().enableOperation("org.optflux.simulation.integrated.prom");
-				}*/
 
 
 					//if(PMUtils.useWorkspace()){
@@ -265,4 +285,17 @@ public class Lifecycle extends PluginLifecycle {
 
 
 	}
+	
+/*	public static void setEnv(String key, String value) {
+	    try {
+	        Map<String, String> env = System.getenv();
+	        Class<?> cl = env.getClass();
+	        Field field = cl.getDeclaredField("m");
+	        field.setAccessible(true);
+	        Map<String, String> writableEnv = (Map<String, String>) field.get(env);
+	        writableEnv.put(key, value);
+	    } catch (Exception e) {
+	        throw new IllegalStateException("Failed to set environment variable", e);
+	    }
+	}*/
 }

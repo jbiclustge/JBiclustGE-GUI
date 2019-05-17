@@ -133,6 +133,7 @@ public class BiclusteringMethodResultSerializer extends AbstractBuilder<Bicluste
 		GeneExpressionDatasetBox dataBox=(GeneExpressionDatasetBox) referencedObjects.get(SaveLoadManager.EXPRESSIONDATA);
 
 		BiclusterList results=(BiclusterList) referencedObjects.get(ss.getUID(BICLUSTERRESULTS));
+		
 		// load expression dataset in results
 		results.addExpressionDatasetDependencies(dataBox.getExpressionset());
 		BiclusteringMethod method=(BiclusteringMethod) referencedObjects.get(ss.getUID(BICLUSTERINGMETHOD));
@@ -140,7 +141,7 @@ public class BiclusteringMethodResultSerializer extends AbstractBuilder<Bicluste
 		LocalDateTime savedat=(LocalDateTime) referencedObjects.get(ss.getUID(SAVEDATE));
 		
 		BiclusteringResultBox resultbox=GenericOperation.getResultsBox(dataBox.getOwnerProject(), id, results, method);
-        resultbox.setDate(savedat);
+		resultbox.setDate(savedat);
 		return resultbox;
 
 	}

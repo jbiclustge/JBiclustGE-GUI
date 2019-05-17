@@ -36,7 +36,7 @@ import org.javatuples.Pair;
 import jbiclustge.methods.algorithms.r.biclic.RBiclicMethod;
 import jbiclustge.methods.algorithms.r.biclustpackage.RSpectralMethod;
 import jbiclustge.methods.algorithms.r.components.BCSpectralNormalizationMethod;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.IntegerTextField;
 

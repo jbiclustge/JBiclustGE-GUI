@@ -31,6 +31,7 @@ import jbiclustgegui.datatypes.biclusteringresults.BiclicResultsBox;
 import jbiclustgegui.datatypes.biclusteringresults.BiclusteringResultBox;
 import jbiclustgegui.datatypes.biclusteringresults.BimaxResultsBox;
 import jbiclustgegui.datatypes.biclusteringresults.BimineplusResultsBox;
+import jbiclustgegui.datatypes.biclusteringresults.COALESCEResultsBox;
 import jbiclustgegui.datatypes.biclusteringresults.CPBResultsBox;
 import jbiclustgegui.datatypes.biclusteringresults.ChengAndChurchResultsBox;
 import jbiclustgegui.datatypes.biclusteringresults.DebiResultsBox;
@@ -127,6 +128,8 @@ public class GenericOperation {
 			return new ChengAndChurchResultsBox(datatypeid, proj, results);
 		case CPB:
 			return new CPBResultsBox(datatypeid, proj, results);
+		case COALESCE:
+			return new COALESCEResultsBox(datatypeid, proj, results);
 		case DEBI:
 			return new DebiResultsBox(datatypeid, proj, results);
 		case FABIA:

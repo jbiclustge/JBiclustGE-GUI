@@ -136,7 +136,7 @@ public class GSEAPvalueFrequencyTermsChartPanel extends JPanel{
 	 */
 	public void addResults(EnrichmentAnalysisResultList results,double pvalue,boolean useadjustedpvalues) {
 		this.results=results.filterAndProcessResults(pvalue, useadjustedpvalues);
-		termidfrequency=results.getGotermFrequency();
+		termidfrequency=results.getTermidsFrequency();
 		this.pvalue=pvalue;
 		
 		this.chartPanel = initChart();
@@ -164,7 +164,7 @@ public class GSEAPvalueFrequencyTermsChartPanel extends JPanel{
 
 
 		for (String name : termidfrequency.keySet()) {
-			yaxis.add(results.getGoid2goterm().get(name));
+			yaxis.add(results.gettermid2termname().get(name));
 			xaxis.add(termidfrequency.get(name)*100);
 		}
 

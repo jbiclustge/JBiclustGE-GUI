@@ -28,7 +28,7 @@ import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.log4j.Logger;
 
-import jbiclustge.utils.properties.JBiGePropertiesManager;
+import jbiclustge.utils.props.JBiGePropertiesManager;
 import pt.ornrocha.logutils.MTULogLevel;
 import pt.ornrocha.logutils.MTULogUtils;
 import pt.ornrocha.logutils.messagecomponents.ILogProgressListener;
@@ -60,6 +60,13 @@ public class JBiclustLogCenter implements ILogProgressListener{
 	public JBiclustLogCenter () {
         currentlevel=getDefinedLogLevel();
 	}
+	
+	
+	public JBiclustLogCenter(String folderpath, String logname) {
+		currentlevel=getDefinedLogLevel();
+		MTULogUtils.saveLogToFolder(folderpath, logname, ch.qos.logback.classic.Logger.ROOT_LOGGER_NAME, currentlevel, true);
+	}
+	
 	
 	
 	/**

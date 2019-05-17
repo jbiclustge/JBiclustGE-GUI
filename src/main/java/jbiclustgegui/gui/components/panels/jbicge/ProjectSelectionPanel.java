@@ -25,7 +25,9 @@ import javax.swing.border.TitledBorder;
 
 import es.uvigo.ei.aibench.core.Core;
 import es.uvigo.ei.aibench.core.clipboard.ClipboardItem;
+import jbiclustgegui.datatypes.project.AbstractDataType;
 import jbiclustgegui.datatypes.project.Project;
+import jbiclustgegui.gui.project.GUIUtilities;
 
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
@@ -46,6 +48,7 @@ public class ProjectSelectionPanel extends JPanel{
 	
 	/** The project combo box. */
 	private JComboBox<Project> projectComboBox;
+	private ArrayList<String> currentprojs=null;
 	
 	/** The Constant PROJECT_ACTION_COMMAND. */
 	public static final String PROJECT_ACTION_COMMAND = "projectActionCommand";
@@ -85,6 +88,7 @@ public class ProjectSelectionPanel extends JPanel{
 	 */
 	protected void setProjectComboBoxDataItems() {
 		
+		currentprojs=new ArrayList<>();
 		List<ClipboardItem> citems = Core.getInstance().getClipboard().getItemsByClass(Project.class);
 		if (citems == null){
 			citems = new ArrayList<ClipboardItem>();
@@ -92,9 +96,46 @@ public class ProjectSelectionPanel extends JPanel{
 		for (ClipboardItem item: citems){
 			Project project = (Project) item.getUserData();
 			projectComboBox.addItem(project);
+			currentprojs.add(project.getName());
+		}
+		if(projectComboBox.getItemCount()!=0)
+			trytoAssignProject();
+	}
+	
+	protected void trytoAssignProject() {
+		AbstractDataType currentselectedintree=GUIUtilities.getSelectedItem();
+		if(currentselectedintree instanceof Project) {
+			String pname=currentselectedintree.getName();
+			if(pname!=null) {
+				int indx=getProjectIndex(pname);
+			    projectComboBox.setSelectedIndex(indx);
+			}
+		}
+		else {
+			
+			if(currentselectedintree!=null && !(currentselectedintree instanceof Project)) {
+				Project p=currentselectedintree.getOwnerProject();
+				if(p!=null) {
+					int indx=getProjectIndex(p.getName());
+					projectComboBox.setSelectedIndex(indx);
+				}
+				else
+					projectComboBox.setSelectedIndex(0);
+			}
+			else
+				projectComboBox.setSelectedIndex(0);
 		}
 	}
 	
+
+	protected int getProjectIndex(String name) {
+		
+		for (int i = 0; i < currentprojs.size(); i++) {
+			if(currentprojs.get(i).equals(name))
+				return i;
+		}
+		return 0;
+	}
 	
 	/**
 	 * Gets the selected project.

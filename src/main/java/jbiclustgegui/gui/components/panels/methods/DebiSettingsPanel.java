@@ -38,7 +38,7 @@ import jbiclustge.methods.algorithms.r.biclustpackage.RSpectralMethod;
 import jbiclustge.methods.algorithms.r.components.BCSpectralNormalizationMethod;
 import jbiclustge.methods.algorithms.wrappers.components.RegulationPattern;
 import jbiclustge.methods.algorithms.wrappers.debi.DebiMethod;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.IntegerTextField;
 

@@ -33,12 +33,12 @@ import javax.swing.SpinnerNumberModel;
 
 import org.javatuples.Pair;
 
-import jbiclustge.datatools.expressiondata.transformdata.binarization.BinarizationDecision;
+import jbiclustge.datatools.expressiondata.processdata.binarization.BinarizationDecision;
 import jbiclustge.methods.algorithms.r.biclic.RBiclicMethod;
 import jbiclustge.methods.algorithms.r.biclustpackage.RSpectralMethod;
 import jbiclustge.methods.algorithms.r.components.BCSpectralNormalizationMethod;
 import jbiclustge.methods.algorithms.r.isapackage.RIsaMethod;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.IntegerTextField;
 

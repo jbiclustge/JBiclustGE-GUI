@@ -20,31 +20,10 @@
  */
 package jbiclustgegui.gui.components.panels.enrichmentanalysis;
 
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import org.javatuples.Pair;
-
-import es.uvigo.ei.aibench.workbench.Workbench;
-import jbiclustge.enrichmentanalysistools.ontologizer.components.OntologizerPropertiesContainer;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopGOAlgorithm;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopGOAnnotationFunction;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopGOMappingType;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopGOStatistic;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopGoPropertiesContainer;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopGopvaluesAdjustMethod;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopgoOntology;
-import jbiclustgegui.gui.components.selection.Delimiter;
-import pt.ornrocha.fileutils.MTUFileUtils;
-import pt.ornrocha.propertyutils.PropertiesUtilities;
-import pt.ornrocha.swingutils.textfield.CopyPasteJTextField;
-import pt.ornrocha.systemutils.OSystemUtils;
-
-import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,19 +33,39 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JCheckBox;
-import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import org.javatuples.Pair;
+
+import es.uvigo.ei.aibench.workbench.Workbench;
+import jbiclustge.enrichmentanalysistools.common.pvaluesAdjustMethod;
+import jbiclustge.enrichmentanalysistools.topgo.components.TopGOAlgorithm;
+import jbiclustge.enrichmentanalysistools.topgo.components.TopGOMappingType;
+import jbiclustge.enrichmentanalysistools.topgo.components.TopGOStatistic;
+import jbiclustge.enrichmentanalysistools.topgo.components.TopGoPropertiesContainer;
+import jbiclustge.enrichmentanalysistools.topgo.components.TopgoOntology;
+import jbiclustge.utils.osystem.SystemFolderTools;
+import jbiclustgegui.gui.components.selection.Delimiter;
+import pt.ornrocha.fileutils.MTUFileUtils;
+import pt.ornrocha.propertyutils.PropertiesUtilities;
+import pt.ornrocha.swingutils.combobox.ComboBoxMemoFile;
+import pt.ornrocha.swingutils.jfilechooser.JFileChooserWithLastDirMemory;
+import pt.ornrocha.swingutils.textfield.CopyPasteJTextField;
+import pt.ornrocha.systemutils.OSystemUtils;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -74,8 +73,14 @@ import javax.swing.ImageIcon;
  */
 public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSettingsPanel implements ActionListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/** The text fieldpakagename. */
-	private CopyPasteJTextField textFieldpakagename;
+	//private CopyPasteJTextField textFieldpakagename;
+	private ComboBoxMemoFile textFieldpakagename;
 	
 	/** The text fieldannotationfile. */
 	private CopyPasteJTextField textFieldannotationfile;
@@ -128,7 +133,11 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	/** The btn new buttonresetdefault. */
 	private JButton btnNewButtonresetdefault;
 	
+	/** The btn new buttonimportconfs. */
+	private JButton btnNewButtonimportconfs;
 	
+	/** The btn new buttonexportconfs. */
+	private JButton btnNewButtonexportconfs;
 	
 	/** The useannotationdatabase. */
 	private static String USEANNOTATIONDATABASE="useannotationdatabase";
@@ -148,11 +157,9 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	/** The reset. */
 	private static String RESET="reset";
 	
-	/** The btn new buttonimportconfs. */
-	private JButton btnNewButtonimportconfs;
+	private static String CHANGEORGDB="changeorgdb";
 	
-	/** The btn new buttonexportconfs. */
-	private JButton btnNewButtonexportconfs;
+	
 	
 	/**
 	 * Instantiates a new top GO execution option panel.
@@ -209,7 +216,14 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 		gbc_lblPackageName.gridy = 0;
 		panel.add(lblPackageName, gbc_lblPackageName);
 		
-		textFieldpakagename = new CopyPasteJTextField();
+		//textFieldpakagename = new CopyPasteJTextField();
+		try {
+			textFieldpakagename = new  ComboBoxMemoFile(SystemFolderTools.getOrgDatabaseTmpFilepath());
+		} catch (IOException e2) {
+			Workbench.getInstance().error(e2);
+		}
+		textFieldpakagename.addActionListener(this);
+		textFieldpakagename.setActionCommand(CHANGEORGDB);
 		GridBagConstraints gbc_textFieldpakagename = new GridBagConstraints();
 		gbc_textFieldpakagename.gridwidth = 2;
 		gbc_textFieldpakagename.insets = new Insets(0, 0, 5, 5);
@@ -217,9 +231,29 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 		gbc_textFieldpakagename.gridx = 2;
 		gbc_textFieldpakagename.gridy = 0;
 		panel.add(textFieldpakagename, gbc_textFieldpakagename);
-		textFieldpakagename.setColumns(10);
+		//textFieldpakagename.setColumns(10);
 		
-		textFieldpakagename.getDocument().addDocumentListener(new DocumentListener() {
+		JTextField editor=(JTextField) textFieldpakagename.getEditor().getEditorComponent();
+		editor.getDocument().addDocumentListener(new DocumentListener() {
+		    @Override
+		    public void insertUpdate(DocumentEvent e) {
+		    	checkTextIsOrgPackage();
+		    }
+
+		    @Override
+		    public void removeUpdate(DocumentEvent e) {
+		    	String text=editor.getText();
+		    	if(text.length()==0)
+		    		chckbxIsOrgType.setSelected(false);
+		    }
+
+		    @Override
+		    public void changedUpdate(DocumentEvent e) {
+		    	checkTextIsOrgPackage();
+		    }
+		});
+		
+		/*textFieldpakagename.getDocument().addDocumentListener(new DocumentListener() {
 		    @Override
 		    public void insertUpdate(DocumentEvent e) {
 		    	checkTextIsOrgPackage();
@@ -236,7 +270,7 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 		    public void changedUpdate(DocumentEvent e) {
 		    	checkTextIsOrgPackage();
 		    }
-		});
+		});*/
 		
 		chckbxIsOrgType = new JCheckBox("<html>Type<br>org.xx.xx</html>");
 		GridBagConstraints gbc_chckbxIsOrgType = new GridBagConstraints();
@@ -558,7 +592,8 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	 * Check text is org package.
 	 */
 	private void checkTextIsOrgPackage() {
-		String text=textFieldpakagename.getText();
+		//String text=textFieldpakagename.getText();
+		String text=(String) textFieldpakagename.getSelectedItem();
 		if(text!=null && !text.isEmpty()) {
 			if(text.startsWith("org.") && !chckbxIsOrgType.isSelected())
 				chckbxIsOrgType.setSelected(true);
@@ -604,9 +639,10 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 			comboBoxstatistics.addItem(val);
 		}
 		
-		for (TopGopvaluesAdjustMethod val : TopGopvaluesAdjustMethod.values()) {
+		for (pvaluesAdjustMethod val : pvaluesAdjustMethod.values()) {
 			comboBoxmtc.addItem(val);
 		}
+		
 		
 		
 	}
@@ -626,7 +662,8 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	@Override
 	public void resetToDefaultValues() {
 		chckbxAnnotationDatabase.setSelected(true);
-		textFieldpakagename.setText("");
+		//textFieldpakagename.setText("");
+		
 		textFieldpakagename.setEnabled(true);
 		chckbxIsOrgType.setSelected(false);
 		chckbxIsOrgType.setEnabled(true);
@@ -645,9 +682,14 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 		comboBoxontologyaspect.setSelectedItem(TopgoOntology.BP);
 		comboBoxalgorithm.setSelectedItem(TopGOAlgorithm.classic);
 		comboBoxstatistics.setSelectedItem(TopGOStatistic.fisher);
-		comboBoxmtc.setSelectedItem(TopGopvaluesAdjustMethod.NONE);
+		comboBoxmtc.setSelectedItem(pvaluesAdjustMethod.NONE);
 		spinnernodesize.setValue(5);
 		checkBoxdiscardgenes.setSelected(true);
+		if(textFieldpakagename.numberElements()>0) {
+			textFieldpakagename.setSelectedIndex(0);
+			checkTextIsOrgPackage();
+		}
+		
 	}
 	
 	
@@ -679,6 +721,10 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 		}
 		else if(cmd.equals(OPENANNOTATIONFILE))
 			openAnnotationFile();
+		else if(cmd.equals(CHANGEORGDB)) {
+			if(textFieldpakagename.numberElements()>0)
+				checkTextIsOrgPackage();
+		}
 	}
 
 	
@@ -713,7 +759,8 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	private void useAnnotationFileCMD() {
 		if(chckbxUseFile.isSelected()) {
 			chckbxAnnotationDatabase.setSelected(false);
-			textFieldpakagename.setText("");
+			//textFieldpakagename.setText("");
+			textFieldpakagename.setSelectedIndex(0);
 			textFieldpakagename.setEnabled(false);
 			comboBoxmappingtype.setEnabled(false);
 			chckbxIsOrgType.setEnabled(false);
@@ -739,7 +786,7 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	 * Open annotation file.
 	 */
 	private void openAnnotationFile() {
-		JFileChooser fileChooser = new JFileChooser();
+		JFileChooser fileChooser = JFileChooserWithLastDirMemory.getFileChooser();
         int returnValue = fileChooser.showOpenDialog(this);
         if(returnValue==JFileChooser.APPROVE_OPTION) {
         	File selected=fileChooser.getSelectedFile();
@@ -756,7 +803,9 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	
 		TopGoPropertiesContainer props=new TopGoPropertiesContainer();
 		if(chckbxAnnotationDatabase.isSelected()) {
-			props.setAnnotationDatabase(textFieldpakagename.getText());
+			//props.setAnnotationDatabase(textFieldpakagename.getText());
+			String database=(String) textFieldpakagename.getSelectedItem();
+			props.setAnnotationDatabase(database);
 			props.setGOTermMappingType((TopGOMappingType) comboBoxmappingtype.getSelectedItem());
 			props.setIsAnnotationDatabaseORGType(chckbxIsOrgType.isSelected());
 		}
@@ -772,7 +821,7 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 		props.setOntology((TopgoOntology) comboBoxontologyaspect.getSelectedItem());
 		props.setAlgorithm((TopGOAlgorithm) comboBoxalgorithm.getSelectedItem());
 		props.setStatisticMethod((TopGOStatistic) comboBoxstatistics.getSelectedItem());
-		props.setMTCMethod((TopGopvaluesAdjustMethod) comboBoxmtc.getSelectedItem());
+		props.setMTCMethod((pvaluesAdjustMethod) comboBoxmtc.getSelectedItem());
 		props.setNodeSize((int) spinnernodesize.getValue());
 		props.setDiscardUnannotatedGenes(checkBoxdiscardgenes.isSelected());
 		
@@ -785,7 +834,7 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 	 */
 	@Override
 	public Pair<Boolean, String> validSettings() {
-		if(chckbxAnnotationDatabase.isSelected() && textFieldpakagename.getText().isEmpty())
+		if(chckbxAnnotationDatabase.isSelected() &&( (String)textFieldpakagename.getSelectedItem()).isEmpty())
 			return new Pair<Boolean, String>(false, "Please set the name of database package in \"Package name\" field");
 		else if(chckbxUseFile.isSelected() && textFieldannotationfile.getText().isEmpty())
 			return new Pair<Boolean, String>(false, "Please set a path to the Annotation file in \"Use file (text field)\"");
@@ -813,7 +862,7 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 			spinnernodesize.setValue(nodesize);
 			
 			String mtcmethod=PropertiesUtilities.getStringPropertyValue(props, TopGoPropertiesContainer.MCTMETHOD, "none", getClass());
-			comboBoxmtc.setSelectedItem(TopGopvaluesAdjustMethod.getMTCMethodFromString(mtcmethod));
+			comboBoxmtc.setSelectedItem(pvaluesAdjustMethod.getMTCMethodFromString(mtcmethod));
 			
 			
 			 boolean discardgenes=PropertiesUtilities.getBooleanPropertyValue(props, TopGoPropertiesContainer.DISCARDUNANNOTATEDGENES, true, getClass());
@@ -851,7 +900,14 @@ public class TopGOExecutionOptionPanel extends AbstractGeneEnrichmentAnalyserSet
 			if(anndatabase!=null && annotfile==null){
 				chckbxAnnotationDatabase.setSelected(true);
 				useAnnotationDatabaseCMD();
-				textFieldpakagename.setText(anndatabase);
+				//textFieldpakagename.setText(anndatabase);
+				if(textFieldpakagename.containsString(anndatabase))
+					textFieldpakagename.setSelectedItem(anndatabase);
+				else {
+					textFieldpakagename.addItem(anndatabase);
+					textFieldpakagename.setSelectedItem(anndatabase);
+				}
+				
 			
 				boolean isorgdatabase=PropertiesUtilities.getBooleanPropertyValue(props, TopGoPropertiesContainer.ANNOTATIONDATABASEORGTYPE, false, null);
 				chckbxIsOrgType.setSelected(isorgdatabase);

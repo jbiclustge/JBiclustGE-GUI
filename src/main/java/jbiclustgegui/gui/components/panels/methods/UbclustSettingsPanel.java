@@ -36,7 +36,7 @@ import org.javatuples.Pair;
 
 import jbiclustge.methods.algorithms.wrappers.UBClustMethod;
 import jbiclustge.methods.algorithms.wrappers.components.KolmogorovEstimator;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.DoubleTextField;
 import pt.ornrocha.swingutils.textfield.IntegerTextField;

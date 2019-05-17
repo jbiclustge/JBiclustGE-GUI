@@ -43,7 +43,7 @@ import javax.swing.JScrollPane;
 import es.uvigo.ei.aibench.workbench.Workbench;
 import jbiclustge.enrichmentanalysistools.common.EnrichmentAnalysisResultList;
 import jbiclustge.enrichmentanalysistools.common.EnrichmentAnalysisResultsContainer;
-import jbiclustge.utils.properties.JBiGePropertiesManager;
+import jbiclustge.utils.props.JBiGePropertiesManager;
 import jbiclustgegui.gui.components.dialogs.gsea.GSEABiclusterListTermsFrequencyChartPanel;
 import jbiclustgegui.gui.components.tables.biclusters.BiclustersTable;
 import pt.ornrocha.collections.MTUMapUtils;
@@ -405,20 +405,20 @@ public class GSEASinglePvalueViewPanel extends JPanel implements MouseListener,K
 				for (int j = 0; j < gotermlowerpvalue.size(); j++) {
 					String termid=gotermlowerpvalue.get(j);
 					Double adjpvalue=null;
-					if(bicinfo.getGOTermsadjustedpvalues()!=null && useadjustedpvalues)
-						adjpvalue=bicinfo.getGOTermsadjustedpvalues().get(termid);
+					if(bicinfo.getTermIDsadjustedpvalues()!=null && useadjustedpvalues)
+						adjpvalue=bicinfo.getTermIDsadjustedpvalues().get(termid);
 					
 					ArrayList<String> associatedgenes=null;
-					if(bicinfo.getGenesAssociatedToGoTerm(termid)!=null)
-						associatedgenes=bicinfo.getGenesAssociatedToGoTerm(termid);
+					if(bicinfo.getGenesAssociatedToTermID(termid)!=null)
+						associatedgenes=bicinfo.getGenesAssociatedToTermID(termid);
 					
 					ArrayList<String> associatedprobids=null;
-					if(bicinfo.getGenesAssociatedToGoTerm(termid)!=null && geneid2probid!=null)
-						associatedprobids=transformgeneidtoprobsetid(bicinfo.getGenesAssociatedToGoTerm(termid),geneid2probid);
+					if(bicinfo.getGenesAssociatedToTermID(termid)!=null && geneid2probid!=null)
+						associatedprobids=transformgeneidtoprobsetid(bicinfo.getGenesAssociatedToTermID(termid),geneid2probid);
 					
 					filterbicgsea.appendInformation(termid, 
-							bicinfo.getMapGOTermToGoName().get(termid),
-							bicinfo.getGOTermspvalues().get(termid),
+							bicinfo.getMapTermIDToTermName().get(termid),
+							bicinfo.getTermIDspvalues().get(termid),
 							adjpvalue, 
 							associatedgenes,
 							associatedprobids);

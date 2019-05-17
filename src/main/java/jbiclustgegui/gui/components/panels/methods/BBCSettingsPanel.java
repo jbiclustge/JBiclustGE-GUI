@@ -38,7 +38,7 @@ import org.javatuples.Pair;
 import jbiclustge.methods.algorithms.wrappers.BBCMethod;
 import jbiclustge.methods.algorithms.wrappers.BimaxMethod;
 import jbiclustge.methods.algorithms.wrappers.components.BBCNormalizationMethod;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.IntegerTextField;
 

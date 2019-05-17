@@ -38,7 +38,8 @@ import jbiclustge.enrichmentanalysistools.ontologizer.components.OntologizerProp
 import jbiclustge.enrichmentanalysistools.topgo.components.TopGoPropertiesContainer;
 import jbiclustge.methods.algorithms.BiclusteringMethod;
 import jbiclustge.propertiesmodules.PropertiesModules;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.propertiesmodules.PropertyLabels;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import jbiclustgegui.gui.analysis.profilecli.components.ProfileBiclusteringMethodConfiguration;
 import jbiclustgegui.gui.components.containers.GSEAConfigurationContainer;
@@ -77,6 +78,8 @@ public class ProfileCLIMaker {
 	
 	/** The useadjustedovalues. */
 	private boolean useadjustedovalues=false;
+	
+	private boolean usingconfigmultithread=false;
 	
 	/**
 	 * Sets the project.
@@ -157,6 +160,12 @@ public class ProfileCLIMaker {
 	@Port(name="adjusted p-values",direction=Direction.INPUT,order=8)
 	public void setAdjustedPvalues(boolean adj) {
 		this.useadjustedovalues=adj;
+	}
+	
+	
+	@Port(name="config multithread",direction=Direction.INPUT,order=9)
+	public void setIsUsingConfigurationMultithread(boolean val) {
+		this.usingconfigmultithread=val;
 		try {
 			run();
 		} catch (IOException e) {
@@ -182,11 +191,13 @@ public class ProfileCLIMaker {
 		
 		 EnhancedPropertiesWithSubGroups props=new EnhancedPropertiesWithSubGroups();
 		 
-		 String dirmethods=FilenameUtils.concat(savetofolder, PropertiesModules.ALGORITHMSCONFFOLDERNAME);
+		 String dirmethods=FilenameUtils.concat(savetofolder, PropertyLabels.ALGORITHMSCONFFOLDERNAME);
 		 MTUDirUtils.checkandsetDirectory(dirmethods);
 		 
-		 
-		 props.addPropertyToGroupCategory("Biclustering Algorithms", PropertiesModules.ALGORITHMSCONFTYPE,  PropertiesModules.ALGORITHMSCONFTYPEMULTI, "Define if each algorithm have more than one configuration file");
+		 if(usingconfigmultithread)
+			 props.addPropertyToGroupCategory("Biclustering Algorithms", PropertyLabels.ALGORITHMSCONFTYPE,  PropertyLabels.ALGORITHMSCONFTYPEMULTI, "Define if each configuration for an algorithm can be executed in parallel (multithreading), options: single_run or multi_run");
+		 else
+			 props.addPropertyToGroupCategory("Biclustering Algorithms", PropertyLabels.ALGORITHMSCONFTYPE,  PropertyLabels.ALGORITHMSCONFTYPESINGLE, "Define if each configuration for an algorithm can be executed in parallel (multithreading), options: single_run or multi_run");
 		 
 		 for (int i = 0; i < methodsconfs.size(); i++) {
 			
@@ -198,13 +209,13 @@ public class ProfileCLIMaker {
 				 AlgorithmProperties.writeDefaultAlgorithmPropertiesToFile(methodconfig.getSufixname(), dirmethods, method, methodprops, true);
 				 
 				 int methodnruns=methodconfig.getRuntimes();
-				 String confname=method.getAlgorithmName().toLowerCase()+"_"+methodconfig.getSufixname();
-				 props.addPropertyToSubGroupCategory("Biclustering Algorithms", "Number of runs for each method configuration", confname, String.valueOf(methodnruns), "");
+				 String confname=method.getAlgorithmID().toLowerCase()+"_"+methodconfig.getSufixname();
+				 PropertiesModules.addBiclusteringMethodsRunningTimesOfConfiguration(props, confname, methodnruns);
 			 }
 		 
 		 }
 		 
-		 props.addPropertyToGroupCategory("Concurrent Processes", PropertiesModules.SIMULTANEOUSPROCESSES, String.valueOf(numberprocesses), "Number of simultaneous processes running in parallel");
+		 props.addPropertyToGroupCategory("Concurrent Processes", PropertyLabels.SIMULTANEOUSPROCESSES, String.valueOf(numberprocesses), "Number of simultaneous processes running in parallel");
 		 
 		if(gseaconfig!=null) {
 			
@@ -216,7 +227,7 @@ public class ProfileCLIMaker {
 			if(gseatype.equals(GSEAAnalyserType.Ontologizer)) {
 				gseafilepath=FilenameUtils.concat(savetofolder, "Ontologizer_configuration.conf");
 				OntologizerPropertiesContainer.writeOntologizerProperties((OntologizerPropertiesContainer) gseaconfig.getConfig(), gseafilepath);
-				gseaprops.addPropertyToGroupCategory("Enrichment Analysis",PropertiesModules.GSEAPROCESSOR, "ontologizer", "Perform enrichment analysis with: ontologizer or topgo (default=ontologizer)");
+				gseaprops.addPropertyToGroupCategory("Enrichment Analysis",PropertyLabels.GSEAPROCESSOR, "ontologizer", "Perform enrichment analysis with: ontologizer or topgo (default=ontologizer)");
 			}
 			else {
 				gseafilepath=FilenameUtils.concat(savetofolder, "topGO_configuration.conf");
@@ -224,14 +235,14 @@ public class ProfileCLIMaker {
 			}
 			
 	
-			gseaprops.addPropertyToGroupCategory("Enrichment Analysis", PropertiesModules.GSEAOUTPVALUES, getStringPvalues(), "p-values to use in GSEA processor, if more than one value is defined, these must be separated by semi-colon(;)");
-			gseaprops.addPropertyToGroupCategory("Enrichment Analysis", PropertiesModules.GSEAUSEADJUSTEDPVALUES, useadjustedovalues?"true":"false", "If it is used adjusted p-values in GSEA analysis, this will depends if the processor supports adjusted p-values or the input configurations to GSEA processor.");
+			gseaprops.addPropertyToGroupCategory("Enrichment Analysis", PropertyLabels.GSEAOUTPVALUES, getStringPvalues(), "p-values to use in GSEA processor, if more than one value is defined, these must be separated by semi-colon(;)");
+			gseaprops.addPropertyToGroupCategory("Enrichment Analysis", PropertyLabels.GSEAUSEADJUSTEDPVALUES, useadjustedovalues?"true":"false", "If it is used adjusted p-values in GSEA analysis, this will depends if the processor supports adjusted p-values or the input configurations to GSEA processor.");
 			
 			props.appendProperties(gseaprops);
 		}
 		
 		
-		String propsfilepath=FilenameUtils.concat(savetofolder, PropertiesModules.PROFILEFILENAME);
+		String propsfilepath=FilenameUtils.concat(savetofolder, PropertyLabels.PROFILEFILENAME);
 		props.store(new FileWriter(propsfilepath), true);
 		
 		StringBuilder msg=new StringBuilder();

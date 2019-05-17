@@ -29,9 +29,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
+import jbiclustge.propertiesmodules.PropertyLabels;
 import jbiclustge.utils.osystem.SystemFolderTools;
-import jbiclustge.utils.properties.JBiGePropertiesManager;
-import jbiclustge.utils.properties.JBiclustGEPropertiesInitializer;
+import jbiclustge.utils.props.JBiGePropertiesManager;
 import jbiclustgegui.datatypes.analysis.PairwiseMultipleListBiclustersResultsBox;
 import jbiclustgegui.gui.components.panels.chart.heatmap.ExpressionDatasetHeatmapJFreeChartPlotPanel;
 import jbiclustgegui.gui.components.panels.data.DataMatrixPanel;
@@ -205,8 +205,12 @@ public class PairwiseSimilarityMultiComparisionsViewerPanel extends JPanel{
 	 * @throws Exception the exception
 	 */
 	private void showDendrogram() throws Exception {
-		if(RInstallTools.getSystemR_HOME()!=null) {
-			String Ruserlib=(String) JBiGePropertiesManager.getManager().getKeyValue(JBiclustGEPropertiesInitializer.RUSERLIBPATH);
+		
+		String R_PATH=RInstallTools.getSystemR_PATH();
+		
+		if(R_PATH!=null && !R_PATH.isEmpty() && !R_PATH.equals(RInstallTools.NONE_R_HOME)) {
+			
+			String Ruserlib=(String) JBiGePropertiesManager.getManager().getKeyValue(PropertyLabels.RUSERLIBPATH);
 			
 			DefaultDataframeContainer dataframe=new DefaultDataframeContainer();
 			
@@ -247,6 +251,7 @@ public class PairwiseSimilarityMultiComparisionsViewerPanel extends JPanel{
 			this.panelPlot.add(dendmaker.getImageViewer().getComponent(), gbc_panel_3);
 			
 		}
+		
 	}
 
 }

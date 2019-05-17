@@ -46,7 +46,7 @@ import org.knowm.xchart.style.Styler.ChartTheme;
 
 import es.uvigo.ei.aibench.workbench.Workbench;
 import jbiclustge.enrichmentanalysistools.common.EnrichmentAnalysisResultList;
-import jbiclustge.utils.properties.JBiGePropertiesManager;
+import jbiclustge.utils.props.JBiGePropertiesManager;
 import jbiclustgegui.gui.components.panels.chart.XChartPanelJBiclustGE;
 import pt.ornrocha.stringutils.MTUStringFormat;
 import pt.ornrocha.swingutils.textfield.DoubleTextField;

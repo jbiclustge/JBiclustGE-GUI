@@ -43,7 +43,7 @@ import jbiclustge.methods.algorithms.r.components.FabiaCenteringMethod;
 import jbiclustge.methods.algorithms.r.components.FabiaNormalizationMethod;
 import jbiclustge.methods.algorithms.r.fabiapackage.RFabiaMethod;
 import jbiclustge.methods.algorithms.wrappers.UnibicMethod;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.IntegerTextField;
 import pt.ornrocha.swingutils.textfield.DoubleTextField;

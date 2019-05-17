@@ -274,6 +274,7 @@ public class ProfileMakerToJBiclustGECLI extends JDialog implements ActionListen
 		listSpecs.add(new ParamSpec("Concurrent Processes",Integer.class,panelmethods.getConcurrentProcesses(), null));
 		listSpecs.add(new ParamSpec("p-values",ArrayList.class,panelmethods.getPValues(), null));
 		listSpecs.add(new ParamSpec("adjusted p-values",Boolean.class,panelmethods.useAdjustedPvalues(), null));
+		listSpecs.add(new ParamSpec("config multithread",Boolean.class,panelmethods.isUsingConfigurationMultiThread(), null));
 
 		ParamSpec[] arraySpecs=new ParamSpec[listSpecs.size()];
 		for (int i = 0; i < listSpecs.size(); i++) {

@@ -36,7 +36,7 @@ import org.javatuples.Pair;
 import jbiclustge.methods.algorithms.java.bibit.BibitMethod;
 import jbiclustge.methods.algorithms.java.bicat.opsm.OPSMMethod;
 import jbiclustge.methods.algorithms.wrappers.BimaxMethod;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.IntegerTextField;
 

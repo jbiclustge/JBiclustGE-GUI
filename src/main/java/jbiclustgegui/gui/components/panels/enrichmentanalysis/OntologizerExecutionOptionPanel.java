@@ -55,7 +55,6 @@ import jbiclustge.enrichmentanalysistools.ontologizer.components.OntologizerAnno
 import jbiclustge.enrichmentanalysistools.ontologizer.components.OntologizerCalculationMethod;
 import jbiclustge.enrichmentanalysistools.ontologizer.components.OntologizerMTCMethod;
 import jbiclustge.enrichmentanalysistools.ontologizer.components.OntologizerPropertiesContainer;
-import jbiclustge.enrichmentanalysistools.topgo.components.TopGoPropertiesContainer;
 import jbiclustgegui.gui.components.tables.common.InformationTable;
 import pt.ornrocha.fileutils.MTUFileUtils;
 import pt.ornrocha.propertyutils.PropertiesUtilities;

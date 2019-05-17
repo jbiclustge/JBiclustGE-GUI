@@ -33,7 +33,7 @@ import javax.swing.border.TitledBorder;
 import org.javatuples.Pair;
 
 import jbiclustge.methods.algorithms.r.fabiapackage.RFabiaPMethod;
-import jbiclustge.utils.properties.AlgorithmProperties;
+import jbiclustge.utils.props.AlgorithmProperties;
 import jbiclustgegui.datatypes.project.Project;
 import pt.ornrocha.swingutils.textfield.DoubleTextField;
 
